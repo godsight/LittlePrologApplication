@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="action_settings">Settings</string>
+    <string name="welcome_text">Welcome to Little Prolog Interpreter, start dragging elements into coding playground or variable list to start</string>
+    <string name="predicate">Predicate</string>
+    <string name="variable">Variable</string>
+    <string name="name">Name</string>
+    <string name="value">Value</string>
+    <string name="parameter">Parameter</string>
+    <string name="value_update_instructions">Update value through the keyboard</string>
+    <string name="predicate_touch_instructions">Drag into coding playground to create new predicate</string>
+    <string name="variable_touch_instructions">Drag into variable list to create a new variable</string>
+    <string name="component_touch_instructions">The components are the basic building blocks of a LittleProlog program</string>
+    <string name="playground_touch_instructions">The coding playground is where you build your code by dragging components</string>
+    <string name="variablelist_touch_instructions">The variable list contains all the variables created in this program</string>
+    <string name="console_touch_instructions">The console shows the results of the actions performed</string>
+    <string name="predicate_drag_instructions">Predicate and parameter values can be updated through keyboard or dragging in variables</string>
+    <string name="predicate_drag_error">Only predicates can be added into the coding playground</string>
+    <string name="variable_drag_instructions">Name the variable and provide its value. Long press the variable to drag it.</string>
+    <string name="variable_drag_error">Only variables can be added into the variable list</string>
+    <string name="variable_use_instructions">Drag into parameter or parameter to update their values</string>
+    <string name="predicate_console_add">New predicate added</string>
+    <string name="variable_console_add">New variable added</string>
+    <string name="variable_name_console_update">Variable\'s name updated to </string>
+    <string name="variable_value_console_update">Variable\'s value updated to </string>
+    <string name="predicate_value_console_update">Predicate\'s value updated to </string>
+    <string name="parameter_value_console_update">Parameter\'s value updated to </string>
+</resources>

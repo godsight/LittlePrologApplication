@@ -322,6 +322,7 @@
     <string name="predicate_value_console_update">Predicate\'s value updated to </string>
     <string name="search_menu_title">Search</string>
     <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="title_activity_main_screen">MainScreen</string>
     <string name="value">Value</string>
     <string name="value_update_instructions">Update value through the keyboard</string>
     <string name="variable">Variable</string>

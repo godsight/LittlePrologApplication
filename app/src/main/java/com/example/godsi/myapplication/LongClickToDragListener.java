@@ -28,8 +28,8 @@ public class LongClickToDragListener implements View.OnLongClickListener {
     public boolean onLongClick(View view) {
 
         //setting the data to be dragged
-        ClipData data = ClipData.newPlainText("", "");
         LinearLayout layout = (LinearLayout) view.getParent();
+        ClipData data = ClipData.newPlainText("", String.valueOf(layout.getId()));
         EditText valueText = (EditText) layout.getChildAt(layout.getChildCount()-1);
         String value = valueText.getText().toString();
         data.addItem(new ClipData.Item(value));
@@ -41,6 +41,7 @@ public class LongClickToDragListener implements View.OnLongClickListener {
 
         //update instruction view
         guiUpdater.updateInstructions(instruction);
+        guiUpdater.showDustbin();
         return true;
     }
 }

@@ -3,6 +3,8 @@ package com.example.godsi.myapplication;
         import android.app.Activity;
         import android.graphics.Color;
         import android.os.Bundle;
+        import android.view.View;
+        import android.view.ViewGroup;
         import android.widget.EditText;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
@@ -43,6 +45,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.playground).setOnDragListener(new ElementDragListener(getString(R.string.predicate), getString(R.string.predicate_console_add), getString(R.string.predicate_drag_instructions), getString(R.string.predicate_drag_error),activityGUIUpdater));
         findViewById(R.id.variablesContainer).setOnDragListener(new ElementDragListener(getString(R.string.variable),getString(R.string.variable_console_add),getString(R.string.variable_drag_instructions),getString(R.string.variable_drag_error), activityGUIUpdater));
         findViewById(R.id.variables).setOnDragListener(new ElementDragListener(getString(R.string.variable),getString(R.string.variable_console_add),getString(R.string.variable_drag_instructions),getString(R.string.variable_drag_error), activityGUIUpdater));
+        findViewById(R.id.dustbin).setOnDragListener(new DragToDeleteListener(getString(R.string.delete_success_console),activityGUIUpdater));
 
         ImageView image = (ImageView) findViewById(R.id.dustbin);
         image.setImageResource(R.drawable.dustbin);
@@ -66,6 +69,16 @@ public class MainActivity extends Activity {
             instructionsText.setText(instruction);
         }
 
+        public void showDustbin () {
+            ImageView dustbin = (ImageView) findViewById(R.id.dustbin);
+            dustbin.setVisibility(View.VISIBLE);
+        }
+
+        public void hideDustbin () {
+            ImageView dustbin = (ImageView) findViewById(R.id.dustbin);
+            dustbin.setVisibility(View.INVISIBLE);
+        }
+
         /**
          * Creates a log entry in the console view on the layout
          * @param logMessage log message to be entered into the console
@@ -87,6 +100,11 @@ public class MainActivity extends Activity {
             console.addView(newLog);
         }
 
+        public void removeView (int viewId){
+            View toBeRemoved = findViewById(viewId);
+            ViewGroup parentView = (ViewGroup) toBeRemoved.getParent();
+            parentView.removeView(toBeRemoved);
+        }
         /**
          * Generate specific UI elements for the activity based on the parameter
          * @param uiType type of UI element to be created
@@ -98,6 +116,7 @@ public class MainActivity extends Activity {
                 LinearLayout container = (LinearLayout) findViewById(R.id.variables);
                 LinearLayout newLayout = new LinearLayout(getApplicationContext());
                 newLayout.setPadding(20, 5, 5, 5);
+                newLayout.setId(View.generateViewId());
                 EditText variableText = new EditText(getApplicationContext());
                 EditText valueText = new EditText(getApplicationContext());
 
@@ -130,6 +149,8 @@ public class MainActivity extends Activity {
                 //Creation of UI elements
                 LinearLayout container = (LinearLayout) findViewById(R.id.playground);
                 LinearLayout newLayout = new LinearLayout(getApplicationContext());
+                int newId = View.generateViewId();
+                newLayout.setId(newId);
                 newLayout.setPadding(20, 5, 5, 5);
                 EditText predicateText = new EditText(getApplicationContext());
                 EditText parameterText = new EditText(getApplicationContext());
@@ -147,8 +168,10 @@ public class MainActivity extends Activity {
                 //Assigning listeners to the UI elements
                 predicateText.addTextChangedListener(new InputTextWatcher(getString(R.string.predicate_value_console_update),activityGUIUpdater));
                 predicateText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
+                predicateText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
                 parameterText.addTextChangedListener(new InputTextWatcher(getString(R.string.parameter_value_console_update), activityGUIUpdater));
                 parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
+                parameterText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
 
                 //Adding the UI elements into the container
                 newLayout.addView(predicateText);

@@ -13,12 +13,14 @@
     <string name="component_touch_instructions">The components are the basic building blocks of a LittleProlog program</string>
     <string name="playground_touch_instructions">The coding playground is where you build your code by dragging components</string>
     <string name="variablelist_touch_instructions">The variable list contains all the variables created in this program</string>
+    <string name="drag_delete_instructions">Drag to dustbin to delete</string>
     <string name="console_touch_instructions">The console shows the results of the actions performed</string>
     <string name="predicate_drag_instructions">Predicate and parameter values can be updated through keyboard or dragging in variables</string>
     <string name="predicate_drag_error">Only predicates can be added into the coding playground</string>
     <string name="variable_drag_instructions">Name the variable and provide its value. Long press the variable to drag it.</string>
     <string name="variable_drag_error">Only variables can be added into the variable list</string>
     <string name="variable_use_instructions">Drag into parameter or parameter to update their values</string>
+    <string name="delete_success_console">Element has been deleted</string>
     <string name="predicate_console_add">New predicate added</string>
     <string name="variable_console_add">New variable added</string>
     <string name="variable_name_console_update">Variable\'s name updated to </string>

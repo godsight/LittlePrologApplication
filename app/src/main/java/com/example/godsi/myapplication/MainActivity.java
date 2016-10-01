@@ -4,7 +4,9 @@ package com.example.godsi.myapplication;
         import android.graphics.Color;
         import android.os.Bundle;
         import android.widget.EditText;
+        import android.widget.ImageView;
         import android.widget.LinearLayout;
+        import android.widget.RelativeLayout;
         import android.widget.TextView;
         import java.text.SimpleDateFormat;
         import java.util.Calendar;
@@ -42,6 +44,8 @@ public class MainActivity extends Activity {
         findViewById(R.id.variablesContainer).setOnDragListener(new ElementDragListener(getString(R.string.variable),getString(R.string.variable_console_add),getString(R.string.variable_drag_instructions),getString(R.string.variable_drag_error), activityGUIUpdater));
         findViewById(R.id.variables).setOnDragListener(new ElementDragListener(getString(R.string.variable),getString(R.string.variable_console_add),getString(R.string.variable_drag_instructions),getString(R.string.variable_drag_error), activityGUIUpdater));
 
+        ImageView image = (ImageView) findViewById(R.id.dustbin);
+        image.setImageResource(R.drawable.dustbin);
         //update instructions to display the welcome text
         activityGUIUpdater.updateInstructions(getString(R.string.welcome_text));
     }

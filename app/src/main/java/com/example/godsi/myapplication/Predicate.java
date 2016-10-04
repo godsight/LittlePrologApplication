@@ -45,6 +45,11 @@ public class Predicate {
         parametersArray.add(newAttr);
     }
 
+    public void deleteAttribute(int id){
+        int index = parametersArray.indexOf(new Attribute(id));
+        parametersArray.remove(index);
+    }
+
 
     public void updatePredicate(Editable s){
         name = s.toString();

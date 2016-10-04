@@ -47,4 +47,9 @@ public class MainInterpreter {
         int index = predicates.indexOf(new Predicate(id));
         return predicates.get(index);
     }
+
+    public void deletePredicate(int id){
+        int index = predicates.indexOf(new Predicate(id));
+        predicates.remove(index);
+    }
 }

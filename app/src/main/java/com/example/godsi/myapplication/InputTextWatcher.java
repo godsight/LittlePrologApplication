@@ -40,7 +40,7 @@ public class InputTextWatcher implements TextWatcher {
      * @param s current text content of te view
      */
     public void afterTextChanged(Editable s) {
-        mainInterpreter.UpdatePredicate(s, uiType, editText);
+        mainInterpreter.updatePredicate(s, uiType, editText);
         guiUpdater.createConsoleLog(consoleText + " " + s);
     }
 }

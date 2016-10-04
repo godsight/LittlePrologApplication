@@ -36,17 +36,23 @@ public class Predicate {
         comment = "";
     }
 
-    public Attribute GetParameter(int id){
+    public Attribute getParameter(int id){
         int index = parametersArray.indexOf(new Attribute(id));
         return parametersArray.get(index);
     }
 
-    public void UpdatePredicate(Editable s){
+    public void addAttribute(Attribute newAttr){
+        parametersArray.add(newAttr);
+    }
+
+
+    public void updatePredicate(Editable s){
         name = s.toString();
     }
 
-    public void UpdatePredicate(Editable s, int viewId){
-        Constant cons = (Constant) GetParameter(viewId);
+
+    public void updatePredicate(Editable s, int viewId){
+        Constant cons = (Constant) getParameter(viewId);
         cons.value = s.toString();
     }
 

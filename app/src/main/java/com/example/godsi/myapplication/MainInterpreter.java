@@ -20,31 +20,30 @@ public class MainInterpreter {
     public MainInterpreter(){
         predicates = new ArrayList<>();
         rules = new ArrayList<>();
-
     }
 
-    public void AddPredicate(Predicate pred){
+    public void addPredicate(Predicate pred){
         predicates.add(pred);
     }
 
-    public void UpdatePredicate(Editable s, String uiType, EditText editText){
+    public void updatePredicate(Editable s, String uiType, EditText editText){
         if (uiType.equalsIgnoreCase("Predicate")) {
             int parentId = ((View) editText.getParent()).getId();
-            Predicate pred = GetPredicate(parentId);
+            Predicate pred = getPredicate(parentId);
             CharSequence eType = editText.getHint();
 
             if ("Predicate".contentEquals(eType)) {
-                pred.UpdatePredicate(s);
+                pred.updatePredicate(s);
             }
 
             else if("Parameter".contentEquals(eType)){
                 int viewId = editText.getId();
-                pred.UpdatePredicate(s, viewId);
+                pred.updatePredicate(s, viewId);
             }
         }
     }
 
-    public Predicate GetPredicate(int id){
+    public Predicate getPredicate(int id){
         int index = predicates.indexOf(new Predicate(id));
         return predicates.get(index);
     }

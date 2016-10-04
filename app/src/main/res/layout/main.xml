@@ -75,13 +75,19 @@
         android:layout_height="310dp"
         android:layout_row="1"
         android:background="@android:color/holo_orange_light"
-        android:scrollbars="vertical"
-        >
-         <LinearLayout
-            android:id="@+id/playground"
-            android:layout_width="match_parent"
-             android:layout_height="match_parent"
-            android:orientation="vertical">
+        android:scrollbars="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="310dp"
+            android:minHeight="310dp"
+            android:layout_row="1">
+
+            <LinearLayout
+                android:id="@+id/playground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/playgroundText"
@@ -91,7 +97,8 @@
                 android:textSize="20dp"
                 android:padding="5dp"
                 android:textColor="@color/colorPrimaryDark" />
-        </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
     </ScrollView>
 
     <ScrollView

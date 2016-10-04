@@ -20,9 +20,9 @@ package com.example.godsi.myapplication;
  */
 
 public class MainActivity extends Activity {
-
     //initialize the GUI updater for the activity
     MainGUIUpdater activityGUIUpdater = new MainGUIUpdater();
+    MainInterpreter mainInterpreter = new MainInterpreter();
 
     /** Called when the activity is first created to initialize it.
      * @param savedInstanceState bundle containing data stored when the activity was suspended
@@ -116,7 +116,8 @@ public class MainActivity extends Activity {
                 LinearLayout container = (LinearLayout) findViewById(R.id.variables);
                 LinearLayout newLayout = new LinearLayout(getApplicationContext());
                 newLayout.setPadding(20, 5, 5, 5);
-                newLayout.setId(View.generateViewId());
+                int newId = View.generateViewId();
+                newLayout.setId(newId);
                 EditText variableText = new EditText(getApplicationContext());
                 EditText valueText = new EditText(getApplicationContext());
 
@@ -132,10 +133,10 @@ public class MainActivity extends Activity {
 
                 //Assigning listeners to the UI elements
                 variableText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.variable_use_instructions),activityGUIUpdater));
-                variableText.addTextChangedListener(new InputTextWatcher(getString(R.string.variable_name_console_update),activityGUIUpdater));
+                variableText.addTextChangedListener(new InputTextWatcher(getString(R.string.variable_name_console_update),activityGUIUpdater, mainInterpreter, variableText, uiType));
                 variableText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
                 valueText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.variable_use_instructions),activityGUIUpdater));
-                valueText.addTextChangedListener(new InputTextWatcher(getString(R.string.variable_value_console_update),activityGUIUpdater));
+                valueText.addTextChangedListener(new InputTextWatcher(getString(R.string.variable_value_console_update),activityGUIUpdater, mainInterpreter, valueText, uiType));
                 valueText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
 
                 //Adding the UI elements into the container
@@ -154,6 +155,12 @@ public class MainActivity extends Activity {
                 newLayout.setPadding(20, 5, 5, 5);
                 EditText predicateText = new EditText(getApplicationContext());
                 EditText parameterText = new EditText(getApplicationContext());
+                int paramId = View.generateViewId();
+                parameterText.setId(paramId);
+
+                Constant newConstant = new Constant(paramId);
+                Predicate newPredicate = new Predicate(newId, newConstant);
+                mainInterpreter.AddPredicate(newPredicate);
 
                 //Styling of UI elements
                 predicateText.setPadding(5, 5, 5, 5);
@@ -166,10 +173,10 @@ public class MainActivity extends Activity {
                 parameterText.setBackgroundColor(Color.parseColor("#FF80AB"));
 
                 //Assigning listeners to the UI elements
-                predicateText.addTextChangedListener(new InputTextWatcher(getString(R.string.predicate_value_console_update),activityGUIUpdater));
+                predicateText.addTextChangedListener(new InputTextWatcher(getString(R.string.predicate_value_console_update),activityGUIUpdater, mainInterpreter, predicateText, uiType));
                 predicateText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
                 predicateText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
-                parameterText.addTextChangedListener(new InputTextWatcher(getString(R.string.parameter_value_console_update), activityGUIUpdater));
+                parameterText.addTextChangedListener(new InputTextWatcher(getString(R.string.parameter_value_console_update), activityGUIUpdater, mainInterpreter, parameterText, uiType));
                 parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
                 parameterText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
 

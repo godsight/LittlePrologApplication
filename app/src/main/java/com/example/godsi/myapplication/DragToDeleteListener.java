@@ -39,9 +39,6 @@ public class DragToDeleteListener implements View.OnDragListener {
             case DragEvent.ACTION_DRAG_EXITED:
                 break;
             case DragEvent.ACTION_DROP:
-                ClipData data = event.getClipData();
-                ClipData.Item item = data.getItemAt(0);
-                String theid = (String) item.getText();
                 int viewId = Integer.parseInt((String) event.getClipData().getItemAt(0).getText());
                 guiUpdater.removeView(viewId);
                 guiUpdater.createConsoleLog(console_text);

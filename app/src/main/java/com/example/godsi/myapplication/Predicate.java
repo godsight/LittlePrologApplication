@@ -15,7 +15,7 @@ public class Predicate {
 
     private int id;
     String name;
-    private ArrayList<Attribute> parametersArray;
+    ArrayList<Attribute> parametersArray;
     private ArrayList<Rule> rulesArray;
     private String comment;
     boolean isValid;

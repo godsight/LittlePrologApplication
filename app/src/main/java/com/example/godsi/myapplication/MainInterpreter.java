@@ -19,11 +19,15 @@ public class MainInterpreter {
     private ArrayList<Predicate> predicates;
     private ArrayList<Rule> rules;
     private ArrayList<Variable> variables;
+    int programState;
+    private int searchIndex;
 
     public MainInterpreter(){
         predicates = new ArrayList<>();
         rules = new ArrayList<>();
         variables = new ArrayList<>();
+        programState = 0;
+        searchIndex = 0;
     }
 
     public void addPredicate(Predicate pred){
@@ -47,14 +51,29 @@ public class MainInterpreter {
         }
     }
 
+    private Integer getPredicateIndex(int id){
+        for(int i = 0; i < predicates.size(); i++){
+            Predicate temp = predicates.get(i);
+            if(temp.getId() ==  id){
+                return i;
+            }
+        }
+        return null;
+    }
+
     public Predicate getPredicate(int id){
-        int index = predicates.indexOf(new Predicate(id));
-        return predicates.get(index);
+        Integer index = getPredicateIndex(id);
+        if(index != null){
+            return predicates.get(index);
+        }
+        return null;
     }
 
     public void deletePredicate(int id){
-        int index = predicates.indexOf(new Predicate(id));
-        predicates.remove(index);
+        Integer index = getPredicateIndex(id);
+        if(index != null){
+            predicates.remove(index);
+        }
     }
 
     public void addVariable(Variable var){
@@ -77,4 +96,37 @@ public class MainInterpreter {
         int index = variables.indexOf(new Variable(id));
         variables.remove(index);
     }
+
+    public boolean runInterpreter(int stateId){
+        if(checkComponentsValidity()){
+            programState = stateId;
+            return true;
+        }
+        return false;
+    }
+
+    public void stopInterpreter(int stateId){
+        programState = stateId;
+    }
+
+    private boolean checkComponentsValidity(){
+        boolean valid = true;
+        int index = 0;
+        while(valid && index < predicates.size()){
+            Predicate predicate = predicates.get(index);
+            if(!predicate.isValid){
+                valid = false;
+            }
+            index++;
+        }
+        return valid;
+    }
+
+    public boolean querySearch(Predicate tempPred){
+        if(predicates.contains(tempPred)){
+            return true;
+        }
+        return false;
+    }
+
 }

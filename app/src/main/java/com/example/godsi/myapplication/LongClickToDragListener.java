@@ -26,7 +26,6 @@ public class LongClickToDragListener implements View.OnLongClickListener {
      * @return true if event is handled, else false
      */
     public boolean onLongClick(View view) {
-
         //setting the data to be dragged
         LinearLayout layout = (LinearLayout) view.getParent();
         ClipData data = ClipData.newPlainText("", String.valueOf(layout.getId()));

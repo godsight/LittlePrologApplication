@@ -7,6 +7,8 @@
     <string name="name">Name</string>
     <string name="value">Value</string>
     <string name="parameter">Parameter</string>
+    <string name="run">Run</string>
+    <string name="stop">Stop</string>
     <string name="value_update_instructions">Update value through the keyboard</string>
     <string name="predicate_touch_instructions">Drag into coding playground to create new predicate</string>
     <string name="variable_touch_instructions">Drag into variable list to create a new variable</string>
@@ -30,4 +32,7 @@
     <string name="add_new_parameter">New parameter added </string>
     <string name="delete_parameter">A parameter is deleted </string>
     <string name="title_activity_main_screen">MainScreen</string>
+    <string name="run_interpreter">Interpreter is running...</string>
+    <string name="stop_interpreter">Interpreter stop running...</string>
+    <string name="fail_to_run_interpreter">Interpreter fail to run.</string>
 </resources>

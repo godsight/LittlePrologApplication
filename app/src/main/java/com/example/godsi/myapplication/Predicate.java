@@ -18,6 +18,11 @@ public class Predicate {
     private ArrayList<Attribute> parametersArray;
     private ArrayList<Rule> rulesArray;
     private String comment;
+    boolean isValid;
+
+    public int getId(){
+        return id;
+    }
 
     public Predicate(int identifier){
         id = identifier;
@@ -25,6 +30,7 @@ public class Predicate {
         parametersArray = new ArrayList<>();
         rulesArray = new ArrayList<>();
         comment = "";
+        isValid = false;
     }
 
     public Predicate(int identifier, Attribute param){
@@ -34,6 +40,7 @@ public class Predicate {
         parametersArray.add(param);
         rulesArray = new ArrayList<>();
         comment = "";
+        isValid = false;
     }
 
     public Attribute getParameter(int id){
@@ -43,51 +50,44 @@ public class Predicate {
 
     public void addAttribute(Attribute newAttr){
         parametersArray.add(newAttr);
+        setValidity();
     }
 
     public void deleteAttribute(int id){
         int index = parametersArray.indexOf(new Attribute(id));
         parametersArray.remove(index);
+        setValidity();
     }
-
 
     public void updatePredicate(Editable s){
         name = s.toString();
     }
 
-
     public void updatePredicate(Editable s, int viewId){
         Constant cons = (Constant) getParameter(viewId);
         cons.value = s.toString();
+        setValidity();
     }
 
-    @Override
-    //Overriding equals() to compare two Predicate objects
-    public boolean equals(Object p){
-        //if the object is compared with itself then return true
-        if(p == this){
-            return true;
+    private boolean checkValidity(){
+        boolean valid = true;
+        int index = 0;
+        while(valid && index < parametersArray.size()){
+            Constant constant = (Constant) parametersArray.get(index);
+            if(constant.value.equalsIgnoreCase("")){
+                valid = false;
+            }
+            index++;
         }
-
-        //check if p is an instance of Predicate
-        if(!(p instanceof Predicate)){
-            return false;
-        }
-
-        //Typecast p to Predicate so that we can compare data members
-        Predicate other = (Predicate) p;
-        if(this.id == other.id){
-            return true;
-        }
-
-        return false;
+        return valid;
     }
 
-    @Override
-    //Overriding Hashcode() to compare two Predicate objects
-    public int hashCode(){
-        int hash = 17;
-        hash = 31 * hash + id;
-        return hash;
+    private void setValidity(){
+        if(checkValidity()){
+            isValid = true;
+        }
+        else{
+            isValid = false;
+        }
     }
 }

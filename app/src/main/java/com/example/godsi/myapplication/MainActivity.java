@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
         //Assigning the listeners for the views in the activity
         findViewById(R.id.predicate).setOnTouchListener(new TouchToDragListener(getString(R.string.predicate_touch_instructions),activityGUIUpdater,getString(R.string.predicate)));
         findViewById(R.id.variable).setOnTouchListener(new TouchToDragListener(getString(R.string.variable_touch_instructions),activityGUIUpdater,getString(R.string.variable)));
-        findViewById(R.id.query).setOnTouchListener(new TouchToDragListener(getString(R.string.query_drag_instructions),activityGUIUpdater, getString(R.string.variable)));
+        findViewById(R.id.query).setOnTouchListener(new TouchToDragListener(getString(R.string.query_drag_instructions),activityGUIUpdater, getString(R.string.query)));
         findViewById(R.id.componentText).setOnTouchListener(new InstructionUpdateListener(getString(R.string.component_touch_instructions),activityGUIUpdater));
         findViewById(R.id.playgroundText).setOnTouchListener(new InstructionUpdateListener(getString(R.string.playground_touch_instructions),activityGUIUpdater));
         findViewById(R.id.variablesText).setOnTouchListener(new InstructionUpdateListener(getString(R.string.variablelist_touch_instructions),activityGUIUpdater));
@@ -217,11 +217,52 @@ public class MainActivity extends Activity {
                 container.addView(newLayout);
             }
 
-            else if(uiType.equalsIgnoreCase(getString(R.string.predicate))){
+            else if(uiType.equalsIgnoreCase(getString(R.string.query))){
                 //Creation of UI elements
                 RelativeLayout consoleCommandLine = (RelativeLayout) findViewById(R.id.consoleCommandLine);
+                LinearLayout newLayout = new LinearLayout(getApplicationContext());
+                TextView queryHead = new TextView(getApplicationContext());
+                queryHead.setText("?-");
+                RelativeLayout newLayout2 = new RelativeLayout(getApplicationContext());
+                newLayout2.setId(View.generateViewId());
+                RelativeLayout newLayout3 = new RelativeLayout(getApplicationContext());
+                newLayout3.setId(View.generateViewId());
+                EditText predicateText = new EditText(getApplicationContext());
+                EditText parameterText = new EditText(getApplicationContext());
+                int paramId = View.generateViewId();
+                parameterText.setId(paramId);
+                ImageButton additionButton = new ImageButton(getApplicationContext());
+                additionButton.setLayoutParams(new LinearLayout.LayoutParams(20, 20));
 
+                //Styling of UI elements
+                predicateText.setPadding(5, 5, 5, 5);
+                predicateText.setMinimumWidth(250);
+                predicateText.setHint(getString(R.string.predicate));
+                predicateText.setBackgroundColor(Color.parseColor("#ff99cc00"));
+                parameterText.setPadding(5, 5, 5, 5);
+                parameterText.setMinimumWidth(250);
+                parameterText.setHint(getString(R.string.parameter));
+                parameterText.setBackgroundColor(Color.parseColor("#FF80AB"));
+                additionButton.setImageResource(R.drawable.addicon);
 
+                additionButton.setOnClickListener(new ClickToAddListener(getString(R.string.add_new_parameter), activityGUIUpdater));
+
+                RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                newLayout2.addView(predicateText, rp);
+                newLayout3.addView(parameterText, rp);
+                //Adding the UI elements into the container
+                newLayout.addView(queryHead);
+                newLayout.addView(newLayout2);
+                newLayout.addView(newLayout3);
+                newLayout.addView(additionButton);
+                newLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.addRule(RelativeLayout.RIGHT_OF, R.id.consoleArrow);
+
+                newLayout.setLayoutParams(params);
+                consoleCommandLine.addView(newLayout);
                 ArrayList<String> re = new ArrayList<>();
             }
         }

@@ -30,6 +30,7 @@ public class LongClickToDragListener implements View.OnLongClickListener {
         //setting the data to be dragged
         LinearLayout layout = (LinearLayout) view.getParent();
         ClipData data = ClipData.newPlainText("", String.valueOf(layout.getId()));
+        data.addItem(new ClipData.Item("Variable"));
         EditText valueText = (EditText) layout.getChildAt(layout.getChildCount()-1);
         String value = valueText.getText().toString();
         data.addItem(new ClipData.Item(value));

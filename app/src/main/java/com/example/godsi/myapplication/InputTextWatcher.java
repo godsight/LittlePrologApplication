@@ -40,7 +40,12 @@ public class InputTextWatcher implements TextWatcher {
      * @param s current text content of te view
      */
     public void afterTextChanged(Editable s) {
-        mainInterpreter.updatePredicate(s, uiType, editText);
+        if(uiType.equalsIgnoreCase("Predicate")) {
+            mainInterpreter.updatePredicate(s, uiType, editText);
+        }
+        else if(uiType.equalsIgnoreCase("Variable")){
+            mainInterpreter.updateVariable(s, editText);
+        }
         guiUpdater.createConsoleLog(consoleText + " " + s);
     }
 }

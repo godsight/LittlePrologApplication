@@ -1,6 +1,7 @@
 package com.example.godsi.myapplication;
 
 /**
+ * Super class of variable and constant
  * @author Chan Kai Ying
  * @version 0.lv
  * @createdDate 10/3/2016

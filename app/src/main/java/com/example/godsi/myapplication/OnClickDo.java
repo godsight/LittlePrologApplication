@@ -3,18 +3,19 @@ package com.example.godsi.myapplication;
 import android.view.View;
 
 /**
+ * This class is responsible for the response of the start, run, stop actions of the LittleProlog Interpreter
  * @author: Chan Kai Ying
  */
 
 public class OnClickDo implements View.OnClickListener {
 
-    private String consoleText;
-    private GUIUpdater guiUpdater;
-    private MainInterpreter mainInterpreter;
-    private String type;
-    private String failConsoleText;
-    private int programState;
-    private int failState;
+    private String consoleText; //text to be printed on console
+    private GUIUpdater guiUpdater; //main GUIupdater of the activity
+    private MainInterpreter mainInterpreter; //main interpreter of the activity
+    private String type; //ui type
+    private String failConsoleText; //text to be printed on console if action fails
+    private int programState; //state of the interpreter
+    private int failState; //failure state
 
     public OnClickDo(String console, GUIUpdater gui, MainInterpreter interpreter, String uiType, String failText, int programStateId, int failStateId){
         consoleText = console;
@@ -26,6 +27,10 @@ public class OnClickDo implements View.OnClickListener {
         failState = failStateId;
     }
 
+    /***
+     * Logs messages based on the ui type and updates program state
+     * @param v View clicked
+     */
     @Override
     public void onClick(View v) {
         if(type.equalsIgnoreCase("Run")){

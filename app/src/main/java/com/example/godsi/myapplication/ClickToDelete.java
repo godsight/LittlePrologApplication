@@ -6,17 +6,19 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 /**
+ * Deletes a predicate/query parameter when click is detected
  * @author: Chan Kai Ying
  * @CreatedDate 5/10/2016
  */
 
 public class ClickToDelete implements View.OnClickListener {
 
-    private String consoleText;
-    private GUIUpdater guiUpdater;
-    private MainInterpreter mainInterpreter;
-    private String uiType;
+    private String consoleText; //text to be logged into console
+    private GUIUpdater guiUpdater; //Main GuIupdater of the activity
+    private MainInterpreter mainInterpreter; //Main Interpreter of the activity
+    private String uiType; // type of UI
 
+    //Constructor of the class
     public ClickToDelete(String console, GUIUpdater gui, MainInterpreter interpreter, String type){
         consoleText = console;
         guiUpdater = gui;
@@ -24,6 +26,7 @@ public class ClickToDelete implements View.OnClickListener {
         uiType = type;
     }
 
+    //Removes view and creates a console log
     @Override
     public void onClick(View v) {
         RelativeLayout attr = (RelativeLayout) v.getParent();

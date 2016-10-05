@@ -129,4 +129,52 @@ public class MainInterpreter {
         return false;
     }
 
+    public void variableSearch(Predicate tempPred) {
+        if (programState == 3) {
+            boolean found = false;
+            String console = "";
+            while (searchIndex < predicates.size() && !found) {
+                boolean match = true;
+                Predicate p = predicates.get(searchIndex);
+                if (tempPred.parametersArray.size() != p.parametersArray.size()) {
+                    match = false;
+                } else {
+                    for (int i = 0; i < tempPred.parametersArray.size(); i++) {
+                        Constant param1 = (Constant) p.parametersArray.get(i);
+                        Constant param2 = (Constant) tempPred.parametersArray.get(i);
+                        if (!isVariable(param2.value)) {
+                            if (param1.value == param2.value) {
+                                match = true;
+                            } else {
+                                match = false;
+                                break;
+                            }
+                        } else {
+                            console.concat(param2.value + " = ");
+                            console.concat(param1.value + ", ");
+                        }
+                    }
+                }
+                if (match) {
+                    found = true;
+                }
+                searchIndex++;
+                console = "";
+            }
+
+            if (searchIndex > predicates.size() && !found) {
+                console = "No.";
+                searchIndex = 0;
+            } else {
+            }
+        }
+    }
+
+    private boolean isVariable(String s){
+        char first = s.charAt(0);
+        if(Character.isUpperCase(first) || first == '_'){
+            return true;
+        }
+        return false;
+    }
 }

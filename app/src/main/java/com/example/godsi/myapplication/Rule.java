@@ -5,4 +5,5 @@ package com.example.godsi.myapplication;
  */
 
 public class Rule {
+    //Not implemented
 }

@@ -6,9 +6,9 @@ package com.example.godsi.myapplication;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.EditText;
+        import android.widget.ImageButton;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
-        import android.widget.RelativeLayout;
         import android.widget.TextView;
         import java.text.SimpleDateFormat;
         import java.util.Calendar;
@@ -152,15 +152,17 @@ public class MainActivity extends Activity {
                 LinearLayout newLayout = new LinearLayout(getApplicationContext());
                 int newId = View.generateViewId();
                 newLayout.setId(newId);
-                newLayout.setPadding(20, 5, 5, 5);
+                newLayout.setPadding(20, 5, 20, 5);
                 EditText predicateText = new EditText(getApplicationContext());
                 EditText parameterText = new EditText(getApplicationContext());
                 int paramId = View.generateViewId();
                 parameterText.setId(paramId);
+                ImageButton additionButton = new ImageButton(getApplicationContext());
+                additionButton.setLayoutParams(new LinearLayout.LayoutParams(43, 43));
 
                 Constant newConstant = new Constant(paramId);
                 Predicate newPredicate = new Predicate(newId, newConstant);
-                mainInterpreter.AddPredicate(newPredicate);
+                mainInterpreter.addPredicate(newPredicate);
 
                 //Styling of UI elements
                 predicateText.setPadding(5, 5, 5, 5);
@@ -171,6 +173,7 @@ public class MainActivity extends Activity {
                 parameterText.setMinimumWidth(250);
                 parameterText.setHint(getString(R.string.parameter));
                 parameterText.setBackgroundColor(Color.parseColor("#FF80AB"));
+                additionButton.setImageResource(R.drawable.addicon);
 
                 //Assigning listeners to the UI elements
                 predicateText.addTextChangedListener(new InputTextWatcher(getString(R.string.predicate_value_console_update),activityGUIUpdater, mainInterpreter, predicateText, uiType));
@@ -179,13 +182,40 @@ public class MainActivity extends Activity {
                 parameterText.addTextChangedListener(new InputTextWatcher(getString(R.string.parameter_value_console_update), activityGUIUpdater, mainInterpreter, parameterText, uiType));
                 parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
                 parameterText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
+                additionButton.setOnClickListener(new ClickToAddListener(getString(R.string.add_new_parameter), activityGUIUpdater));
 
                 //Adding the UI elements into the container
                 newLayout.addView(predicateText);
                 newLayout.addView(parameterText);
+                newLayout.addView(additionButton);
                 newLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 container.addView(newLayout);
             }
+        }
+
+        public void generateUI(View v){
+            int id = ((View) v.getParent()).getId();
+            LinearLayout existingLayout = (LinearLayout) findViewById(id);
+
+            EditText parameterText = new EditText(getApplicationContext());
+            int paramId = View.generateViewId();
+            parameterText.setId(paramId);
+
+            Constant newConstant = new Constant(paramId);
+            Predicate existingPred = mainInterpreter.getPredicate(id);
+            existingPred.addAttribute(newConstant);
+
+            parameterText.setPadding(5, 5, 5, 5);
+            parameterText.setMinimumWidth(250);
+            parameterText.setHint(getString(R.string.parameter));
+            parameterText.setBackgroundColor(Color.parseColor("#FF80AB"));
+
+            parameterText.addTextChangedListener(new InputTextWatcher(getString(R.string.parameter_value_console_update), activityGUIUpdater, mainInterpreter, parameterText, getString(R.string.predicate)));
+            parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
+            parameterText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
+
+            int count = existingLayout.getChildCount();
+            existingLayout.addView(parameterText, count-1);
         }
     }
 }

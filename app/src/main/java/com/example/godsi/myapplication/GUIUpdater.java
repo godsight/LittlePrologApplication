@@ -1,5 +1,7 @@
 package com.example.godsi.myapplication;
 
+import android.view.View;
+
 /**
  * This is the interface which a GUI handler of the activity must implement
  * @author Hong Chin Choong
@@ -24,4 +26,7 @@ public interface GUIUpdater {
 
     //creation of new UI elements in the layout
     public void generateUI(String uiType);
+
+    //creation of new parameter UI to existing Predicate UI in layout
+    public void generateUI(View v);
 }

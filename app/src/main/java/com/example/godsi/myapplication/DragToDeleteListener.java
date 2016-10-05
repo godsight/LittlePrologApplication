@@ -16,10 +16,12 @@ public class DragToDeleteListener implements View.OnDragListener {
 
     private String console_text; //Console log message to be displayed
     private GUIUpdater guiUpdater; //the GUI handler of the activity
+    private MainInterpreter mainInterpreter;
 
-    public DragToDeleteListener (String consoleText, GUIUpdater updater){
+    public DragToDeleteListener (String consoleText, GUIUpdater updater, MainInterpreter interpreter){
         console_text = consoleText;
         guiUpdater = updater;
+        mainInterpreter = interpreter;
     }
 
     /**
@@ -39,11 +41,16 @@ public class DragToDeleteListener implements View.OnDragListener {
             case DragEvent.ACTION_DRAG_EXITED:
                 break;
             case DragEvent.ACTION_DROP:
-                ClipData data = event.getClipData();
-                ClipData.Item item = data.getItemAt(0);
-                String theid = (String) item.getText();
                 int viewId = Integer.parseInt((String) event.getClipData().getItemAt(0).getText());
                 guiUpdater.removeView(viewId);
+
+                String uiType = (String) event.getClipData().getItemAt(1).getText();
+                if(uiType.equalsIgnoreCase("Predicate")) {
+                    mainInterpreter.deletePredicate(viewId);
+                }
+                else if(uiType.equalsIgnoreCase("Variable")){
+                    mainInterpreter.deleteVariable(viewId);
+                }
                 guiUpdater.createConsoleLog(console_text);
                 guiUpdater.hideDustbin();
             case DragEvent.ACTION_DRAG_ENDED:

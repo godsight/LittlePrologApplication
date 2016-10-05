@@ -27,5 +27,7 @@
     <string name="variable_value_console_update">Variable\'s value updated to </string>
     <string name="predicate_value_console_update">Predicate\'s value updated to </string>
     <string name="parameter_value_console_update">Parameter\'s value updated to </string>
+    <string name="add_new_parameter">New parameter added </string>
+    <string name="delete_parameter">A parameter is deleted </string>
     <string name="title_activity_main_screen">MainScreen</string>
 </resources>

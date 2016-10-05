@@ -26,7 +26,7 @@ public class ElementDragListener implements View.OnDragListener {
 
     /**
      * Creates new UI and updates the console and instruction if the drop is accepted otherwise updates the instruction with error message
-     * @param v View which is accepts the drag event
+     * @param v View which accepts the drag event
      * @param event the Drag Event
      * @return true if event is handled, else false
      */

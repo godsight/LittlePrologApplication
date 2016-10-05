@@ -21,6 +21,7 @@ public class MainInterpreter {
     private ArrayList<Variable> variables;
     int programState;
     private int searchIndex;
+    Predicate query;
 
     public MainInterpreter(){
         predicates = new ArrayList<>();
@@ -122,14 +123,35 @@ public class MainInterpreter {
         return valid;
     }
 
+    public void updateQuery(Editable s, String uiType, EditText editText){
+        if (uiType.equalsIgnoreCase("Query")) {
+            CharSequence eType = editText.getHint();
+
+            if ("Predicate".contentEquals(eType)) {
+                query.updatePredicate(s);
+            }
+
+            else if("Parameter".contentEquals(eType)){
+                int viewId = editText.getId();
+                query.updatePredicate(s, viewId);
+            }
+        }
+    }
+
     public boolean querySearch(Predicate tempPred){
-        if(predicates.contains(tempPred)){
-            return true;
+        for(int i = 0; i < predicates.size(); i++){
+            Predicate p = predicates.get(i);
+            if(p.name == tempPred.name){
+                tempPred.setId(p.getId());
+                if(predicates.contains(tempPred)){
+                    return true;
+                }
+            }
         }
         return false;
     }
 
-    public void variableSearch(Predicate tempPred) {
+    public String variableSearch(Predicate tempPred, int state) {
         if (programState == 3) {
             boolean found = false;
             String console = "";
@@ -165,9 +187,21 @@ public class MainInterpreter {
             if (searchIndex > predicates.size() && !found) {
                 console = "No.";
                 searchIndex = 0;
-            } else {
+                programState = 1;
             }
+
+            if(state == 1) {
+                console = console.substring(0, console.length() - 2);
+                console.concat(".");
+            }
+            else if(state == 2){
+                console = "Yes.";
+                searchIndex = 0;
+                programState = 1;
+            }
+            return console;
         }
+        return null;
     }
 
     private boolean isVariable(String s){

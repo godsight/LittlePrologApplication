@@ -38,8 +38,48 @@ public class OnClickDo implements View.OnClickListener {
                 guiUpdater.createConsoleLog(failConsoleText);
             }
         }
-        else{
+        else if(type.equalsIgnoreCase("Stop")){
             mainInterpreter.stopInterpreter(programState);
+        }
+
+        else if(type.equalsIgnoreCase("Enter")){
+            Predicate query = mainInterpreter.query;
+            if(mainInterpreter.programState == 1){
+                int search = query.queryOrVariableSearch();
+                if(search == 1){
+                    mainInterpreter.programState = 2;
+                    if(mainInterpreter.querySearch(query)){
+                        guiUpdater.createConsoleLog("Yes.");
+                    }
+                    else{
+                        guiUpdater.createConsoleLog("No.");
+                    }
+                    mainInterpreter.programState = 1;
+                }
+                else if(search == 2){
+                    mainInterpreter.programState = 3;
+                    String result = mainInterpreter.variableSearch(query, 2);
+                    if(result != null){
+                        guiUpdater.createConsoleLog(result);
+                    }
+                }
+            }
+            else if(mainInterpreter.programState == 3){
+                String result = mainInterpreter.variableSearch(query, 2);
+                if(result != null){
+                    guiUpdater.createConsoleLog(result);
+                }
+            }
+        }
+
+        else if(type.equalsIgnoreCase("Next")){
+            Predicate query = mainInterpreter.query;
+            if(mainInterpreter.programState == 3){
+                String result = mainInterpreter.variableSearch(query, 1);
+                if(result != null){
+                    guiUpdater.createConsoleLog(result);
+                }
+            }
         }
     }
 }

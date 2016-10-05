@@ -9,6 +9,8 @@
     <string name="parameter">Parameter</string>
     <string name="run">Run</string>
     <string name="stop">Stop</string>
+    <string name="next">Next</string>
+    <string name="enter">Enter</string>
     <string name="value_update_instructions">Update value through the keyboard</string>
     <string name="predicate_touch_instructions">Drag into coding playground to create new predicate</string>
     <string name="variable_touch_instructions">Drag into variable list to create a new variable</string>

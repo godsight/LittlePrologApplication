@@ -24,6 +24,10 @@ public class Predicate {
         return id;
     }
 
+    public void setId(int i){
+        id = i;
+    }
+
     public Predicate(int identifier){
         id = identifier;
         name = "";
@@ -81,6 +85,19 @@ public class Predicate {
         }
         return valid;
     }
+
+    public int queryOrVariableSearch(){
+        char first;
+        for(Attribute param:parametersArray){
+            Constant c = (Constant) param;
+            first = c.value.charAt(0);
+            if(Character.isUpperCase(first)){
+                return 2;
+            }
+        }
+        return 1;
+    }
+
 
     private void setValidity(){
         if(checkValidity()){

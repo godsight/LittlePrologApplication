@@ -46,6 +46,9 @@ public class InputTextWatcher implements TextWatcher {
         else if(uiType.equalsIgnoreCase("Variable")){
             mainInterpreter.updateVariable(s, editText);
         }
+        else if(uiType.equalsIgnoreCase("Query")){
+            mainInterpreter.updateQuery(s, uiType, editText);
+        }
         guiUpdater.createConsoleLog(consoleText + " " + s);
     }
 }

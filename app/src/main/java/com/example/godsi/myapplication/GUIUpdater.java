@@ -28,5 +28,5 @@ public interface GUIUpdater {
     public void generateUI(String uiType);
 
     //creation of new parameter UI to existing Predicate UI in layout
-    public void generateUI(View v);
+    public void generateUI(View v, String uiType);
 }

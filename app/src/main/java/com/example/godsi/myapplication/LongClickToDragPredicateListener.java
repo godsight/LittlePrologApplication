@@ -33,7 +33,7 @@ public class LongClickToDragPredicateListener implements View.OnLongClickListene
         ClipData data = ClipData.newPlainText("", String.valueOf(layout.getId()));
         data.addItem(new ClipData.Item("Predicate"));
         int count = layout.getChildCount() - 1;
-        for(int i = 0; i < count; i++) {
+        for(int i = 0; i < count; i ++) {
             RelativeLayout relativeLayout = (RelativeLayout) layout.getChildAt(i);
             EditText valueText = (EditText) relativeLayout.getChildAt(0);
             String value = valueText.getText().toString();

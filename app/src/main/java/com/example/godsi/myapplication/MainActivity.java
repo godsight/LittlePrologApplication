@@ -1,16 +1,22 @@
 package com.example.godsi.myapplication;
 
         import android.app.Activity;
+        import android.content.res.Resources;
         import android.graphics.Color;
         import android.os.Bundle;
+        import android.support.v4.content.ContextCompat;
+        import android.support.v4.content.res.ResourcesCompat;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.EditText;
         import android.widget.ImageButton;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
+        import android.widget.RelativeLayout;
+        import android.widget.ScrollView;
         import android.widget.TextView;
         import java.text.SimpleDateFormat;
+        import java.util.ArrayList;
         import java.util.Calendar;
 
 /**
@@ -45,10 +51,16 @@ public class MainActivity extends Activity {
         findViewById(R.id.playground).setOnDragListener(new ElementDragListener(getString(R.string.predicate), getString(R.string.predicate_console_add), getString(R.string.predicate_drag_instructions), getString(R.string.predicate_drag_error),activityGUIUpdater));
         findViewById(R.id.variablesContainer).setOnDragListener(new ElementDragListener(getString(R.string.variable),getString(R.string.variable_console_add),getString(R.string.variable_drag_instructions),getString(R.string.variable_drag_error), activityGUIUpdater));
         findViewById(R.id.variables).setOnDragListener(new ElementDragListener(getString(R.string.variable),getString(R.string.variable_console_add),getString(R.string.variable_drag_instructions),getString(R.string.variable_drag_error), activityGUIUpdater));
-        findViewById(R.id.dustbin).setOnDragListener(new DragToDeleteListener(getString(R.string.delete_success_console),activityGUIUpdater));
+        findViewById(R.id.dustbin).setOnDragListener(new DragToDeleteListener(getString(R.string.delete_success_console),activityGUIUpdater, mainInterpreter));
+        findViewById(R.id.run).setOnClickListener(new OnClickDo(getString(R.string.run_interpreter), activityGUIUpdater, mainInterpreter, getString(R.string.run), getString(R.string.fail_to_run_interpreter), getResources().getInteger(R.integer.runningState), getResources().getInteger(R.integer.editState)));
+        findViewById(R.id.stop).setOnClickListener(new OnClickDo(getString(R.string.stop_interpreter), activityGUIUpdater, mainInterpreter, getString(R.string.stop), "", getResources().getInteger(R.integer.editState), getResources().getInteger(R.integer.editState)));
 
         ImageView image = (ImageView) findViewById(R.id.dustbin);
         image.setImageResource(R.drawable.dustbin);
+        ImageView run = (ImageView) findViewById(R.id.run);
+        run.setImageResource(R.drawable.runicon);
+        ImageView stop = (ImageView) findViewById(R.id.stop);
+        stop.setImageResource(R.drawable.stopicon);
         //update instructions to display the welcome text
         activityGUIUpdater.updateInstructions(getString(R.string.welcome_text));
     }
@@ -121,6 +133,9 @@ public class MainActivity extends Activity {
                 EditText variableText = new EditText(getApplicationContext());
                 EditText valueText = new EditText(getApplicationContext());
 
+                Variable newVariable = new Variable(newId);
+                mainInterpreter.addVariable(newVariable);
+
                 //Styling of UI elements
                 variableText.setPadding(5, 5, 5, 5);
                 variableText.setMinimumWidth(10);
@@ -153,6 +168,10 @@ public class MainActivity extends Activity {
                 int newId = View.generateViewId();
                 newLayout.setId(newId);
                 newLayout.setPadding(20, 5, 20, 5);
+                RelativeLayout newLayout2 = new RelativeLayout(getApplicationContext());
+                newLayout2.setId(View.generateViewId());
+                RelativeLayout newLayout3 = new RelativeLayout(getApplicationContext());
+                newLayout3.setId(View.generateViewId());
                 EditText predicateText = new EditText(getApplicationContext());
                 EditText parameterText = new EditText(getApplicationContext());
                 int paramId = View.generateViewId();
@@ -178,28 +197,43 @@ public class MainActivity extends Activity {
                 //Assigning listeners to the UI elements
                 predicateText.addTextChangedListener(new InputTextWatcher(getString(R.string.predicate_value_console_update),activityGUIUpdater, mainInterpreter, predicateText, uiType));
                 predicateText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
-                predicateText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
+                predicateText.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
                 parameterText.addTextChangedListener(new InputTextWatcher(getString(R.string.parameter_value_console_update), activityGUIUpdater, mainInterpreter, parameterText, uiType));
                 parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
-                parameterText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
+                parameterText.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
                 additionButton.setOnClickListener(new ClickToAddListener(getString(R.string.add_new_parameter), activityGUIUpdater));
+                additionButton.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
 
+                RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                newLayout2.addView(predicateText, rp);
+                newLayout3.addView(parameterText, rp);
                 //Adding the UI elements into the container
-                newLayout.addView(predicateText);
-                newLayout.addView(parameterText);
+                newLayout.addView(newLayout2);
+                newLayout.addView(newLayout3);
                 newLayout.addView(additionButton);
                 newLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 container.addView(newLayout);
+            }
+
+            else if(uiType.equalsIgnoreCase("Query")){
+                ArrayList<String> re = new ArrayList<>();
             }
         }
 
         public void generateUI(View v){
             int id = ((View) v.getParent()).getId();
             LinearLayout existingLayout = (LinearLayout) findViewById(id);
-
+            RelativeLayout newLayout = new RelativeLayout(getApplicationContext());
+            int layoutId = View.generateViewId();
+            newLayout.setId(layoutId)
+            ;
             EditText parameterText = new EditText(getApplicationContext());
             int paramId = View.generateViewId();
             parameterText.setId(paramId);
+            ImageView close = new ImageView(getApplicationContext());
+            int imageId = View.generateViewId();
+            close.setId(imageId);
+            close.setImageResource(R.drawable.xicon);
 
             Constant newConstant = new Constant(paramId);
             Predicate existingPred = mainInterpreter.getPredicate(id);
@@ -212,10 +246,19 @@ public class MainActivity extends Activity {
 
             parameterText.addTextChangedListener(new InputTextWatcher(getString(R.string.parameter_value_console_update), activityGUIUpdater, mainInterpreter, parameterText, getString(R.string.predicate)));
             parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
-            parameterText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
+            parameterText.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
+            close.setOnClickListener(new ClickToDelete(getString(R.string.delete_parameter), activityGUIUpdater, mainInterpreter));
 
+            RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            rp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+            RelativeLayout.LayoutParams rp2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            rp2.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+            rp2.addRule(RelativeLayout.CENTER_VERTICAL);
+            rp2.leftMargin = 210;
+            newLayout.addView(parameterText, rp);
+            newLayout.addView(close, rp2);
             int count = existingLayout.getChildCount();
-            existingLayout.addView(parameterText, count-1);
+            existingLayout.addView(newLayout, count-1);
         }
     }
 }

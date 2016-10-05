@@ -35,4 +35,8 @@
     <string name="run_interpreter">Interpreter is running...</string>
     <string name="stop_interpreter">Interpreter stop running...</string>
     <string name="fail_to_run_interpreter">Interpreter fail to run.</string>
+    <string name="query">Query</string>
+    <string name="query_drag_instructions">Drag query into console command line to create a query.</string>
+    <string name="query_create_instructions">Fill in the parameters and press send to run the command</string>
+    <string name="console_command_droperror">Only queries can be dropped here</string>
 </resources>

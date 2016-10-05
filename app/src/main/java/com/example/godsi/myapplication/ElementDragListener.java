@@ -46,7 +46,9 @@ public class ElementDragListener implements View.OnDragListener {
                 //if data is matches the type the view is accepting
                 if (clipData.equalsIgnoreCase(elementType)) {
                     guiUpdater.generateUI(elementType);
-                    guiUpdater.createConsoleLog(console_text);
+                    if (!console_text.equalsIgnoreCase("")){
+                        guiUpdater.createConsoleLog(console_text);
+                    }
                     guiUpdater.updateInstructions(success_instruction);
                 }
                 else {

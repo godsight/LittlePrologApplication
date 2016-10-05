@@ -26,14 +26,12 @@ public class Predicate {
         return id;
     }
 
-<<<<<<< HEAD
     //Constructor for the predicate
-=======
     public void setId(int i){
         id = i;
     }
 
->>>>>>> origin/master
+
     public Predicate(int identifier){
         id = identifier;
         name = "";
@@ -99,9 +97,8 @@ public class Predicate {
         return valid;
     }
 
-<<<<<<< HEAD
+
     //sets the validity of the predicate
-=======
     public int queryOrVariableSearch(){
         char first;
         for(Attribute param:parametersArray){
@@ -115,7 +112,6 @@ public class Predicate {
     }
 
 
->>>>>>> origin/master
     private void setValidity(){
         if(checkValidity()){
             isValid = true;

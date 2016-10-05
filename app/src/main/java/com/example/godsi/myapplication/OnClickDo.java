@@ -65,6 +65,7 @@ public class OnClickDo implements View.OnClickListener {
                 }
             }
             else if(mainInterpreter.programState == 3){
+                mainInterpreter.programState = 3;
                 String result = mainInterpreter.variableSearch(query, 2);
                 if(result != null){
                     guiUpdater.createConsoleLog(result);

@@ -141,12 +141,23 @@ public class MainInterpreter {
     public boolean querySearch(Predicate tempPred){
         for(int i = 0; i < predicates.size(); i++){
             Predicate p = predicates.get(i);
-            if(p.name == tempPred.name){
-                tempPred.setId(p.getId());
-                if(predicates.contains(tempPred)){
-                    return true;
+            if(p.parametersArray.size() == tempPred.parametersArray.size()){
+                if(p.name.equalsIgnoreCase(tempPred.name)){
+                    boolean match = true;
+                    for(int j = 0; j < p.parametersArray.size(); j++){
+                        Constant param1 = (Constant) p.parametersArray.get(i);
+                        Constant param2 = (Constant) tempPred.parametersArray.get(i);
+                        if(!param1.value.equalsIgnoreCase(param2.value)){
+                            match = false;
+                            break;
+                        }
+                    }
+                    if(match){
+                        return true;
+                    }
                 }
             }
+
         }
         return false;
     }
@@ -165,7 +176,7 @@ public class MainInterpreter {
                         Constant param1 = (Constant) p.parametersArray.get(i);
                         Constant param2 = (Constant) tempPred.parametersArray.get(i);
                         if (!isVariable(param2.value)) {
-                            if (param1.value == param2.value) {
+                            if (param1.value.equalsIgnoreCase(param2.value)) {
                                 match = true;
                             } else {
                                 match = false;
@@ -184,18 +195,18 @@ public class MainInterpreter {
                 console = "";
             }
 
-            if (searchIndex > predicates.size() && !found) {
-                console = "No.";
-                searchIndex = 0;
-                programState = 1;
-            }
-
             if(state == 1) {
                 console = console.substring(0, console.length() - 2);
                 console.concat(".");
             }
             else if(state == 2){
                 console = "Yes.";
+                searchIndex = 0;
+                programState = 1;
+            }
+
+            if (searchIndex > predicates.size() && !found) {
+                console = "No.";
                 searchIndex = 0;
                 programState = 1;
             }

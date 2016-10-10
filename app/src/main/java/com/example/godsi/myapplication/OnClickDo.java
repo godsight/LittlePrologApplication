@@ -79,6 +79,7 @@ public class OnClickDo implements View.OnClickListener {
         }
 
         else if(type.equalsIgnoreCase("Next")){
+            mainInterpreter.programState = 3;
             Predicate query = mainInterpreter.query;
             if(mainInterpreter.programState == 3){
                 String result = mainInterpreter.variableSearch(query, 1);

@@ -145,8 +145,8 @@ public class MainInterpreter {
                 if(p.name.equalsIgnoreCase(tempPred.name)){
                     boolean match = true;
                     for(int j = 0; j < p.parametersArray.size(); j++){
-                        Constant param1 = (Constant) p.parametersArray.get(i);
-                        Constant param2 = (Constant) tempPred.parametersArray.get(i);
+                        Constant param1 = (Constant) p.parametersArray.get(j);
+                        Constant param2 = (Constant) tempPred.parametersArray.get(j);
                         if(!param1.value.equalsIgnoreCase(param2.value)){
                             match = false;
                             break;
@@ -183,8 +183,7 @@ public class MainInterpreter {
                                 break;
                             }
                         } else {
-                            console.concat(param2.value + " = ");
-                            console.concat(param1.value + ", ");
+                            console = param2.value + " = " + param1.value + ", ";
                         }
                     }
                 }
@@ -192,12 +191,11 @@ public class MainInterpreter {
                     found = true;
                 }
                 searchIndex++;
-                console = "";
             }
 
             if(state == 1) {
                 console = console.substring(0, console.length() - 2);
-                console.concat(".");
+                console += ".";
             }
             else if(state == 2){
                 console = "Yes.";

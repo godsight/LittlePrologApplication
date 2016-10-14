@@ -55,7 +55,10 @@ public class Predicate {
     //Returns the parameters of the predicate
     public Attribute getParameter(int id){
         int index = parametersArray.indexOf(new Attribute(id));
-        return parametersArray.get(index);
+        if(index > 0) {
+            return parametersArray.get(index);
+        }
+        return null;
     }
 
     //Adds a new attribute to the parameters array
@@ -83,7 +86,7 @@ public class Predicate {
     //updates the parameter of the predicate
     public boolean updatePredicate(Editable s, int viewId){
         Constant cons = (Constant) getParameter(viewId);
-        if(!cons.value.equalsIgnoreCase(s.toString())) {
+        if(cons != null && !cons.value.equalsIgnoreCase(s.toString())) {
             cons.value = s.toString();
             setValidity();
             return true;

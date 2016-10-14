@@ -1,6 +1,7 @@
 package com.example.godsi.myapplication;
 
         import android.app.Activity;
+        import android.content.Context;
         import android.content.res.Resources;
         import android.graphics.Color;
         import android.os.Bundle;
@@ -18,6 +19,8 @@ package com.example.godsi.myapplication;
         import android.widget.RelativeLayout;
         import android.widget.ScrollView;
         import android.widget.TextView;
+
+        import java.io.File;
         import java.text.SimpleDateFormat;
         import java.util.Calendar;
 
@@ -70,6 +73,7 @@ public class MainActivity extends Activity {
         //update instructions to display the welcome text
         activityGUIUpdater.updateInstructions(getString(R.string.welcome_text));
     }
+
 
     /**
      * This class handles the creation and update of UI element in the main activity

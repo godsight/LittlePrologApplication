@@ -4,6 +4,7 @@ import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -18,38 +19,46 @@ public class MainInterpreter {
 
     private ArrayList<Predicate> predicates;
     private ArrayList<Rule> rules;
-    private ArrayList<Variable> variables;
     int programState;
     private int searchIndex;
     Predicate query;
+    private GUIUpdater guiUpdater;
 
-    public MainInterpreter(){
+    public MainInterpreter(GUIUpdater gui){
         predicates = new ArrayList<>();
         rules = new ArrayList<>();
-        variables = new ArrayList<>();
         programState = 0;
         searchIndex = 0;
+        guiUpdater = gui;
     }
 
     public void addPredicate(Predicate pred){
         predicates.add(pred);
     }
 
-    public void updatePredicate(Editable s, String uiType, EditText editText){
+    public boolean updatePredicate(String uiType, TextView editText){
         if (uiType.equalsIgnoreCase("Predicate")) {
             int parentId = ((View) editText.getParent().getParent()).getId();
             Predicate pred = getPredicate(parentId);
             CharSequence eType = editText.getHint();
+            Editable s = editText.getEditableText();
 
             if ("Predicate".contentEquals(eType)) {
-                pred.updatePredicate(s);
+                if(pred.updatePredicate(s)){
+                    return true;
+                }
+                return false;
             }
 
             else if("Parameter".contentEquals(eType)){
                 int viewId = editText.getId();
-                pred.updatePredicate(s, viewId);
+                if(pred.updatePredicate(s, viewId)){
+                    return true;
+                }
+                return false;
             }
         }
+        return false;
     }
 
     private Integer getPredicateIndex(int id){
@@ -77,27 +86,6 @@ public class MainInterpreter {
         }
     }
 
-    public void addVariable(Variable var){
-        variables.add(var);
-    }
-
-    public void updateVariable(Editable s, EditText editText){
-        String type = editText.getHint().toString();
-        int parentId = ((LinearLayout) editText.getParent()).getId();
-        Variable var = getVariable(parentId);
-        var.updateVariable(s, type);
-    }
-
-    public Variable getVariable(int id){
-        int index = variables.indexOf(new Variable(id));
-        return variables.get(index);
-    }
-
-    public void deleteVariable(int id){
-        int index = variables.indexOf(new Variable(id));
-        variables.remove(index);
-    }
-
     public boolean runInterpreter(int stateId){
         if(checkComponentsValidity()){
             programState = stateId;
@@ -123,21 +111,34 @@ public class MainInterpreter {
         return valid;
     }
 
-    public void updateQuery(Editable s, String uiType, EditText editText){
+    public boolean updateQuery(String uiType, TextView editText){
         if (uiType.equalsIgnoreCase("Query")) {
             CharSequence eType = editText.getHint();
+            Editable s = editText.getEditableText();
 
             if ("Predicate".contentEquals(eType)) {
-                query.updatePredicate(s);
+                if(query.updatePredicate(s)){
+                    return true;
+                }
+                return false;
             }
 
             else if("Parameter".contentEquals(eType)){
                 int viewId = editText.getId();
-                query.updatePredicate(s, viewId);
+                if(query.updatePredicate(s, viewId)){
+                    return true;
+                }
+                return false;
             }
         }
+        return false;
     }
 
+    /**
+     * This is
+     * @param tempPred
+     * @return
+     */
     public boolean querySearch(Predicate tempPred){
         for(int i = 0; i < predicates.size(); i++){
             Predicate p = predicates.get(i);
@@ -163,6 +164,10 @@ public class MainInterpreter {
     }
 
     public String variableSearch(Predicate tempPred, int state) {
+        if(programState == 1){
+            programState = 3;
+            searchIndex = 0;
+        }
         if (programState == 3) {
             boolean found = false;
             String console = "";
@@ -193,20 +198,26 @@ public class MainInterpreter {
                 searchIndex++;
             }
 
-            if(state == 1) {
+            //state 1 is ";" key
+            if(state == 1 && found) {
                 console = console.substring(0, console.length() - 2);
                 console += ".";
+                guiUpdater.showView(R.id.next);
             }
-            else if(state == 2){
+
+            //state 2 is "enter" key
+            else if(state == 2 && found){
                 console = "Yes.";
                 searchIndex = 0;
                 programState = 1;
+                guiUpdater.hideView(R.id.next);
             }
 
-            if (searchIndex > predicates.size() && !found) {
+            if (searchIndex >= predicates.size() && !found) {
                 console = "No.";
                 searchIndex = 0;
                 programState = 1;
+                guiUpdater.hideView(R.id.next);
             }
             return console;
         }

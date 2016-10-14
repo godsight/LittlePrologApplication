@@ -6,8 +6,11 @@ package com.example.godsi.myapplication;
         import android.os.Bundle;
         import android.support.v4.content.ContextCompat;
         import android.support.v4.content.res.ResourcesCompat;
+        import android.view.KeyEvent;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.view.WindowManager;
+        import android.view.inputmethod.EditorInfo;
         import android.widget.EditText;
         import android.widget.ImageButton;
         import android.widget.ImageView;
@@ -16,7 +19,6 @@ package com.example.godsi.myapplication;
         import android.widget.ScrollView;
         import android.widget.TextView;
         import java.text.SimpleDateFormat;
-        import java.util.ArrayList;
         import java.util.Calendar;
 
 /**
@@ -28,7 +30,7 @@ package com.example.godsi.myapplication;
 public class MainActivity extends Activity {
     //initialize the GUI updater for the activity
     MainGUIUpdater activityGUIUpdater = new MainGUIUpdater();
-    MainInterpreter mainInterpreter = new MainInterpreter();
+    MainInterpreter mainInterpreter = new MainInterpreter(activityGUIUpdater);
 
     /** Called when the activity is first created to initialize it.
      * @param savedInstanceState bundle containing data stored when the activity was suspended
@@ -114,6 +116,13 @@ public class MainActivity extends Activity {
             newLog.setText(logEntry);
             newLog.setTextColor(Color.parseColor("#757575"));
             console.addView(newLog);
+            final ScrollView scrollView = (ScrollView) console.getParent();
+            scrollView.post(new Runnable() {
+                @Override
+                public void run() {
+                    scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                }
+            });
         }
 
         public void removeView (int viewId){
@@ -121,51 +130,29 @@ public class MainActivity extends Activity {
             ViewGroup parentView = (ViewGroup) toBeRemoved.getParent();
             parentView.removeView(toBeRemoved);
         }
+
+        public void disableEnableView(int viewId, boolean enable){
+            View v = findViewById(viewId);
+            v.setEnabled(enable);
+        }
+
+        public void hideView(int viewId){
+            View v = findViewById(viewId);
+            v.setVisibility(View.INVISIBLE);
+        }
+
+        public void showView(int viewId){
+            View v = findViewById(viewId);
+            v.setVisibility(View.VISIBLE);
+        }
+
         /**
          * Generate specific UI elements for the activity based on the parameter
          * @param uiType type of UI element to be created
          */
         public void generateUI (String uiType){
-            //Creation of UI element for variable list
-            if (uiType.equalsIgnoreCase(getString(R.string.variable))){
-                //Creation of UI elements
-                LinearLayout container = (LinearLayout) findViewById(R.id.variables);
-                LinearLayout newLayout = new LinearLayout(getApplicationContext());
-                newLayout.setPadding(20, 5, 5, 5);
-                int newId = View.generateViewId();
-                newLayout.setId(newId);
-                EditText variableText = new EditText(getApplicationContext());
-                EditText valueText = new EditText(getApplicationContext());
-
-                Variable newVariable = new Variable(newId);
-                mainInterpreter.addVariable(newVariable);
-
-                //Styling of UI elements
-                variableText.setPadding(5, 5, 5, 5);
-                variableText.setMinimumWidth(10);
-                variableText.setHint(getString(R.string.name));
-                variableText.setBackgroundColor(Color.parseColor("#ffaa66cc"));
-                valueText.setPadding(5, 5, 5, 5);
-                valueText.setMinimumWidth(10);
-                valueText.setHint(getString(R.string.value));
-                valueText.setBackgroundColor(Color.parseColor("#FF80AB"));
-
-                //Assigning listeners to the UI elements
-                variableText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.variable_use_instructions),activityGUIUpdater));
-                variableText.addTextChangedListener(new InputTextWatcher(getString(R.string.variable_name_console_update),activityGUIUpdater, mainInterpreter, variableText, uiType));
-                variableText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
-                valueText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.variable_use_instructions),activityGUIUpdater));
-                valueText.addTextChangedListener(new InputTextWatcher(getString(R.string.variable_value_console_update),activityGUIUpdater, mainInterpreter, valueText, uiType));
-                valueText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
-
-                //Adding the UI elements into the container
-                newLayout.addView(variableText);
-                newLayout.addView(valueText);
-                newLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                container.addView(newLayout);
-            }
             //Creation of UI element for playground
-            else if (uiType.equalsIgnoreCase(getString(R.string.predicate))){
+            if (uiType.equalsIgnoreCase(getString(R.string.predicate))){
                 //Creation of UI elements
                 LinearLayout container = (LinearLayout) findViewById(R.id.playground);
                 LinearLayout newLayout = new LinearLayout(getApplicationContext());
@@ -192,19 +179,23 @@ public class MainActivity extends Activity {
                 predicateText.setMinimumWidth(250);
                 predicateText.setHint(getString(R.string.predicate));
                 predicateText.setBackgroundColor(Color.parseColor("#ff99cc00"));
+                predicateText.setImeOptions(EditorInfo.IME_ACTION_DONE);
+                predicateText.setSingleLine(true);
                 parameterText.setPadding(5, 5, 5, 5);
                 parameterText.setMinimumWidth(250);
                 parameterText.setHint(getString(R.string.parameter));
                 parameterText.setBackgroundColor(Color.parseColor("#FF80AB"));
+                parameterText.setImeOptions(EditorInfo.IME_ACTION_DONE);
+                parameterText.setSingleLine(true);
                 additionButton.setImageResource(R.drawable.addicon);
 
                 //Assigning listeners to the UI elements
-                predicateText.addTextChangedListener(new InputTextWatcher(getString(R.string.predicate_value_console_update),activityGUIUpdater, mainInterpreter, predicateText, uiType));
-                predicateText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
+                predicateText.setOnFocusChangeListener(new FocusListener(getString(R.string.predicate_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
                 predicateText.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
-                parameterText.addTextChangedListener(new InputTextWatcher(getString(R.string.parameter_value_console_update), activityGUIUpdater, mainInterpreter, parameterText, uiType));
-                parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
+                predicateText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
+                parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.parameter_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
                 parameterText.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
+                parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.parameter_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                 additionButton.setOnClickListener(new ClickToAddListener(getString(R.string.add_new_parameter), activityGUIUpdater, uiType));
                 additionButton.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
 
@@ -247,16 +238,20 @@ public class MainActivity extends Activity {
                 predicateText.setMinimumWidth(250);
                 predicateText.setHint(getString(R.string.predicate));
                 predicateText.setBackgroundColor(Color.parseColor("#ff99cc00"));
+                predicateText.setImeOptions(EditorInfo.IME_ACTION_DONE);
+                predicateText.setSingleLine(true);
                 parameterText.setPadding(5, 5, 5, 5);
                 parameterText.setMinimumWidth(250);
                 parameterText.setHint(getString(R.string.parameter));
                 parameterText.setBackgroundColor(Color.parseColor("#FF80AB"));
+                parameterText.setImeOptions(EditorInfo.IME_ACTION_DONE);
+                parameterText.setSingleLine(true);
                 additionButton.setImageResource(R.drawable.addicon);
 
-                predicateText.addTextChangedListener(new InputTextWatcher(getString(R.string.predicate_value_console_update),activityGUIUpdater, mainInterpreter, predicateText, uiType));
-                predicateText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
-                parameterText.addTextChangedListener(new InputTextWatcher(getString(R.string.parameter_value_console_update), activityGUIUpdater, mainInterpreter, parameterText, uiType));
-                parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
+                predicateText.setOnFocusChangeListener(new FocusListener(getString(R.string.predicate_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
+                predicateText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
+                parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.predicate_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
+                parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.parameter_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                 additionButton.setOnClickListener(new ClickToAddListener(getString(R.string.add_new_parameter), activityGUIUpdater, uiType));
 
                 RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -303,16 +298,18 @@ public class MainActivity extends Activity {
             parameterText.setMinimumWidth(250);
             parameterText.setHint(getString(R.string.parameter));
             parameterText.setBackgroundColor(Color.parseColor("#FF80AB"));
+            parameterText.setImeOptions(EditorInfo.IME_ACTION_DONE);
+            parameterText.setSingleLine(true);
 
             if(uiType.equalsIgnoreCase("Predicate")) {
-                parameterText.addTextChangedListener(new InputTextWatcher(getString(R.string.parameter_value_console_update), activityGUIUpdater, mainInterpreter, parameterText, getString(R.string.predicate)));
-                parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
+                parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.parameter_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
                 parameterText.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions), activityGUIUpdater));
+                parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                 close.setOnClickListener(new ClickToDelete(getString(R.string.delete_parameter), activityGUIUpdater, mainInterpreter, uiType));
             }
             else if(uiType.equalsIgnoreCase("Query")){
-                parameterText.addTextChangedListener(new InputTextWatcher(getString(R.string.parameter_value_console_update), activityGUIUpdater, mainInterpreter, parameterText, uiType));
-                parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.value_update_instructions), activityGUIUpdater));
+                parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.parameter_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
+                parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                 close.setOnClickListener(new ClickToDelete(getString(R.string.delete_parameter), activityGUIUpdater, mainInterpreter, uiType));
             }
 

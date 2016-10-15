@@ -55,7 +55,10 @@ public class Predicate {
     //Returns the parameters of the predicate
     public Attribute getParameter(int id){
         int index = parametersArray.indexOf(new Attribute(id));
-        return parametersArray.get(index);
+        if(index > 0) {
+            return parametersArray.get(index);
+        }
+        return null;
     }
 
     //Adds a new attribute to the parameters array
@@ -72,15 +75,23 @@ public class Predicate {
     }
 
     //updates the name of the predicate
-    public void updatePredicate(Editable s){
-        name = s.toString();
+    public boolean updatePredicate(Editable s){
+        if(!name.equalsIgnoreCase(s.toString())) {
+            name = s.toString();
+            return true;
+        }
+        return false;
     }
 
     //updates the parameter of the predicate
-    public void updatePredicate(Editable s, int viewId){
+    public boolean updatePredicate(Editable s, int viewId){
         Constant cons = (Constant) getParameter(viewId);
-        cons.value = s.toString();
-        setValidity();
+        if(cons != null && !cons.value.equalsIgnoreCase(s.toString())) {
+            cons.value = s.toString();
+            setValidity();
+            return true;
+        }
+        return false;
     }
 
     //checks whether the predicate is valid
@@ -104,7 +115,7 @@ public class Predicate {
         for(Attribute param:parametersArray){
             Constant c = (Constant) param;
             first = c.value.charAt(0);
-            if(Character.isUpperCase(first)){
+            if(Character.isUpperCase(first) || first == '_'){
                 return 2;
             }
         }

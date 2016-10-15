@@ -48,9 +48,7 @@ public class DragToDeleteListener implements View.OnDragListener {
                 if(uiType.equalsIgnoreCase("Predicate")) {
                     mainInterpreter.deletePredicate(viewId);
                 }
-                else if(uiType.equalsIgnoreCase("Variable")){
-                    mainInterpreter.deleteVariable(viewId);
-                }
+
                 guiUpdater.createConsoleLog(console_text);
                 guiUpdater.hideDustbin();
             case DragEvent.ACTION_DRAG_ENDED:

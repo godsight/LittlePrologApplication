@@ -21,6 +21,15 @@ public interface GUIUpdater {
     //delete views based on their Id
     public void removeView (int viewId);
 
+    //disable/enable view based on their Id
+    public void disableEnableView(int viewId, boolean enable);
+
+    //hide view based on their Id
+    public void hideView(int viewId);
+
+    //show view based on their Id
+    public void showView(int viewId);
+
     //generation of console log entry based on input
     public void createConsoleLog(String logText);
 

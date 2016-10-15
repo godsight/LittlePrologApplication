@@ -46,6 +46,11 @@ public class FocusListener implements View.OnFocusChangeListener {
                     guiUpdater.createConsoleLog(consoleText + " " +  ((TextView) view).getText().toString());
                 }
             }
+            else if(uiType.equalsIgnoreCase("MathematicalRule")){
+                if(mainInterpreter.updateMathComp(uiType, (TextView) view)){
+                    guiUpdater.createConsoleLog(consoleText + " " + ((TextView) view).getText().toString());
+                }
+            }
         }
     }
 

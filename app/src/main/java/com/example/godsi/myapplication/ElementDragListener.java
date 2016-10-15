@@ -10,17 +10,9 @@ import android.view.View;
  */
 public class ElementDragListener implements View.OnDragListener {
 
-    private String elementType; //type of element the view is accepting
-    private String console_text; //Console log message to be displayed
-    private String success_instruction; //Instruction on successful drop event
-    private String error_instruction; //Instruction on failed drop event
     private GUIUpdater guiUpdater; //the GUI handler of the activity
 
-    public ElementDragListener (String type, String consoleText, String successInstruction, String errorInstruction, GUIUpdater updater){
-        elementType = type;
-        console_text = consoleText;
-        success_instruction = successInstruction;
-        error_instruction = errorInstruction;
+    public ElementDragListener (GUIUpdater updater){;
         guiUpdater = updater;
     }
 
@@ -43,16 +35,18 @@ public class ElementDragListener implements View.OnDragListener {
             case DragEvent.ACTION_DROP:
                 int clipDataItemCount = event.getClipData().getItemCount();
                 String clipData = (String) event.getClipData().getItemAt(clipDataItemCount-1).getText();
-                //if data is matches the type the view is accepting
-                if (clipData.equalsIgnoreCase(elementType)) {
-                    guiUpdater.generateUI(elementType);
-                    if (!console_text.equalsIgnoreCase("")){
-                        guiUpdater.createConsoleLog(console_text);
-                    }
-                    guiUpdater.updateInstructions(success_instruction);
+                guiUpdater.generateUI(clipData);
+                if (clipData.equalsIgnoreCase("Predicate")){
+                    guiUpdater.createConsoleLog("New predicate added");
+                    guiUpdater.updateInstructions("Predicate and parameter values can be updated through keyboard");
                 }
-                else {
-                    guiUpdater.updateInstructions(error_instruction);
+                else if(clipData.equalsIgnoreCase("MathematicalRule")){
+                    guiUpdater.createConsoleLog("New mathematical rule added");
+                    guiUpdater.updateInstructions("Mathematical computation\\'s name can be updated through keyboard and parameters can be added by dragging suitable components into mathematical rule");
+                }
+                else if(clipData.equalsIgnoreCase("Query")){
+                    guiUpdater.createConsoleLog("New query added");
+                    guiUpdater.updateInstructions("Fill in the parameters and press send to run the command");
                 }
                 break;
             case DragEvent.ACTION_DRAG_ENDED:

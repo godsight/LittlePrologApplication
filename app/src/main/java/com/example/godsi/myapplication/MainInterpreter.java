@@ -82,7 +82,8 @@ public class MainInterpreter {
     public void deletePredicate(int id){
         Integer index = getPredicateIndex(id);
         if(index != null){
-            predicates.remove(index);
+            Predicate temp = predicates.get(index);
+            predicates.remove(temp);
         }
     }
 

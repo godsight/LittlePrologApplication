@@ -158,6 +158,7 @@ public class FileManager {
                     }
                     i++;
                 }
+                predicate.setValidity();
         }
 
     }

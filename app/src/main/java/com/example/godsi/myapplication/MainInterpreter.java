@@ -23,6 +23,7 @@ public class MainInterpreter {
     private int searchIndex;
     Predicate query;
     private GUIUpdater guiUpdater;
+    public MetaInfo metaInfo = new MetaInfo();
 
     public MainInterpreter(GUIUpdater gui){
         predicates = new ArrayList<>();
@@ -32,6 +33,15 @@ public class MainInterpreter {
         guiUpdater = gui;
     }
 
+    public Predicate getPredicate (int id){
+        for (Predicate predicate:predicates
+             ) {
+            if (predicate.getId() == id){
+                return predicate;
+            }
+        }
+        return null;
+    }
     public void addPredicate(Predicate pred){
         predicates.add(pred);
     }
@@ -67,14 +77,6 @@ public class MainInterpreter {
             if(temp.getId() ==  id){
                 return i;
             }
-        }
-        return null;
-    }
-
-    public Predicate getPredicate(int id){
-        Integer index = getPredicateIndex(id);
-        if(index != null){
-            return predicates.get(index);
         }
         return null;
     }

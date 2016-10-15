@@ -27,7 +27,7 @@ public class MainScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
-        fileManager = new FileManager(getApplicationContext());
+        fileManager = new FileManager(getApplicationContext(), null, null);
         String [] listOfFiles = fileManager.getFileNames();
         for (String filename: listOfFiles) {
             if (filename.contains(".pl")) {
@@ -87,7 +87,7 @@ public class MainScreen extends AppCompatActivity {
         public void createConsoleLog(String logText){}
         //creation of new UI elements in the layout
 
-        public void generateUI(final String fileName){
+        public int generateUI(final String fileName){
             LinearLayout fileList = (LinearLayout) findViewById(R.id.fileList);
             TextView newFile = new TextView(getApplicationContext());
             newFile.setText(fileName);
@@ -101,10 +101,17 @@ public class MainScreen extends AppCompatActivity {
                 }
             });
             fileList.addView(newFile);
+            return 0;
         }
 
         //creation of new parameter UI to existing Predicate UI in layout
-        public void generateUI(View v, String uiType){}
+        public int generateUI(int parentId, String uiType){
+            return 0;
+        }
+
+        //updates the value of a view based on id
+        public void updateUIValue(int id, String value) {
+        }
     }
 
 

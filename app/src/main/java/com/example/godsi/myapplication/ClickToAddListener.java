@@ -23,7 +23,8 @@ public class ClickToAddListener implements View.OnClickListener {
     //Generates the UI and creates a console log
     @Override
     public void onClick(View v) {
-        guiUpdater.generateUI(v, uiType);
+        int parentId = ((View) v.getParent()).getId();
+        guiUpdater.generateUI(parentId, uiType);
         guiUpdater.createConsoleLog(consoleText);
     }
 }

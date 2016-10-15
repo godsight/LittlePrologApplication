@@ -35,7 +35,6 @@ public class MainActivity extends Activity {
     //initialize the GUI updater for the activity
     MainGUIUpdater activityGUIUpdater = new MainGUIUpdater();
     MainInterpreter mainInterpreter = new MainInterpreter(activityGUIUpdater);
-    MetaInfo metaInfo = new MetaInfo();
     FileManager fileManager;
 
     /** Called when the activity is first created to initialize it.
@@ -71,7 +70,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.stop).setOnClickListener(new OnClickDo(getString(R.string.stop_interpreter), activityGUIUpdater, mainInterpreter, getString(R.string.stop), "", getResources().getInteger(R.integer.editState), getResources().getInteger(R.integer.editState)));
         findViewById(R.id.next).setOnClickListener(new OnClickDo("", activityGUIUpdater, mainInterpreter, getString(R.string.next), "", getResources().getInteger(R.integer.runningState), getResources().getInteger(R.integer.runningState)));
         findViewById(R.id.enter).setOnClickListener(new OnClickDo("", activityGUIUpdater, mainInterpreter, getString(R.string.enter), "", getResources().getInteger(R.integer.runningState), getResources().getInteger(R.integer.runningState)));
-        fileManager = new FileManager(getApplicationContext());
+        fileManager = new FileManager(getApplicationContext(), mainInterpreter, activityGUIUpdater);
 
         ImageView image = (ImageView) findViewById(R.id.dustbin);
         image.setImageResource(R.drawable.dustbin);
@@ -88,12 +87,12 @@ public class MainActivity extends Activity {
         EditText authorName = (EditText) findViewById(R.id.authorName);
         EditText emailAddress = (EditText) findViewById(R.id.email);
         EditText description = (EditText) findViewById(R.id.description);
-        metaInfo.fileName = fileName.getText().toString();
-        metaInfo.authorName = authorName.getText().toString();
-        metaInfo.email = emailAddress.getText().toString();
-        metaInfo.description = description.getText().toString();
+        mainInterpreter.metaInfo.fileName = fileName.getText().toString();
+        mainInterpreter.metaInfo.authorName = authorName.getText().toString();
+        mainInterpreter.metaInfo.email = emailAddress.getText().toString();
+        mainInterpreter.metaInfo.description = description.getText().toString();
         ArrayList<Writable> classesToWrite = new ArrayList<>();
-        classesToWrite.add(metaInfo);
+        classesToWrite.add(mainInterpreter.metaInfo);
         for (Predicate predicate: mainInterpreter.predicates
              ) {
             classesToWrite.add(predicate);
@@ -181,7 +180,7 @@ public class MainActivity extends Activity {
          * Generate specific UI elements for the activity based on the parameter
          * @param uiType type of UI element to be created
          */
-        public void generateUI (String uiType){
+        public int generateUI (String uiType){
             //Creation of UI element for playground
             if (uiType.equalsIgnoreCase(getString(R.string.predicate))){
                 //Creation of UI elements
@@ -239,6 +238,7 @@ public class MainActivity extends Activity {
                 newLayout.addView(additionButton);
                 newLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 container.addView(newLayout);
+                return newId;
             }
 
             else if(uiType.equalsIgnoreCase(getString(R.string.query))){
@@ -297,10 +297,10 @@ public class MainActivity extends Activity {
                 consoleCommandLine.addView(newLayout);
 
             }
+            return 0;
         }
 
-        public void generateUI(View v, String uiType){
-            int id = ((View) v.getParent()).getId();
+        public int generateUI(int id, String uiType){
             LinearLayout existingLayout = (LinearLayout) findViewById(id);
             RelativeLayout newLayout = new RelativeLayout(getApplicationContext());
             int layoutId = View.generateViewId();
@@ -354,6 +354,12 @@ public class MainActivity extends Activity {
             newLayout.addView(close, rp2);
             int count = existingLayout.getChildCount();
             existingLayout.addView(newLayout, count-1);
+            return paramId;
+        }
+
+        public void updateUIValue (int id, String value){
+            EditText editText = (EditText) findViewById(id);
+            editText.setText(value);
         }
     }
 }

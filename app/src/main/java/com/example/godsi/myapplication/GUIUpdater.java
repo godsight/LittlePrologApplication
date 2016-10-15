@@ -34,8 +34,11 @@ public interface GUIUpdater {
     public void createConsoleLog(String logText);
 
     //creation of new UI elements in the layout
-    public void generateUI(String uiType);
+    public int generateUI(String uiType);
 
     //creation of new parameter UI to existing Predicate UI in layout
-    public void generateUI(View v, String uiType);
+    public int generateUI(int parentId, String uiType);
+
+    //updates the value of a view based on id
+    public void updateUIValue(int id, String value);
 }

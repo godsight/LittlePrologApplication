@@ -34,6 +34,7 @@ public class MainActivity extends Activity {
     //initialize the GUI updater for the activity
     MainGUIUpdater activityGUIUpdater = new MainGUIUpdater();
     MainInterpreter mainInterpreter = new MainInterpreter(activityGUIUpdater);
+    FileManager fileManager;
 
     /** Called when the activity is first created to initialize it.
      * @param savedInstanceState bundle containing data stored when the activity was suspended
@@ -44,6 +45,11 @@ public class MainActivity extends Activity {
 
         //sets the layout of the activity
         setContentView(R.layout.main);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null){
+            String fileName = bundle.getString("file");
+            ((EditText) findViewById(R.id.fileName)).setText(fileName);
+        }
 
         //Assigning the listeners for the views in the activity
         findViewById(R.id.predicate).setOnTouchListener(new TouchToDragListener(getString(R.string.predicate_touch_instructions),activityGUIUpdater,getString(R.string.predicate)));
@@ -63,6 +69,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.stop).setOnClickListener(new OnClickDo(getString(R.string.stop_interpreter), activityGUIUpdater, mainInterpreter, getString(R.string.stop), "", getResources().getInteger(R.integer.editState), getResources().getInteger(R.integer.editState)));
         findViewById(R.id.next).setOnClickListener(new OnClickDo("", activityGUIUpdater, mainInterpreter, getString(R.string.next), "", getResources().getInteger(R.integer.runningState), getResources().getInteger(R.integer.runningState)));
         findViewById(R.id.enter).setOnClickListener(new OnClickDo("", activityGUIUpdater, mainInterpreter, getString(R.string.enter), "", getResources().getInteger(R.integer.runningState), getResources().getInteger(R.integer.runningState)));
+        fileManager = new FileManager(getApplicationContext());
 
         ImageView image = (ImageView) findViewById(R.id.dustbin);
         image.setImageResource(R.drawable.dustbin);
@@ -74,6 +81,10 @@ public class MainActivity extends Activity {
         activityGUIUpdater.updateInstructions(getString(R.string.welcome_text));
     }
 
+    public void saveFile(View view){
+        EditText fileName = (EditText) findViewById(R.id.fileName);
+        fileManager.createFile(fileName.getText().toString(), null);
+    }
 
     /**
      * This class handles the creation and update of UI element in the main activity

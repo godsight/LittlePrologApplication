@@ -12,6 +12,7 @@
         android:focusableInTouchMode="true"
         android:textColor="@android:color/holo_orange_dark"
         android:textIsSelectable="true" />
+
     <Button
         android:id="@+id/createNewProgramButton"
         android:layout_width="300dp"
@@ -22,4 +23,29 @@
         android:layout_marginRight="20dp"
         android:text="Create new program"
         android:onClick="createNewProgram" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/fileContainer"
+        android:layout_marginStart="50dp"
+        android:text="Click on a file to load the program"
+        android:textSize="20dp"
+        />
+    <ScrollView
+        android:id="@+id/fileContainer"
+        android:layout_width="550dp"
+        android:layout_height="350dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="25dp"
+        android:background="@android:color/holo_orange_light"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/fileList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 /**
  * This class handles the initialization of the main screen of the application
@@ -23,6 +25,14 @@ public class MainScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+        FileManager fileManager = new FileManager(getApplicationContext());
+        MainScreenGUIUpdater guiUpdater = new MainScreenGUIUpdater();
+        String [] listOfFiles = fileManager.getFileNames();
+        for (String filename: listOfFiles) {
+            if (filename.contains(".pl")) {
+                guiUpdater.generateUI(filename);
+            }
+        }
     }
 
     /***
@@ -32,5 +42,57 @@ public class MainScreen extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    public void loadProgram(String fileName) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("file", fileName);
+        startActivity(intent);
+    }
+
+    public class MainScreenGUIUpdater implements GUIUpdater{
+
+        public void updateInstructions(String instruction){}
+
+        //show dustbin to delete elements
+        public void showDustbin (){}
+
+        //hide dustbin to delete elements
+        public void hideDustbin (){}
+
+        //delete views based on their Id
+        public void removeView (int viewId){}
+
+        //disable/enable view based on their Id
+        public void disableEnableView(int viewId, boolean enable){}
+        //hide view based on their Id
+        public void hideView(int viewId){}
+
+        //show view based on their Id
+        public void showView(int viewId){}
+
+        //generation of console log entry based on input
+        public void createConsoleLog(String logText){}
+        //creation of new UI elements in the layout
+
+        public void generateUI(final String fileName){
+            LinearLayout fileList = (LinearLayout) findViewById(R.id.fileList);
+            TextView newFile = new TextView(getApplicationContext());
+            newFile.setText(fileName);
+            newFile.setTextSize(25);
+            newFile.setTextColor(0xff000000);
+            newFile.setPadding(5,5,5,5);
+            newFile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    loadProgram(fileName);
+                }
+            });
+            fileList.addView(newFile);
+        }
+
+        //creation of new parameter UI to existing Predicate UI in layout
+        public void generateUI(View v, String uiType){}
+    }
+
 
 }

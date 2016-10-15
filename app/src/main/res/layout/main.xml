@@ -159,6 +159,26 @@
                 android:textAlignment="center"
                 android:textSize="15sp"
                 android:textColor="@android:color/background_light"
+                android:text="File name:"/>
+            <EditText
+                android:id="@+id/fileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:padding="8dp"
+                android:minWidth="180dp"
+                android:maxWidth="180dp"
+                android:maxLines="5"
+                android:background="@android:color/darker_gray"
+                android:textColor="@color/colorPrimaryDark"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:textAlignment="center"
+                android:textSize="15sp"
+                android:textColor="@android:color/background_light"
                 android:text="Author:"/>
             <EditText
                 android:layout_width="wrap_content"
@@ -208,6 +228,13 @@
                 android:background="@android:color/darker_gray"
                 android:textColor="@color/colorPrimaryDark"
                 />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart = "100dp"
+                android:text="Save"
+                android:onClick="saveFile"/>
         </LinearLayout>
     </ScrollView>
 

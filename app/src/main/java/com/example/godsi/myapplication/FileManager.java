@@ -34,16 +34,16 @@ public class FileManager {
     }
 
     public void createFile(String fileName, Writable[] classFiles) {
-        ArrayList<String> stringToWrite = new ArrayList<>();
+//        ArrayList<String> stringToWrite = new ArrayList<>();
         fileName = fileName.concat(".pl");
-        for (Writable classObject: classFiles) {
-            stringToWrite.add(classObject.serialize());
-        }
+//        for (Writable classObject: classFiles) {
+//            stringToWrite.add(classObject.serialize());
+//        }
         try{
             FileOutputStream fileOutputStream = applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE);
-            for (String string: stringToWrite) {
-                fileOutputStream.write(string.getBytes());
-            }
+//            for (String string: stringToWrite) {
+//                fileOutputStream.write(string.getBytes());
+//            }
             fileOutputStream.close();
         }
         catch (Exception e){

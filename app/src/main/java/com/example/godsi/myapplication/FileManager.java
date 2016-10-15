@@ -41,10 +41,10 @@ public class FileManager {
         }
         try{
             FileOutputStream fileOutputStream = applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE);
-            for (String string: stringToWrite){
+            for (String string: stringToWrite) {
                 fileOutputStream.write(string.getBytes());
-                fileOutputStream.close();
             }
+            fileOutputStream.close();
         }
         catch (Exception e){
             e.printStackTrace();

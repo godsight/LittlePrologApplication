@@ -12,25 +12,39 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 /**
- * Created by godsi on 10/12/2016.
+ * This class manages the file save and load of the application
+ * @author Hong Chin Choong
+ * @version 0.1
  */
 
 public class FileManager {
 
-    Context applicationContext;
-    MainInterpreter interpreter;
-    GUIUpdater guiUpdater;
+    Context applicationContext; //context of the application
+    MainInterpreter interpreter; //interpreter for the application
+    GUIUpdater guiUpdater; //GUI update for the application
 
+    /**
+     * Initializes the class variables
+     * @param appContext context of the application
+     * @param activityInterpreter interpreter for the application
+     * @param activityguiUpdater GUI update for the application
+     */
     public FileManager(Context appContext, MainInterpreter activityInterpreter, GUIUpdater activityguiUpdater){
         applicationContext = appContext;
         interpreter = activityInterpreter;
         guiUpdater = activityguiUpdater;
     }
 
+    /**
+     * Gets a list of files available in the application's external storage
+     */
     public File [] getProgramFiles (){
         return applicationContext.getExternalFilesDir(null).listFiles();
     }
 
+    /**
+     * Gets a list of file names available in the application's external storage
+     */
     public String [] getFileNames () {
         File[] fileList = getProgramFiles();
         String[] nameList = new String[fileList.length];
@@ -42,6 +56,11 @@ public class FileManager {
         return nameList;
     }
 
+    /**
+     * Creates a file in the device's storage and save the current data into the file
+     * @param fileName name of file to be created
+     * @param classFiles files to be saved
+     */
     public void createFile(String fileName, ArrayList<Writable> classFiles) {
         fileName = fileName.concat(".pl");
         File file = new File(applicationContext.getExternalFilesDir(null),fileName);
@@ -63,6 +82,11 @@ public class FileManager {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Loads the file from storage and updates the application with data from it
+     * @param fileName name of file to be loaded
+     */
     public void loadFile (String fileName){
         fileName = fileName.concat(".pl");
         File file = new File(applicationContext.getExternalFilesDir(null),fileName);
@@ -85,6 +109,11 @@ public class FileManager {
 
     }
 
+    /**
+     * Parses information retrieved from the file and updates activity accordingly
+     * @param line line of code from the file
+     * @param lineNumber number of the line in the file
+     */
     public void parseLine(String line, int lineNumber){
         switch (lineNumber){
             case 0:

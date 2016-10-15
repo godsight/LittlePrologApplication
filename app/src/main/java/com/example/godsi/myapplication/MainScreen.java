@@ -36,6 +36,9 @@ public class MainScreen extends AppCompatActivity {
         }
     }
 
+    /**
+     * Updates file name list when the activity resumes
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -56,6 +59,10 @@ public class MainScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Loads a file after starting the main activity
+     * @param fileName Name of file to be loaded
+     */
     public void loadProgram(String fileName) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("file", fileName.substring(0,fileName.length()-3));
@@ -85,8 +92,8 @@ public class MainScreen extends AppCompatActivity {
 
         //generation of console log entry based on input
         public void createConsoleLog(String logText){}
-        //creation of new UI elements in the layout
 
+        //creation of new UI elements in the layout
         public int generateUI(final String fileName){
             LinearLayout fileList = (LinearLayout) findViewById(R.id.fileList);
             TextView newFile = new TextView(getApplicationContext());

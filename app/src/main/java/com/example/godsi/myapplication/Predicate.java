@@ -134,6 +134,10 @@ public class Predicate implements Writable{
         }
     }
 
+    /**
+     * Serializes the data stored in this class into a string
+     * @return string to represent data stored in this class
+     */
     public ArrayList<String> serialize(){
         ArrayList<String> serializedArray = new ArrayList<>();
         String line = name + "(";

@@ -53,6 +53,7 @@ public class MainActivity extends Activity {
             String fileName = bundle.getString("file");
             ((EditText) findViewById(R.id.fileName)).setText(fileName);
             fileManager.loadFile(fileName);
+            activityGUIUpdater.createConsoleLog(getString(R.string.file_loaded));
         }
 
         //Assigning the listeners for the views in the activity

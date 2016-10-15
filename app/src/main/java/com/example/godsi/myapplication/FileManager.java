@@ -77,9 +77,11 @@ public class FileManager {
                 }
             }
             bufferedWriter.close();
+            guiUpdater.createConsoleLog(applicationContext.getString(R.string.file_save_success));
         }
         catch (Exception e){
             e.printStackTrace();
+            guiUpdater.createConsoleLog(applicationContext.getString(R.string.file_save_fail));
         }
     }
 

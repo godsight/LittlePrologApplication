@@ -22,6 +22,7 @@ package com.example.godsi.myapplication;
 
         import java.io.File;
         import java.text.SimpleDateFormat;
+        import java.util.ArrayList;
         import java.util.Calendar;
 
 /**
@@ -34,6 +35,7 @@ public class MainActivity extends Activity {
     //initialize the GUI updater for the activity
     MainGUIUpdater activityGUIUpdater = new MainGUIUpdater();
     MainInterpreter mainInterpreter = new MainInterpreter(activityGUIUpdater);
+    MetaInfo metaInfo = new MetaInfo();
     FileManager fileManager;
 
     /** Called when the activity is first created to initialize it.
@@ -83,7 +85,21 @@ public class MainActivity extends Activity {
 
     public void saveFile(View view){
         EditText fileName = (EditText) findViewById(R.id.fileName);
-        fileManager.createFile(fileName.getText().toString(), null);
+        EditText authorName = (EditText) findViewById(R.id.authorName);
+        EditText emailAddress = (EditText) findViewById(R.id.email);
+        EditText description = (EditText) findViewById(R.id.description);
+        metaInfo.fileName = fileName.getText().toString();
+        metaInfo.authorName = authorName.getText().toString();
+        metaInfo.email = emailAddress.getText().toString();
+        metaInfo.description = description.getText().toString();
+        ArrayList<Writable> classesToWrite = new ArrayList<>();
+        classesToWrite.add(metaInfo);
+        for (Predicate predicate: mainInterpreter.predicates
+             ) {
+            classesToWrite.add(predicate);
+
+        }
+        fileManager.createFile(fileName.getText().toString(), classesToWrite);
     }
 
     /**

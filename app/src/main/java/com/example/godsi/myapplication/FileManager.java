@@ -2,8 +2,11 @@ package com.example.godsi.myapplication;
 
 import android.content.Context;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 /**
@@ -19,7 +22,7 @@ public class FileManager {
     }
 
     public File [] getProgramFiles (){
-        return applicationContext.getFilesDir().listFiles();
+        return applicationContext.getExternalFilesDir(null).listFiles();
     }
 
     public String [] getFileNames () {
@@ -33,22 +36,27 @@ public class FileManager {
         return nameList;
     }
 
-    public void createFile(String fileName, Writable[] classFiles) {
-//        ArrayList<String> stringToWrite = new ArrayList<>();
+    public void createFile(String fileName, ArrayList<Writable> classFiles) {
         fileName = fileName.concat(".pl");
-//        for (Writable classObject: classFiles) {
-//            stringToWrite.add(classObject.serialize());
-//        }
+        File file = new File(applicationContext.getExternalFilesDir(null),fileName);
         try{
-            FileOutputStream fileOutputStream = applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE);
-//            for (String string: stringToWrite) {
-//                fileOutputStream.write(string.getBytes());
-//            }
-            fileOutputStream.close();
+            if (file != null){
+                file.delete();
+            }
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream));
+            for (Writable classObject: classFiles) {
+                for (String line: classObject.serialize()) {
+                    bufferedWriter.write(line);
+                    bufferedWriter.newLine();
+                }
+            }
+            bufferedWriter.close();
         }
         catch (Exception e){
             e.printStackTrace();
         }
     }
+
 
 }

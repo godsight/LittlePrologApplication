@@ -17,6 +17,8 @@ import android.widget.TextView;
  * @version 0.1v
  */
 public class MainScreen extends AppCompatActivity {
+    FileManager fileManager;
+    MainScreenGUIUpdater guiUpdater = new MainScreenGUIUpdater();
 
     /** Called when the activity is first created to initialize it.
      * @param savedInstanceState bundle containing data stored when the activity was suspended
@@ -25,8 +27,19 @@ public class MainScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
-        FileManager fileManager = new FileManager(getApplicationContext());
-        MainScreenGUIUpdater guiUpdater = new MainScreenGUIUpdater();
+        fileManager = new FileManager(getApplicationContext());
+        String [] listOfFiles = fileManager.getFileNames();
+        for (String filename: listOfFiles) {
+            if (filename.contains(".pl")) {
+                guiUpdater.generateUI(filename);
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ((LinearLayout) findViewById(R.id.fileList)).removeAllViews();
         String [] listOfFiles = fileManager.getFileNames();
         for (String filename: listOfFiles) {
             if (filename.contains(".pl")) {
@@ -45,7 +58,7 @@ public class MainScreen extends AppCompatActivity {
 
     public void loadProgram(String fileName) {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("file", fileName);
+        intent.putExtra("file", fileName.substring(0,fileName.length()-3));
         startActivity(intent);
     }
 

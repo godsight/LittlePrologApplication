@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class MainInterpreter {
 
-    private ArrayList<Predicate> predicates;
+    public ArrayList<Predicate> predicates;
     private ArrayList<Rule> rules;
     int programState;
     private int searchIndex;

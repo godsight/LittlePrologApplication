@@ -3,6 +3,7 @@ package com.example.godsi.myapplication;
 import android.text.Editable;
 import android.widget.EditText;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * @createdDate 10/3/2016
  */
 
-public class Predicate {
+public class Predicate implements Writable{
 
     private int id; //identifier for the predicate
     String name; //name of the predicate
@@ -130,5 +131,19 @@ public class Predicate {
         else{
             isValid = false;
         }
+    }
+
+    public ArrayList<String> serialize(){
+        ArrayList<String> serializedArray = new ArrayList<>();
+        String line = name + "(";
+        for (Attribute parameter: parametersArray
+             ) {
+            line += ((Constant) parameter).value;
+            line += ",";
+        }
+        line = line.substring(0,line.length()-1);
+        line += ").";
+        serializedArray.add(line);
+        return  serializedArray;
     }
 }

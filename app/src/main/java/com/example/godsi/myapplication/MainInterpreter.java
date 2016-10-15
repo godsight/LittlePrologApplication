@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class MainInterpreter {
 
     public ArrayList<Predicate> predicates;
-    private ArrayList<Rule> rules;
     int programState;
     private int searchIndex;
     Predicate query;
@@ -27,7 +26,6 @@ public class MainInterpreter {
 
     public MainInterpreter(GUIUpdater gui){
         predicates = new ArrayList<>();
-        rules = new ArrayList<>();
         programState = 0;
         searchIndex = 0;
         guiUpdater = gui;

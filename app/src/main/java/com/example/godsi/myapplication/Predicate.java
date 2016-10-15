@@ -125,7 +125,7 @@ public class Predicate implements Writable{
     }
 
 
-    private void setValidity(){
+    public void setValidity(){
         if(checkValidity()){
             isValid = true;
         }

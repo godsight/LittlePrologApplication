@@ -16,7 +16,6 @@ public class FocusListener implements View.OnFocusChangeListener {
     private String uiType;
     private GUIUpdater guiUpdater; //the GUI handler of the activity
     private MainInterpreter mainInterpreter;
-    private String curText;
 
     public FocusListener(String console, String instructionText, String type, GUIUpdater updater, MainInterpreter interpreter){
         consoleText = console;
@@ -35,9 +34,8 @@ public class FocusListener implements View.OnFocusChangeListener {
     public void onFocusChange(View view, boolean b) {
         if (b){
             guiUpdater.updateInstructions(instruction);
-            curText = ((TextView)view).getText().toString();
         }
-        else if(!curText.equalsIgnoreCase(((TextView)view).getText().toString()) && !b){
+        else {
             if(uiType.equalsIgnoreCase("Predicate")) {
                 if(mainInterpreter.updatePredicate(uiType, (TextView)view)){
                     guiUpdater.createConsoleLog(consoleText + " " + ((TextView) view).getText().toString());
@@ -48,7 +46,6 @@ public class FocusListener implements View.OnFocusChangeListener {
                     guiUpdater.createConsoleLog(consoleText + " " +  ((TextView) view).getText().toString());
                 }
             }
-            view.clearFocus();
         }
     }
 

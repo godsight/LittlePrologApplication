@@ -56,7 +56,7 @@ public class Predicate implements Writable{
     //Returns the parameters of the predicate
     public Attribute getParameter(int id){
         int index = parametersArray.indexOf(new Attribute(id));
-        if(index > 0) {
+        if(index >= 0) {
             return parametersArray.get(index);
         }
         return null;

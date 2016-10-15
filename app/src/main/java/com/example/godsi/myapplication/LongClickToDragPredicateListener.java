@@ -47,7 +47,6 @@ public class LongClickToDragPredicateListener implements View.OnLongClickListene
 
         //update instruction view
         guiUpdater.updateInstructions(instruction);
-        guiUpdater.showDustbin();
         return true;
     }
 }

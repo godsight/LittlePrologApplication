@@ -25,10 +25,10 @@ public class MetaInfo implements Writable{
      */
     public ArrayList<String> serialize(){
         ArrayList<String> serializedArray = new ArrayList<>();
-        serializedArray.add("% File name: " + fileName);
-        serializedArray.add("% Author name: " + authorName);
-        serializedArray.add("% Email: " + email);
-        serializedArray.add("% Description: " + description);
+        serializedArray.add("% File name:" + fileName);
+        serializedArray.add("% Author name:" + authorName);
+        serializedArray.add("% Email:" + email);
+        serializedArray.add("% Description:" + description);
         return serializedArray;
     }
 }

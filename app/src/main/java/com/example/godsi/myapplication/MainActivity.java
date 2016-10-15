@@ -8,6 +8,7 @@ package com.example.godsi.myapplication;
         import android.support.v4.content.ContextCompat;
         import android.support.v4.content.res.ResourcesCompat;
         import android.view.KeyEvent;
+        import android.view.MotionEvent;
         import android.view.View;
         import android.view.ViewGroup;
         import android.view.WindowManager;
@@ -58,6 +59,13 @@ public class MainActivity extends Activity {
 
         //Assigning the listeners for the views in the activity
         findViewById(R.id.predicate).setOnTouchListener(new TouchToDragListener(getString(R.string.predicate_touch_instructions),activityGUIUpdater,getString(R.string.predicate)));
+        findViewById(R.id.dustbin).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                activityGUIUpdater.updateInstructions(getString(R.string.drag_delete_instructions));
+                return false;
+            }
+        });
         findViewById(R.id.variable).setOnTouchListener(new TouchToDragListener(getString(R.string.variable_touch_instructions),activityGUIUpdater,getString(R.string.variable)));
         findViewById(R.id.query).setOnTouchListener(new TouchToDragListener(getString(R.string.query_drag_instructions),activityGUIUpdater, getString(R.string.query)));
         findViewById(R.id.componentText).setOnTouchListener(new InstructionUpdateListener(getString(R.string.component_touch_instructions),activityGUIUpdater));
@@ -119,16 +127,6 @@ public class MainActivity extends Activity {
         public void updateInstructions(String instruction){
             TextView instructionsText = (TextView) findViewById(R.id.instructions);
             instructionsText.setText(instruction);
-        }
-
-        public void showDustbin () {
-            ImageView dustbin = (ImageView) findViewById(R.id.dustbin);
-            dustbin.setVisibility(View.VISIBLE);
-        }
-
-        public void hideDustbin () {
-            ImageView dustbin = (ImageView) findViewById(R.id.dustbin);
-            dustbin.setVisibility(View.INVISIBLE);
         }
 
         /**

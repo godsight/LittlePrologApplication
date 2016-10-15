@@ -40,8 +40,7 @@
             android:layout_height="30dp"
             android:layout_marginRight="10dp"
             android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:visibility="invisible"/>
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/componentContainer"

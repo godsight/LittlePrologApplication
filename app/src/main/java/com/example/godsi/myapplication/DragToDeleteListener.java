@@ -50,7 +50,6 @@ public class DragToDeleteListener implements View.OnDragListener {
                 }
 
                 guiUpdater.createConsoleLog(console_text);
-                guiUpdater.hideDustbin();
             case DragEvent.ACTION_DRAG_ENDED:
                 break;
             default:

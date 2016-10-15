@@ -12,12 +12,6 @@ public interface GUIUpdater {
     //update of instruction view based on input
     public void updateInstructions(String instruction);
 
-    //show dustbin to delete elements
-    public void showDustbin ();
-
-    //hide dustbin to delete elements
-    public void hideDustbin ();
-
     //delete views based on their Id
     public void removeView (int viewId);
 

@@ -87,20 +87,28 @@ public class FileManager {
 
     public void parseLine(String line, int lineNumber){
         switch (lineNumber){
+            case 0:
+                interpreter.metaInfo.authorName = line.split(":")[1];
+                guiUpdater.updateUIValue(R.id.authorName, line.split(":")[1]);
+                break;
             case 1:
                 interpreter.metaInfo.authorName = line.split(":")[1];
+                guiUpdater.updateUIValue(R.id.authorName, line.split(":")[1]);
                 break;
             case 2:
                 interpreter.metaInfo.email = line.split(":")[1];
+                guiUpdater.updateUIValue(R.id.email, line.split(":")[1]);
                 break;
             case 3:
                 interpreter.metaInfo.description = line.split(":")[1];
+                guiUpdater.updateUIValue(R.id.description, line.split(":")[1]);
                 break;
             default:
                 String[] lineInformation = line.split("\\(");
                 int id = guiUpdater.generateUI("predicate");
                 Predicate predicate = interpreter.getPredicate(id);
                 predicate.name = lineInformation[0];
+                guiUpdater.updateUIValue(predicate.nameId,predicate.name);
                 String[] parameters = lineInformation[1].substring(0,lineInformation[1].length()-2).split(",");
                 int i = 0;
                 int existingParameters = predicate.parametersArray.size();

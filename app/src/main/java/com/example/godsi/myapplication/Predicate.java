@@ -17,6 +17,7 @@ public class Predicate implements Writable{
 
     private int id; //identifier for the predicate
     String name; //name of the predicate
+    public int nameId; //identifier for predicate name
     ArrayList<Attribute> parametersArray; //stores the parameters of the predicate
     private ArrayList<Rule> rulesArray; //stores the rules related to the predicate
     private String comment; //comment for the predicate

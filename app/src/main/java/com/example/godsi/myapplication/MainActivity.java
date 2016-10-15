@@ -46,10 +46,13 @@ public class MainActivity extends Activity {
 
         //sets the layout of the activity
         setContentView(R.layout.main);
+        fileManager = new FileManager(getApplicationContext(), mainInterpreter, activityGUIUpdater);
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
             String fileName = bundle.getString("file");
             ((EditText) findViewById(R.id.fileName)).setText(fileName);
+            fileManager.loadFile(fileName);
         }
 
         //Assigning the listeners for the views in the activity
@@ -70,7 +73,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.stop).setOnClickListener(new OnClickDo(getString(R.string.stop_interpreter), activityGUIUpdater, mainInterpreter, getString(R.string.stop), "", getResources().getInteger(R.integer.editState), getResources().getInteger(R.integer.editState)));
         findViewById(R.id.next).setOnClickListener(new OnClickDo("", activityGUIUpdater, mainInterpreter, getString(R.string.next), "", getResources().getInteger(R.integer.runningState), getResources().getInteger(R.integer.runningState)));
         findViewById(R.id.enter).setOnClickListener(new OnClickDo("", activityGUIUpdater, mainInterpreter, getString(R.string.enter), "", getResources().getInteger(R.integer.runningState), getResources().getInteger(R.integer.runningState)));
-        fileManager = new FileManager(getApplicationContext(), mainInterpreter, activityGUIUpdater);
+
 
         ImageView image = (ImageView) findViewById(R.id.dustbin);
         image.setImageResource(R.drawable.dustbin);
@@ -196,12 +199,15 @@ public class MainActivity extends Activity {
                 EditText predicateText = new EditText(getApplicationContext());
                 EditText parameterText = new EditText(getApplicationContext());
                 int paramId = View.generateViewId();
+                int predicateNameId = View.generateViewId();
+                predicateText.setId(predicateNameId);
                 parameterText.setId(paramId);
                 ImageButton additionButton = new ImageButton(getApplicationContext());
                 additionButton.setLayoutParams(new LinearLayout.LayoutParams(43, 43));
 
                 Constant newConstant = new Constant(paramId);
                 Predicate newPredicate = new Predicate(newId, newConstant);
+                newPredicate.nameId = predicateNameId;
                 mainInterpreter.addPredicate(newPredicate);
 
                 //Styling of UI elements

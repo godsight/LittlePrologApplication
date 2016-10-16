@@ -66,17 +66,15 @@ public class MainActivity extends Activity {
                 return false;
             }
         });
-        findViewById(R.id.variable).setOnTouchListener(new TouchToDragListener(getString(R.string.variable_touch_instructions),activityGUIUpdater,getString(R.string.variable)));
+        findViewById(R.id.mathComputation).setOnTouchListener(new TouchToDragListener(getString(R.string.mathComp_touch_instructions), activityGUIUpdater, getString(R.string.mathematical_rule)));
         findViewById(R.id.query).setOnTouchListener(new TouchToDragListener(getString(R.string.query_drag_instructions),activityGUIUpdater, getString(R.string.query)));
         findViewById(R.id.componentText).setOnTouchListener(new InstructionUpdateListener(getString(R.string.component_touch_instructions),activityGUIUpdater));
         findViewById(R.id.playgroundText).setOnTouchListener(new InstructionUpdateListener(getString(R.string.playground_touch_instructions),activityGUIUpdater));
         findViewById(R.id.variablesText).setOnTouchListener(new InstructionUpdateListener(getString(R.string.variablelist_touch_instructions),activityGUIUpdater));
         findViewById(R.id.consoleText).setOnTouchListener(new InstructionUpdateListener(getString(R.string.console_touch_instructions),activityGUIUpdater));
-        findViewById(R.id.playgroundContainer).setOnDragListener(new ElementDragListener(getString(R.string.predicate), getString(R.string.predicate_console_add), getString(R.string.predicate_drag_instructions), getString(R.string.predicate_drag_error), activityGUIUpdater));
-        findViewById(R.id.playground).setOnDragListener(new ElementDragListener(getString(R.string.predicate), getString(R.string.predicate_console_add), getString(R.string.predicate_drag_instructions), getString(R.string.predicate_drag_error),activityGUIUpdater));
-        findViewById(R.id.variablesContainer).setOnDragListener(new ElementDragListener(getString(R.string.variable),getString(R.string.variable_console_add),getString(R.string.variable_drag_instructions),getString(R.string.variable_drag_error), activityGUIUpdater));
-        findViewById(R.id.variables).setOnDragListener(new ElementDragListener(getString(R.string.variable),getString(R.string.variable_console_add),getString(R.string.variable_drag_instructions),getString(R.string.variable_drag_error), activityGUIUpdater));
-        findViewById(R.id.consoleCommandLine).setOnDragListener(new ElementDragListener(getString(R.string.query), "", getString(R.string.query_create_instructions), getString(R.string.console_command_droperror), activityGUIUpdater));
+        findViewById(R.id.playgroundContainer).setOnDragListener(new ElementDragListener(activityGUIUpdater));
+        findViewById(R.id.playground).setOnDragListener(new ElementDragListener(activityGUIUpdater));
+        findViewById(R.id.consoleCommandLine).setOnDragListener(new ElementDragListener(activityGUIUpdater));
         findViewById(R.id.dustbin).setOnDragListener(new DragToDeleteListener(getString(R.string.delete_success_console),activityGUIUpdater, mainInterpreter));
         findViewById(R.id.run).setOnClickListener(new OnClickDo(getString(R.string.run_interpreter), activityGUIUpdater, mainInterpreter, getString(R.string.run), getString(R.string.fail_to_run_interpreter), getResources().getInteger(R.integer.runningState), getResources().getInteger(R.integer.editState)));
         findViewById(R.id.stop).setOnClickListener(new OnClickDo(getString(R.string.stop_interpreter), activityGUIUpdater, mainInterpreter, getString(R.string.stop), "", getResources().getInteger(R.integer.editState), getResources().getInteger(R.integer.editState)));
@@ -246,8 +244,45 @@ public class MainActivity extends Activity {
                 return newId;
             }
 
+            else if(uiType.equalsIgnoreCase(getString(R.string.mathematical_rule))){
+                //Creation of UI element, mathematical rule in coding playground
+                LinearLayout container = (LinearLayout) findViewById(R.id.playground);
+                LinearLayout newLayout = new LinearLayout(getApplicationContext());
+                int newId = View.generateViewId();
+                newLayout.setId(newId);
+                newLayout.setPadding(20, 5, 20, 5);
+                RelativeLayout newLayout2 = new RelativeLayout(getApplicationContext());
+                newLayout2.setId(View.generateViewId());
+                EditText rule = new EditText(getApplicationContext());
+                int ruleId = View.generateViewId();
+                rule.setId(ruleId);
+                TextView dropSpace = new TextView(getApplicationContext());
+                dropSpace.setLayoutParams(new LinearLayout.LayoutParams(20, 43));
+
+                MathematicalComputation mathComp = new MathematicalComputation(newId);
+                mainInterpreter.addMathComp(mathComp);
+
+                rule.setPadding(5, 5, 5, 5);
+                rule.setMinimumWidth(250);
+                rule.setHint(getString(R.string.mathematical_rule));
+                rule.setBackgroundColor(Color.parseColor("#0099cc"));
+                rule.setImeOptions(EditorInfo.IME_ACTION_DONE);
+                rule.setSingleLine(true);
+                dropSpace.setBackgroundColor(Color.parseColor("#a9a9a9"));
+
+                rule.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.mathComp_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
+                rule.setOnFocusChangeListener(new FocusListener(getString(R.string.mathComp_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
+
+                RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                newLayout2.addView(rule, rp);
+                newLayout.addView(newLayout2);
+                newLayout.addView(dropSpace);
+                newLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                container.addView(newLayout);
+            }
+
             else if(uiType.equalsIgnoreCase(getString(R.string.query))){
-                //Creation of UI elements
+                //Creation of UI element in command line
                 RelativeLayout consoleCommandLine = (RelativeLayout) findViewById(R.id.consoleCommandLine);
                 LinearLayout newLayout = new LinearLayout(getApplicationContext());
                 int newId = View.generateViewId();

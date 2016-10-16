@@ -6,6 +6,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 public class MainInterpreter {
 
     public ArrayList<Predicate> predicates;
-    private ArrayList<Rule> rules;
+    public ArrayList<MathematicalComputation> mathComputations;
     int programState;
     private int searchIndex;
     Predicate query;
@@ -27,10 +29,22 @@ public class MainInterpreter {
 
     public MainInterpreter(GUIUpdater gui){
         predicates = new ArrayList<>();
-        rules = new ArrayList<>();
+        mathComputations = new ArrayList<>();
         programState = 0;
         searchIndex = 0;
         guiUpdater = gui;
+    }
+
+    public boolean runInterpreter(int stateId){
+        if(checkComponentsValidity()){
+            programState = stateId;
+            return true;
+        }
+        return false;
+    }
+
+    public void stopInterpreter(int stateId){
+        programState = stateId;
     }
 
     public Predicate getPredicate (int id){
@@ -84,20 +98,39 @@ public class MainInterpreter {
     public void deletePredicate(int id){
         Integer index = getPredicateIndex(id);
         if(index != null){
-            predicates.remove(index);
+            Predicate temp = predicates.get(index);
+            predicates.remove(temp);
         }
     }
 
-    public boolean runInterpreter(int stateId){
-        if(checkComponentsValidity()){
-            programState = stateId;
-            return true;
+    public void addMathComp(MathematicalComputation mathematicalComputation){
+        mathComputations.add(mathematicalComputation);
+    }
+
+    public MathematicalComputation getMathComp(int id){
+        for(MathematicalComputation mathComp: mathComputations ){
+            if(mathComp.getId() == id){
+                return mathComp;
+            }
+        }
+        return null;
+    }
+
+    public boolean updateMathComp(String uiType, TextView editText){
+        if(uiType.equalsIgnoreCase("MathematicalRule")){
+            int parentId = ((View) editText.getParent().getParent()).getId();
+            MathematicalComputation mathematicalComputation = getMathComp(parentId);
+            CharSequence eType = editText.getHint();
+            Editable s = editText.getEditableText();
+
+            if ("MathematicalRule".contentEquals(eType)) {
+                if(mathematicalComputation.updateMathComp(s)){
+                    return true;
+                }
+                return false;
+            }
         }
         return false;
-    }
-
-    public void stopInterpreter(int stateId){
-        programState = stateId;
     }
 
     private boolean checkComponentsValidity(){

@@ -19,7 +19,6 @@ public class Predicate implements Writable{
     String name; //name of the predicate
     public int nameId; //identifier for predicate name
     ArrayList<Attribute> parametersArray; //stores the parameters of the predicate
-    private ArrayList<Rule> rulesArray; //stores the rules related to the predicate
     private String comment; //comment for the predicate
     boolean isValid; //whether predicate has valid parameters
 
@@ -38,7 +37,6 @@ public class Predicate implements Writable{
         id = identifier;
         name = "";
         parametersArray = new ArrayList<>();
-        rulesArray = new ArrayList<>();
         comment = "";
         isValid = false;
     }
@@ -49,7 +47,6 @@ public class Predicate implements Writable{
         name = "";
         parametersArray = new ArrayList<>();
         parametersArray.add(param);
-        rulesArray = new ArrayList<>();
         comment = "";
         isValid = false;
     }

@@ -117,28 +117,51 @@ public class MainInterpreter {
     }
 
     public boolean updateMathComp(String uiType, TextView editText){
-        if(uiType.equalsIgnoreCase("MathematicalRule")){
-            int parentId = ((View) editText.getParent().getParent()).getId();
-            MathematicalComputation mathematicalComputation = getMathComp(parentId);
+        if(uiType.equalsIgnoreCase("MathematicalRule")) {
             String eType = editText.getHint().toString();
             String s = editText.getText().toString();
 
             if ("MathematicalRule".contentEquals(eType)) {
-                if(mathematicalComputation.updateMathComp(s)){
-                    return true;
+                int parentId = ((View) editText.getParent()).getId();
+                MathematicalComputation mathematicalComputation = getMathComp(parentId);
+                if(mathematicalComputation != null) {
+                    if (mathematicalComputation.updateMathComp(s)) {
+                        return true;
+                    }
                 }
                 return false;
-            }
-            else {
-                int viewId = editText.getId();
-                int opId = ((View)editText.getParent()).getId();
-                if(mathematicalComputation.updateMathComp(s, eType, viewId, opId)){
-                    return true;
+            } else {
+                int parentId = ((View) editText.getParent().getParent()).getId();
+                MathematicalComputation mathematicalComputation = getMathComp(parentId);
+                if(mathematicalComputation != null) {
+                    int viewId = editText.getId();
+                    int opId = ((View) editText.getParent()).getId();
+                    if (mathematicalComputation.updateMathComp(s, eType, viewId, opId)) {
+                        return true;
+                    }
                 }
                 return false;
             }
         }
         return false;
+    }
+
+    public void deleteMathComp(int id){
+        Integer index = getMathCompIndex(id);
+        if(index != null){
+            MathematicalComputation temp = mathComputations.get(index);
+            mathComputations.remove(temp);
+        }
+    }
+
+    private Integer getMathCompIndex(int id){
+        for(int i = 0; i < mathComputations.size(); i++){
+            MathematicalComputation temp = mathComputations.get(i);
+            if(temp.getId() ==  id){
+                return i;
+            }
+        }
+        return null;
     }
 
     private boolean checkComponentsValidity(){

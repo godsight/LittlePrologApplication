@@ -14,19 +14,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e092b153-9293-4381-8834-8589a32a8ef9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OperatorType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/LongClickToDragListener.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/LongClickToDragPredicateListener.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ClickToAddListener.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ClickToAddListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/GUIUpdater.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/GUIUpdater.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/DragToDeleteListener.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/DragToDeleteListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainScreen.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainScreen.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MathematicalComputation.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MathematicalComputation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Operator.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Operator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/TextViewKeyboardActionListener.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/TextViewKeyboardActionListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <ignored path="LittlePrologApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,24 +56,90 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="657" column="0" selection-start-line="657" selection-start-column="0" selection-end-line="657" selection-end-column="0" />
+            <state relative-caret-position="108">
+              <caret line="546" column="0" selection-start-line="546" selection-start-column="0" selection-end-line="546" selection-end-column="0" />
               <folding>
-                <element signature="e#29150#29170#0" expanded="true" />
-                <element signature="e#29440#29460#0" expanded="true" />
-                <element signature="e#29747#29773#0" expanded="true" />
-                <element signature="e#30073#30100#0" expanded="true" />
-                <element signature="e#31009#31058#0" expanded="true" />
-                <element signature="e#31060#31105#0" expanded="true" />
-                <element signature="e#31107#31144#0" expanded="true" />
-                <element signature="e#31268#31317#0" expanded="true" />
-                <element signature="e#31319#31356#0" expanded="true" />
-                <element signature="e#41511#41560#0" expanded="true" />
-                <element signature="e#41770#41819#0" expanded="true" />
-                <element signature="e#42061#42101#0" expanded="true" />
-                <element signature="e#42123#42151#0" expanded="true" />
-                <element signature="e#43052#43089#0" expanded="true" />
+                <element signature="e#18724#18768#0" expanded="true" />
+                <element signature="e#18790#18827#0" expanded="true" />
+                <element signature="e#18905#18949#0" expanded="true" />
+                <element signature="e#18971#19008#0" expanded="true" />
+                <element signature="e#19179#19223#0" expanded="true" />
+                <element signature="e#19245#19282#0" expanded="true" />
+                <element signature="e#29048#29068#0" expanded="true" />
+                <element signature="e#29338#29358#0" expanded="true" />
+                <element signature="e#29645#29671#0" expanded="true" />
+                <element signature="e#29971#29998#0" expanded="true" />
+                <element signature="e#30921#30965#0" expanded="true" />
+                <element signature="e#31077#31121#0" expanded="true" />
+                <element signature="e#31238#31282#0" expanded="true" />
+                <element signature="e#31400#31444#0" expanded="true" />
+                <element signature="e#31541#31590#0" expanded="true" />
+                <element signature="e#31592#31637#0" expanded="true" />
+                <element signature="e#31639#31676#0" expanded="true" />
+                <element signature="e#31800#31849#0" expanded="true" />
+                <element signature="e#31851#31888#0" expanded="true" />
+                <element signature="e#32002#32046#0" expanded="true" />
+                <element signature="e#32243#32287#0" expanded="true" />
+                <element signature="e#36188#36232#0" expanded="true" />
+                <element signature="e#36337#36381#0" expanded="true" />
+                <element signature="e#36492#36536#0" expanded="true" />
+                <element signature="e#42370#42414#0" expanded="true" />
+                <element signature="e#42526#42570#0" expanded="true" />
+                <element signature="e#42686#42730#0" expanded="true" />
+                <element signature="e#42847#42891#0" expanded="true" />
+                <element signature="e#43008#43052#0" expanded="true" />
+                <element signature="e#43170#43214#0" expanded="true" />
+                <element signature="e#43769#43813#0" expanded="true" />
+                <element signature="e#43910#43959#0" expanded="true" />
+                <element signature="e#43961#44006#0" expanded="true" />
+                <element signature="e#44008#44045#0" expanded="true" />
+                <element signature="e#44169#44218#0" expanded="true" />
+                <element signature="e#44371#44415#0" expanded="true" />
+                <element signature="e#44612#44656#0" expanded="true" />
+                <element signature="e#44761#44801#0" expanded="true" />
+                <element signature="e#44823#44851#0" expanded="true" />
+                <element signature="e#45752#45789#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ElementDragListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LongClickToDragListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/LongClickToDragListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-19/android/view/View.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="4481" column="0" selection-start-line="4481" selection-start-column="0" selection-end-line="4481" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TextView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-19/android/widget/TextView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="203">
+              <caret line="8361" column="0" selection-start-line="8361" selection-start-column="0" selection-end-line="8361" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -87,39 +147,32 @@
       <file leaf-file-name="MainInterpreter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+            <state relative-caret-position="337">
+              <caret line="119" column="57" selection-start-line="119" selection-start-column="57" selection-end-line="119" selection-end-column="57" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ElementDragListener.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java">
+      <file leaf-file-name="DragToDeleteListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/DragToDeleteListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="619">
-              <caret line="111" column="20" selection-start-line="111" selection-start-column="20" selection-end-line="111" selection-end-column="20" />
+            <state relative-caret-position="146">
+              <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MathematicalComputation.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MathematicalComputation.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MathematicalComputation.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="197">
-              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TextViewKeyboardActionListener.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/TextViewKeyboardActionListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding />
+              <caret line="85" column="46" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
+              <folding>
+                <element signature="e#2201#2202#0" expanded="true" />
+                <element signature="e#2241#2242#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1840,8 +1893,6 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Writable.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/FileManager.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/DragToDeleteListener.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/LongClickToDragPredicateListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MetaInfo.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Read.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Write.java" />
@@ -1855,12 +1906,15 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Operator.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ClickToAddListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/GUIUpdater.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainScreen.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/LongClickToDragPredicateListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/LongClickToDragListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/DragToDeleteListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MathematicalComputation.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/GUIUpdater.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainScreen.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -2462,58 +2516,41 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/DragToDeleteListener.java</url>
-          <line>43</line>
-          <properties />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/FocusListener.java</url>
-          <line>49</line>
-          <properties />
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java</url>
-          <line>119</line>
-          <properties />
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java</url>
-          <line>655</line>
+          <line>671</line>
           <properties />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/DragToDeleteListener.java</url>
+          <line>54</line>
+          <properties />
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/LongClickToDragListener.java</url>
+          <line>51</line>
+          <properties />
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MathematicalComputation.java</url>
+          <line>79</line>
+          <properties />
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java</url>
+          <line>546</line>
+          <properties />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="23" />
+      <option name="time" value="31" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding>
-            <element signature="e#29150#29170#0" expanded="true" />
-            <element signature="e#29440#29460#0" expanded="true" />
-            <element signature="e#29747#29773#0" expanded="true" />
-            <element signature="e#30073#30100#0" expanded="true" />
-            <element signature="e#31009#31058#0" expanded="true" />
-            <element signature="e#31060#31105#0" expanded="true" />
-            <element signature="e#31107#31144#0" expanded="true" />
-            <element signature="e#31268#31317#0" expanded="true" />
-            <element signature="e#31319#31356#0" expanded="true" />
-            <element signature="e#41511#41560#0" expanded="true" />
-            <element signature="e#41770#41819#0" expanded="true" />
-            <element signature="e#42061#42101#0" expanded="true" />
-            <element signature="e#42123#42151#0" expanded="true" />
-            <element signature="e#43052#43089#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2562,20 +2599,46 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#29150#29170#0" expanded="true" />
-            <element signature="e#29440#29460#0" expanded="true" />
-            <element signature="e#29747#29773#0" expanded="true" />
-            <element signature="e#30073#30100#0" expanded="true" />
-            <element signature="e#31009#31058#0" expanded="true" />
-            <element signature="e#31060#31105#0" expanded="true" />
-            <element signature="e#31107#31144#0" expanded="true" />
-            <element signature="e#31268#31317#0" expanded="true" />
-            <element signature="e#31319#31356#0" expanded="true" />
-            <element signature="e#41511#41560#0" expanded="true" />
-            <element signature="e#41770#41819#0" expanded="true" />
-            <element signature="e#42061#42101#0" expanded="true" />
-            <element signature="e#42123#42151#0" expanded="true" />
-            <element signature="e#43052#43089#0" expanded="true" />
+            <element signature="e#18724#18768#0" expanded="true" />
+            <element signature="e#18790#18827#0" expanded="true" />
+            <element signature="e#18905#18949#0" expanded="true" />
+            <element signature="e#18971#19008#0" expanded="true" />
+            <element signature="e#19179#19223#0" expanded="true" />
+            <element signature="e#19245#19282#0" expanded="true" />
+            <element signature="e#29048#29068#0" expanded="true" />
+            <element signature="e#29338#29358#0" expanded="true" />
+            <element signature="e#29645#29671#0" expanded="true" />
+            <element signature="e#29971#29998#0" expanded="true" />
+            <element signature="e#30921#30965#0" expanded="true" />
+            <element signature="e#31077#31121#0" expanded="true" />
+            <element signature="e#31238#31282#0" expanded="true" />
+            <element signature="e#31400#31444#0" expanded="true" />
+            <element signature="e#31541#31590#0" expanded="true" />
+            <element signature="e#31592#31637#0" expanded="true" />
+            <element signature="e#31639#31676#0" expanded="true" />
+            <element signature="e#31800#31849#0" expanded="true" />
+            <element signature="e#31851#31888#0" expanded="true" />
+            <element signature="e#32002#32046#0" expanded="true" />
+            <element signature="e#32243#32287#0" expanded="true" />
+            <element signature="e#36188#36232#0" expanded="true" />
+            <element signature="e#36337#36381#0" expanded="true" />
+            <element signature="e#36492#36536#0" expanded="true" />
+            <element signature="e#42370#42414#0" expanded="true" />
+            <element signature="e#42526#42570#0" expanded="true" />
+            <element signature="e#42686#42730#0" expanded="true" />
+            <element signature="e#42847#42891#0" expanded="true" />
+            <element signature="e#43008#43052#0" expanded="true" />
+            <element signature="e#43170#43214#0" expanded="true" />
+            <element signature="e#43769#43813#0" expanded="true" />
+            <element signature="e#43910#43959#0" expanded="true" />
+            <element signature="e#43961#44006#0" expanded="true" />
+            <element signature="e#44008#44045#0" expanded="true" />
+            <element signature="e#44169#44218#0" expanded="true" />
+            <element signature="e#44371#44415#0" expanded="true" />
+            <element signature="e#44612#44656#0" expanded="true" />
+            <element signature="e#44761#44801#0" expanded="true" />
+            <element signature="e#44823#44851#0" expanded="true" />
+            <element signature="e#45752#45789#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2643,22 +2706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/DragToDeleteListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/LongClickToDragPredicateListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
@@ -2678,14 +2725,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Predicate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="93" column="5" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -2780,34 +2819,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/GUIUpdater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="39" column="18" selection-start-line="39" selection-start-column="18" selection-end-line="39" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="114" column="66" selection-start-line="114" selection-start-column="66" selection-end-line="114" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Operator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
           <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-19/android/view/ContextThemeWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2836,11 +2851,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-19/android/widget/TextView.java">
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-19/android/app/Activity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="7641" column="0" selection-start-line="7641" selection-start-column="0" selection-end-line="7641" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="108">
+          <caret line="1883" column="0" selection-start-line="1883" selection-start-column="0" selection-end-line="1883" selection-end-column="0" />
+          <folding>
+            <element signature="e#83993#83994#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2848,21 +2865,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
           <caret line="631" column="0" selection-start-line="631" selection-start-column="0" selection-end-line="631" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#6032#6091#0" expanded="false" />
+            <element signature="e#6281#6340#0" expanded="false" />
+            <element signature="e#6433#6492#0" expanded="false" />
+            <element signature="e#52459#52500#0" expanded="false" />
+            <element signature="e#217772#217812#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-19/android/view/View.java">
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-19/android/view/ContextThemeWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="4619" column="0" selection-start-line="4619" selection-start-column="0" selection-end-line="4619" selection-end-column="0" />
+        <state relative-caret-position="279">
+          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-19/android/content/Context.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
+        <state relative-caret-position="146">
           <caret line="342" column="0" selection-start-line="342" selection-start-column="0" selection-end-line="342" selection-end-column="0" />
           <folding>
             <element signature="e#15272#15273#0" expanded="true" />
@@ -2870,49 +2893,139 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/TextViewKeyboardActionListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="657" column="0" selection-start-line="657" selection-start-column="0" selection-end-line="657" selection-end-column="0" />
-          <folding>
-            <element signature="e#29150#29170#0" expanded="true" />
-            <element signature="e#29440#29460#0" expanded="true" />
-            <element signature="e#29747#29773#0" expanded="true" />
-            <element signature="e#30073#30100#0" expanded="true" />
-            <element signature="e#31009#31058#0" expanded="true" />
-            <element signature="e#31060#31105#0" expanded="true" />
-            <element signature="e#31107#31144#0" expanded="true" />
-            <element signature="e#31268#31317#0" expanded="true" />
-            <element signature="e#31319#31356#0" expanded="true" />
-            <element signature="e#41511#41560#0" expanded="true" />
-            <element signature="e#41770#41819#0" expanded="true" />
-            <element signature="e#42061#42101#0" expanded="true" />
-            <element signature="e#42123#42151#0" expanded="true" />
-            <element signature="e#43052#43089#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="825">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Predicate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="76" column="47" selection-start-line="76" selection-start-column="47" selection-end-line="76" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/FocusListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="49" column="76" selection-start-line="49" selection-start-column="76" selection-end-line="49" selection-end-column="76" />
+        <state relative-caret-position="988">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
+        <state relative-caret-position="337">
+          <caret line="119" column="57" selection-start-line="119" selection-start-column="57" selection-end-line="119" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/TextViewKeyboardActionListener.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/GUIUpdater.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="115">
+          <caret line="39" column="56" selection-start-line="39" selection-start-column="56" selection-end-line="39" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="114" column="81" selection-start-line="114" selection-start-column="81" selection-end-line="114" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="546" column="0" selection-start-line="546" selection-start-column="0" selection-end-line="546" selection-end-column="0" />
+          <folding>
+            <element signature="e#18724#18768#0" expanded="true" />
+            <element signature="e#18790#18827#0" expanded="true" />
+            <element signature="e#18905#18949#0" expanded="true" />
+            <element signature="e#18971#19008#0" expanded="true" />
+            <element signature="e#19179#19223#0" expanded="true" />
+            <element signature="e#19245#19282#0" expanded="true" />
+            <element signature="e#29048#29068#0" expanded="true" />
+            <element signature="e#29338#29358#0" expanded="true" />
+            <element signature="e#29645#29671#0" expanded="true" />
+            <element signature="e#29971#29998#0" expanded="true" />
+            <element signature="e#30921#30965#0" expanded="true" />
+            <element signature="e#31077#31121#0" expanded="true" />
+            <element signature="e#31238#31282#0" expanded="true" />
+            <element signature="e#31400#31444#0" expanded="true" />
+            <element signature="e#31541#31590#0" expanded="true" />
+            <element signature="e#31592#31637#0" expanded="true" />
+            <element signature="e#31639#31676#0" expanded="true" />
+            <element signature="e#31800#31849#0" expanded="true" />
+            <element signature="e#31851#31888#0" expanded="true" />
+            <element signature="e#32002#32046#0" expanded="true" />
+            <element signature="e#32243#32287#0" expanded="true" />
+            <element signature="e#36188#36232#0" expanded="true" />
+            <element signature="e#36337#36381#0" expanded="true" />
+            <element signature="e#36492#36536#0" expanded="true" />
+            <element signature="e#42370#42414#0" expanded="true" />
+            <element signature="e#42526#42570#0" expanded="true" />
+            <element signature="e#42686#42730#0" expanded="true" />
+            <element signature="e#42847#42891#0" expanded="true" />
+            <element signature="e#43008#43052#0" expanded="true" />
+            <element signature="e#43170#43214#0" expanded="true" />
+            <element signature="e#43769#43813#0" expanded="true" />
+            <element signature="e#43910#43959#0" expanded="true" />
+            <element signature="e#43961#44006#0" expanded="true" />
+            <element signature="e#44008#44045#0" expanded="true" />
+            <element signature="e#44169#44218#0" expanded="true" />
+            <element signature="e#44371#44415#0" expanded="true" />
+            <element signature="e#44612#44656#0" expanded="true" />
+            <element signature="e#44761#44801#0" expanded="true" />
+            <element signature="e#44823#44851#0" expanded="true" />
+            <element signature="e#45752#45789#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/LongClickToDragListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-19/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="4481" column="0" selection-start-line="4481" selection-start-column="0" selection-end-line="4481" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-19/android/widget/TextView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="8361" column="0" selection-start-line="8361" selection-start-column="0" selection-end-line="8361" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/DragToDeleteListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2920,16 +3033,11 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MathematicalComputation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="111" column="20" selection-start-line="111" selection-start-column="20" selection-end-line="111" selection-end-column="20" />
-          <folding />
+          <caret line="85" column="46" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
+          <folding>
+            <element signature="e#2201#2202#0" expanded="true" />
+            <element signature="e#2241#2242#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

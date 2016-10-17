@@ -1,18 +1,12 @@
 package com.example.godsi.myapplication;
 
         import android.app.Activity;
-        import android.content.Context;
-        import android.content.res.Resources;
         import android.graphics.Color;
         import android.os.Bundle;
-        import android.support.v4.content.ContextCompat;
-        import android.support.v4.content.res.ResourcesCompat;
         import android.view.Gravity;
-        import android.view.KeyEvent;
         import android.view.MotionEvent;
         import android.view.View;
         import android.view.ViewGroup;
-        import android.view.WindowManager;
         import android.view.inputmethod.EditorInfo;
         import android.widget.EditText;
         import android.widget.ImageButton;
@@ -22,7 +16,8 @@ package com.example.godsi.myapplication;
         import android.widget.ScrollView;
         import android.widget.TextView;
 
-        import java.io.File;
+        import org.w3c.dom.Text;
+
         import java.text.SimpleDateFormat;
         import java.util.ArrayList;
         import java.util.Calendar;
@@ -237,13 +232,13 @@ public class MainActivity extends Activity {
 
                 //Assigning listeners to the UI elements
                 predicateText.setOnFocusChangeListener(new FocusListener(getString(R.string.predicate_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
-                predicateText.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
+                predicateText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions),activityGUIUpdater, uiType));
                 predicateText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                 parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.parameter_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
-                parameterText.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
+                parameterText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions),activityGUIUpdater, uiType));
                 parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.parameter_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                 additionButton.setOnClickListener(new ClickToAddListener(getString(R.string.add_new_parameter), activityGUIUpdater, uiType, mainInterpreter));
-                additionButton.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
+                additionButton.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions),activityGUIUpdater, uiType));
 
                 RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 newLayout2.addView(predicateText, rp);
@@ -264,12 +259,11 @@ public class MainActivity extends Activity {
                 int newId = View.generateViewId();
                 newLayout.setId(newId);
                 newLayout.setPadding(20, 5, 20, 5);
-                RelativeLayout newLayout2 = new RelativeLayout(getApplicationContext());
-                newLayout2.setId(View.generateViewId());
                 EditText rule = new EditText(getApplicationContext());
                 int ruleId = View.generateViewId();
                 rule.setId(ruleId);
-                EditText symbol = new EditText(getApplicationContext());
+                TextView symbol = new TextView(getApplicationContext());
+                symbol.setLayoutParams(new LinearLayout.LayoutParams(50,43));
                 TextView dropSpace = new TextView(getApplicationContext());
                 dropSpace.setLayoutParams(new LinearLayout.LayoutParams(50, 43));
 
@@ -283,21 +277,24 @@ public class MainActivity extends Activity {
                 rule.setImeOptions(EditorInfo.IME_ACTION_DONE);
                 rule.setSingleLine(true);
                 symbol.setPadding(5,5,5,5);
-                symbol.setText(" :- ");
+                symbol.setText(" : - ");
+                symbol.setTextColor(Color.BLACK);
                 symbol.setBackgroundColor(Color.parseColor("#a9a9a9"));
-                symbol.setEnabled(false);
+                symbol.setPadding(5,10,5,5);
+                symbol.setGravity(Gravity.CENTER_HORIZONTAL);
                 dropSpace.setBackgroundColor(Color.parseColor("#a9a9a9"));
+                dropSpace.setPadding(5,10, 5,5 );
 
                 rule.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.mathComp_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                 rule.setOnFocusChangeListener(new FocusListener(getString(R.string.mathComp_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
+                rule.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, getString(R.string.mathematical_rule)));
+                symbol.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, getString(R.string.mathematical_rule)));
                 dropSpace.setOnDragListener(new ElementDragListener(activityGUIUpdater));
+                dropSpace.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, getString(R.string.mathematical_rule)));
 
-                RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                newLayout2.addView(rule, rp);
-                RelativeLayout.LayoutParams rp2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                rp2.addRule(RelativeLayout.RIGHT_OF, rule.getId());
-                newLayout2.addView(symbol, rp2);
-                newLayout.addView(newLayout2);
+
+                newLayout.addView(rule);
+                newLayout.addView(symbol);
                 newLayout.addView(dropSpace);
                 newLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 container.addView(newLayout);
@@ -390,7 +387,7 @@ public class MainActivity extends Activity {
                     Predicate existingPred = mainInterpreter.getPredicate(id);
                     existingPred.addAttribute(newConstant);
                     parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.parameter_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
-                    parameterText.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions), activityGUIUpdater));
+                    parameterText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
                     parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                     close.setOnClickListener(new ClickToDelete(getString(R.string.delete_parameter), activityGUIUpdater, mainInterpreter, uiType));
                 } else if (uiType.equalsIgnoreCase("Query")) {
@@ -470,9 +467,15 @@ public class MainActivity extends Activity {
                 value.setTextColor(Color.BLACK);
                 value.setGravity(Gravity.CENTER_HORIZONTAL);
 
+                openBracket.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
+                closeBracket.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
+                openSquareBracket.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
+                closeSquareBracket.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
                 value.setOnFocusChangeListener(new FocusListener(getString(R.string.constant_value_console_update), getString(R.string.value_update_instructions), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
                 value.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.constant_value_console_update), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
+                value.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
                 operator.setOnDragListener(new ElementDragListener(activityGUIUpdater));
+                operator.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
 
                 int count = existingLayout.getChildCount();
                 existingLayout.addView(openSquareBracket, count - 2);
@@ -500,7 +503,7 @@ public class MainActivity extends Activity {
                 readTextFront.setId(View.generateViewId());
                 if (uiType.equalsIgnoreCase("Read")) {
                     readTextFront.setText(getString(R.string.read) + " ( ");
-                    Read newRead = new Read(paramId);
+                    Read newRead = new Read(layoutId);
                     MathematicalComputation existingMathComp = mainInterpreter.getMathComp(id);
                     existingMathComp.addParam(newRead);
                     param.setHint("readArg");
@@ -529,6 +532,10 @@ public class MainActivity extends Activity {
                 readTextEnd.setBackgroundColor(Color.parseColor("#ff669900"));
                 readTextEnd.setEnabled(false);
                 readTextEnd.setTextColor(Color.WHITE);
+
+                readTextFront.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
+                param.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
+                readTextEnd.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
 
                 newLayout.addView(readTextFront);
                 newLayout.addView(param);
@@ -628,11 +635,20 @@ public class MainActivity extends Activity {
                 comma.setEnabled(false);
                 additionButton.setImageResource(R.drawable.addicon);
 
+                openBracket.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
+                closeBracket.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
+                openBracketRight.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
+                closeBracketRight.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
+                openSquareBracket.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
+                closeSquareBracket.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
                 left.setOnFocusChangeListener(new FocusListener(getString(R.string.constant_value_console_update), getString(R.string.value_update_instructions), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
                 left.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.constant_value_console_update), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
+                left.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
                 right.setOnFocusChangeListener(new FocusListener(getString(R.string.constant_value_console_update), getString(R.string.value_update_instructions), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
                 right.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.constant_value_console_update), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
+                right.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
                 operator.setOnDragListener(new ElementDragListener(activityGUIUpdater));
+                operator.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
                 additionButton.setOnClickListener(new ClickToAddListener(getString(R.string.operator_console_add), activityGUIUpdater, getString(R.string.operator), mainInterpreter));
 
                 newLayout.addView(openBracket);

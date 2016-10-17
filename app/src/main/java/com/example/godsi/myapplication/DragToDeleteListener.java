@@ -48,6 +48,14 @@ public class DragToDeleteListener implements View.OnDragListener {
                 if(uiType.equalsIgnoreCase("Predicate")) {
                     mainInterpreter.deletePredicate(viewId);
                 }
+                else if(uiType.equalsIgnoreCase("MathematicalRule")){
+                    mainInterpreter.deleteMathComp(viewId);
+                }
+                else{
+                    int parentId = Integer.parseInt((String) event.getClipData().getItemAt(1).getText());
+                    MathematicalComputation mathematicalComputation = mainInterpreter.getMathComp(parentId);
+                    mathematicalComputation.deleteAttribute(viewId);
+                }
 
                 guiUpdater.createConsoleLog(console_text);
             case DragEvent.ACTION_DRAG_ENDED:

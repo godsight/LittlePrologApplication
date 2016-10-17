@@ -87,4 +87,12 @@ public class MathematicalComputation {
         }
         return null;
     }
+
+    //Removes the attribute from the parameter array based on id
+    public void deleteAttribute(int id){
+        int index = parametersArray.indexOf(new Attribute(id));
+        if(index >= 0) {
+            parametersArray.remove(index);
+        }
+    }
 }

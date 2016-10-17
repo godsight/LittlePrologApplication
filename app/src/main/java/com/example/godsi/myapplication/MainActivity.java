@@ -7,6 +7,7 @@ package com.example.godsi.myapplication;
         import android.os.Bundle;
         import android.support.v4.content.ContextCompat;
         import android.support.v4.content.res.ResourcesCompat;
+        import android.view.Gravity;
         import android.view.KeyEvent;
         import android.view.MotionEvent;
         import android.view.View;
@@ -67,7 +68,20 @@ public class MainActivity extends Activity {
             }
         });
         findViewById(R.id.mathComputation).setOnTouchListener(new TouchToDragListener(getString(R.string.mathComp_touch_instructions), activityGUIUpdater, getString(R.string.mathematical_rule)));
-        findViewById(R.id.query).setOnTouchListener(new TouchToDragListener(getString(R.string.query_drag_instructions),activityGUIUpdater, getString(R.string.query)));
+        findViewById(R.id.read).setOnTouchListener(new TouchToDragListener(getString(R.string.rule_param_touch_instructions), activityGUIUpdater, getString(R.string.read)));
+        findViewById(R.id.write).setOnTouchListener(new TouchToDragListener(getString(R.string.rule_param_touch_instructions), activityGUIUpdater, getString(R.string.write)));
+        findViewById(R.id.operator).setOnTouchListener(new TouchToDragListener(getString(R.string.operator_touch_instructions), activityGUIUpdater, getString(R.string.operator)));
+        findViewById(R.id.plus).setOnTouchListener(new TouchToDragListener(getString(R.string.operator_type_touch_instructions), activityGUIUpdater, getString(R.string.plusSymbol)));
+        findViewById(R.id.minus).setOnTouchListener(new TouchToDragListener(getString(R.string.operator_touch_instructions), activityGUIUpdater, getString(R.string.minusSymbol)));
+        findViewById(R.id.multiply).setOnTouchListener(new TouchToDragListener(getString(R.string.operator_touch_instructions), activityGUIUpdater, getString(R.string.multiplySymbol)));
+        findViewById(R.id.divide).setOnTouchListener(new TouchToDragListener(getString(R.string.operator_touch_instructions), activityGUIUpdater, getString(R.string.divideSymbol)));
+        findViewById(R.id.doubleEqual).setOnTouchListener(new TouchToDragListener(getString(R.string.operator_touch_instructions), activityGUIUpdater, getString(R.string.doubleEqualSymbol)));
+        findViewById(R.id.less).setOnTouchListener(new TouchToDragListener(getString(R.string.operator_touch_instructions), activityGUIUpdater, getString(R.string.lessSymbol)));
+        findViewById(R.id.more).setOnTouchListener(new TouchToDragListener(getString(R.string.operator_touch_instructions), activityGUIUpdater, getString(R.string.moreSymbol)));
+        findViewById(R.id.equal).setOnTouchListener(new TouchToDragListener(getString(R.string.operator_touch_instructions), activityGUIUpdater, getString(R.string.equalSymbol)));
+        findViewById(R.id.lessOrEqual).setOnTouchListener(new TouchToDragListener(getString(R.string.operator_touch_instructions), activityGUIUpdater, getString(R.string.lessOrEqualSymbol)));
+        findViewById(R.id.moreOrEqual).setOnTouchListener(new TouchToDragListener(getString(R.string.operator_touch_instructions), activityGUIUpdater, getString(R.string.moreOrEqualSymbol)));
+        findViewById(R.id.queryPredicate).setOnTouchListener(new TouchToDragListener(getString(R.string.query_drag_instructions),activityGUIUpdater, getString(R.string.query)));
         findViewById(R.id.componentText).setOnTouchListener(new InstructionUpdateListener(getString(R.string.component_touch_instructions),activityGUIUpdater));
         findViewById(R.id.playgroundText).setOnTouchListener(new InstructionUpdateListener(getString(R.string.playground_touch_instructions),activityGUIUpdater));
         findViewById(R.id.variablesText).setOnTouchListener(new InstructionUpdateListener(getString(R.string.variablelist_touch_instructions),activityGUIUpdater));
@@ -80,7 +94,6 @@ public class MainActivity extends Activity {
         findViewById(R.id.stop).setOnClickListener(new OnClickDo(getString(R.string.stop_interpreter), activityGUIUpdater, mainInterpreter, getString(R.string.stop), "", getResources().getInteger(R.integer.editState), getResources().getInteger(R.integer.editState)));
         findViewById(R.id.next).setOnClickListener(new OnClickDo("", activityGUIUpdater, mainInterpreter, getString(R.string.next), "", getResources().getInteger(R.integer.runningState), getResources().getInteger(R.integer.runningState)));
         findViewById(R.id.enter).setOnClickListener(new OnClickDo("", activityGUIUpdater, mainInterpreter, getString(R.string.enter), "", getResources().getInteger(R.integer.runningState), getResources().getInteger(R.integer.runningState)));
-
 
         ImageView image = (ImageView) findViewById(R.id.dustbin);
         image.setImageResource(R.drawable.dustbin);
@@ -229,7 +242,7 @@ public class MainActivity extends Activity {
                 parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.parameter_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
                 parameterText.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
                 parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.parameter_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
-                additionButton.setOnClickListener(new ClickToAddListener(getString(R.string.add_new_parameter), activityGUIUpdater, uiType));
+                additionButton.setOnClickListener(new ClickToAddListener(getString(R.string.add_new_parameter), activityGUIUpdater, uiType, mainInterpreter));
                 additionButton.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions),activityGUIUpdater));
 
                 RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -256,8 +269,9 @@ public class MainActivity extends Activity {
                 EditText rule = new EditText(getApplicationContext());
                 int ruleId = View.generateViewId();
                 rule.setId(ruleId);
+                EditText symbol = new EditText(getApplicationContext());
                 TextView dropSpace = new TextView(getApplicationContext());
-                dropSpace.setLayoutParams(new LinearLayout.LayoutParams(20, 43));
+                dropSpace.setLayoutParams(new LinearLayout.LayoutParams(50, 43));
 
                 MathematicalComputation mathComp = new MathematicalComputation(newId);
                 mainInterpreter.addMathComp(mathComp);
@@ -268,13 +282,21 @@ public class MainActivity extends Activity {
                 rule.setBackgroundColor(Color.parseColor("#0099cc"));
                 rule.setImeOptions(EditorInfo.IME_ACTION_DONE);
                 rule.setSingleLine(true);
+                symbol.setPadding(5,5,5,5);
+                symbol.setText(" :- ");
+                symbol.setBackgroundColor(Color.parseColor("#a9a9a9"));
+                symbol.setEnabled(false);
                 dropSpace.setBackgroundColor(Color.parseColor("#a9a9a9"));
 
                 rule.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.mathComp_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                 rule.setOnFocusChangeListener(new FocusListener(getString(R.string.mathComp_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
+                dropSpace.setOnDragListener(new ElementDragListener(activityGUIUpdater));
 
                 RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 newLayout2.addView(rule, rp);
+                RelativeLayout.LayoutParams rp2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                rp2.addRule(RelativeLayout.RIGHT_OF, rule.getId());
+                newLayout2.addView(symbol, rp2);
                 newLayout.addView(newLayout2);
                 newLayout.addView(dropSpace);
                 newLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -323,7 +345,7 @@ public class MainActivity extends Activity {
                 predicateText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                 parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.predicate_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
                 parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.parameter_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
-                additionButton.setOnClickListener(new ClickToAddListener(getString(R.string.add_new_parameter), activityGUIUpdater, uiType));
+                additionButton.setOnClickListener(new ClickToAddListener(getString(R.string.add_new_parameter), activityGUIUpdater, uiType, mainInterpreter));
 
                 RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 newLayout2.addView(predicateText, rp);
@@ -341,60 +363,302 @@ public class MainActivity extends Activity {
         }
 
         public int generateUI(int id, String uiType){
-            LinearLayout existingLayout = (LinearLayout) findViewById(id);
-            RelativeLayout newLayout = new RelativeLayout(getApplicationContext());
-            int layoutId = View.generateViewId();
-            newLayout.setId(layoutId)
-            ;
-            EditText parameterText = new EditText(getApplicationContext());
-            int paramId = View.generateViewId();
-            parameterText.setId(paramId);
-            ImageView close = new ImageView(getApplicationContext());
-            int imageId = View.generateViewId();
-            close.setId(imageId);
-            close.setImageResource(R.drawable.xicon);
+            if(uiType.equalsIgnoreCase("Predicate") || uiType.equalsIgnoreCase("Query")) {
+                LinearLayout existingLayout = (LinearLayout) findViewById(id);
+                RelativeLayout newLayout = new RelativeLayout(getApplicationContext());
+                int layoutId = View.generateViewId();
+                newLayout.setId(layoutId)
+                ;
+                EditText parameterText = new EditText(getApplicationContext());
+                int paramId = View.generateViewId();
+                parameterText.setId(paramId);
+                ImageView close = new ImageView(getApplicationContext());
+                int imageId = View.generateViewId();
+                close.setId(imageId);
+                close.setImageResource(R.drawable.xicon);
 
-            Constant newConstant = new Constant(paramId);
+                parameterText.setPadding(5, 5, 5, 5);
+                parameterText.setMinimumWidth(250);
+                parameterText.setHint(getString(R.string.parameter));
+                parameterText.setBackgroundColor(Color.parseColor("#FF80AB"));
+                parameterText.setImeOptions(EditorInfo.IME_ACTION_DONE);
+                parameterText.setSingleLine(true);
 
-            if(uiType.equalsIgnoreCase("Predicate")) {
-                Predicate existingPred = mainInterpreter.getPredicate(id);
-                existingPred.addAttribute(newConstant);
+                Constant newConstant = new Constant(paramId);
+
+                if (uiType.equalsIgnoreCase("Predicate")) {
+                    Predicate existingPred = mainInterpreter.getPredicate(id);
+                    existingPred.addAttribute(newConstant);
+                    parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.parameter_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
+                    parameterText.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions), activityGUIUpdater));
+                    parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
+                    close.setOnClickListener(new ClickToDelete(getString(R.string.delete_parameter), activityGUIUpdater, mainInterpreter, uiType));
+                } else if (uiType.equalsIgnoreCase("Query")) {
+                    Predicate query = mainInterpreter.query;
+                    query.addAttribute(newConstant);
+                    parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.parameter_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
+                    parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
+                    close.setOnClickListener(new ClickToDelete(getString(R.string.delete_parameter), activityGUIUpdater, mainInterpreter, uiType));
+                }
+
+                RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                rp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                RelativeLayout.LayoutParams rp2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                rp2.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                rp2.addRule(RelativeLayout.CENTER_VERTICAL);
+                rp2.leftMargin = 210;
+                newLayout.addView(parameterText, rp);
+                newLayout.addView(close, rp2);
+                int count = existingLayout.getChildCount();
+                existingLayout.addView(newLayout, count - 1);
+                return paramId;
             }
-            else if(uiType.equalsIgnoreCase("Query")){
-                Predicate query = mainInterpreter.query;
-                query.addAttribute(newConstant);
-            }
+            else if(uiType.equalsIgnoreCase("Operator")){
+                LinearLayout existingLayout = (LinearLayout) findViewById(id);
+                int mathId = ((View)existingLayout.getParent()).getId();
 
-            parameterText.setPadding(5, 5, 5, 5);
-            parameterText.setMinimumWidth(250);
-            parameterText.setHint(getString(R.string.parameter));
-            parameterText.setBackgroundColor(Color.parseColor("#FF80AB"));
-            parameterText.setImeOptions(EditorInfo.IME_ACTION_DONE);
-            parameterText.setSingleLine(true);
+                EditText openBracket = new EditText(getApplicationContext());
+                EditText closeBracket = new EditText(getApplicationContext());
+                EditText openSquareBracket = new EditText(getApplicationContext());
+                EditText closeSquareBracket = new EditText(getApplicationContext());
+                TextView operator = new TextView(getApplicationContext());
+                operator.setLayoutParams(new LinearLayout.LayoutParams(43, 43));
+                int opId = View.generateViewId();
+                operator.setId(opId);
+                EditText value = new EditText(getApplicationContext());
+                int valueId = View.generateViewId();
+                value.setId(valueId);
 
-            if(uiType.equalsIgnoreCase("Predicate")) {
-                parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.parameter_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
-                parameterText.setOnLongClickListener(new LongClickToDragPredicateListener(getString(R.string.drag_delete_instructions), activityGUIUpdater));
-                parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
-                close.setOnClickListener(new ClickToDelete(getString(R.string.delete_parameter), activityGUIUpdater, mainInterpreter, uiType));
-            }
-            else if(uiType.equalsIgnoreCase("Query")){
-                parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.parameter_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
-                parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
-                close.setOnClickListener(new ClickToDelete(getString(R.string.delete_parameter), activityGUIUpdater, mainInterpreter, uiType));
-            }
+                MathematicalComputation mathematicalComputation = mainInterpreter.getMathComp(mathId);
+                Operator existingOp = (Operator) mathematicalComputation.getAttribute(id);
+                OperatorType newOperatorType = new OperatorType(opId);
+                Constant newConstant = new Constant(valueId);
+                existingOp.addOperatorParam(newOperatorType);
+                existingOp.addOperatorParam(newConstant);
 
-            RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            rp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-            RelativeLayout.LayoutParams rp2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            rp2.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-            rp2.addRule(RelativeLayout.CENTER_VERTICAL);
-            rp2.leftMargin = 210;
-            newLayout.addView(parameterText, rp);
-            newLayout.addView(close, rp2);
-            int count = existingLayout.getChildCount();
-            existingLayout.addView(newLayout, count-1);
-            return paramId;
+                openBracket.setPadding(5,5,5,5);
+                openBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
+                openBracket.setText(R.string.openBracket);
+                openBracket.setTextColor(Color.WHITE);
+                openBracket.setEnabled(false);
+                closeBracket.setPadding(5,5,5,5);
+                closeBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
+                closeBracket.setText(R.string.closeBraket);
+                closeBracket.setTextColor(Color.WHITE);
+                closeBracket.setEnabled(false);
+                openSquareBracket.setPadding(5,5,5,5);
+                openSquareBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
+                openSquareBracket.setText(R.string.openSquareBracket);
+                openSquareBracket.setTextColor(Color.WHITE);
+                openSquareBracket.setEnabled(false);
+                closeSquareBracket.setPadding(5,5,5,5);
+                closeSquareBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
+                closeSquareBracket.setText(R.string.closeSquareBracket);
+                closeSquareBracket.setTextColor(Color.WHITE);
+                closeSquareBracket.setEnabled(false);
+                operator.setPadding(5,10,5,5);
+                operator.setBackgroundColor(Color.parseColor("#cc00cc"));
+                operator.setHint("OP");
+                operator.setBackgroundColor(Color.parseColor("#e6e6e6"));
+                operator.setTextColor(Color.BLACK);
+                operator.setGravity(Gravity.CENTER_HORIZONTAL);
+                value.setPadding(5, 5, 5, 5);
+                value.setHint("val");
+                value.setBackgroundColor(Color.parseColor("#e6e6e6"));
+                value.setImeOptions(EditorInfo.IME_ACTION_DONE);
+                value.setSingleLine(true);
+                value.setTextColor(Color.BLACK);
+                value.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                value.setOnFocusChangeListener(new FocusListener(getString(R.string.constant_value_console_update), getString(R.string.value_update_instructions), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
+                value.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.constant_value_console_update), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
+                operator.setOnDragListener(new ElementDragListener(activityGUIUpdater));
+
+                int count = existingLayout.getChildCount();
+                existingLayout.addView(openSquareBracket, count - 2);
+                existingLayout.addView(operator, count - 1);
+                existingLayout.addView(closeSquareBracket, count);
+                existingLayout.addView(openBracket, count + 1);
+                existingLayout.addView(value, count + 2);
+                existingLayout.addView(closeBracket, count + 3);
+            }
+            return 0;
+        }
+
+        public void generateUIForMathComp(int id, String uiType){
+            if(uiType.equalsIgnoreCase("Read") || uiType.equalsIgnoreCase("Write")) {
+                LinearLayout existingLayout = (LinearLayout) findViewById(id);
+                LinearLayout newLayout = new LinearLayout(getApplicationContext());
+                int layoutId = View.generateViewId();
+                newLayout.setId(layoutId);
+                EditText readTextFront = new EditText(getApplicationContext());
+                EditText param = new EditText(getApplicationContext());
+                int paramId = View.generateViewId();
+                param.setId(paramId);
+                EditText readTextEnd = new EditText(getApplicationContext());
+
+                readTextFront.setId(View.generateViewId());
+                if (uiType.equalsIgnoreCase("Read")) {
+                    readTextFront.setText(getString(R.string.read) + " ( ");
+                    Read newRead = new Read(paramId);
+                    MathematicalComputation existingMathComp = mainInterpreter.getMathComp(id);
+                    existingMathComp.addParam(newRead);
+                    param.setHint("readArg");
+                    param.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.read_value_console_update), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
+                    param.setOnFocusChangeListener(new FocusListener(getString(R.string.read_value_console_update), getString(R.string.value_update_instructions), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
+                } else if (uiType.equalsIgnoreCase("Write")) {
+                    readTextFront.setText(getString(R.string.write) + " ( ");
+                    Write newWrite = new Write(paramId);
+                    MathematicalComputation existingMathComp = mainInterpreter.getMathComp(id);
+                    existingMathComp.addParam(newWrite);
+                    param.setHint("writeArg");
+                    param.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.write_value_console_update), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
+                    param.setOnFocusChangeListener(new FocusListener(getString(R.string.write_value_console_update), getString(R.string.value_update_instructions), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
+                }
+                readTextFront.setPadding(5, 5, 5, 5);
+                readTextFront.setBackgroundColor(Color.parseColor("#ff669900"));
+                readTextEnd.setEnabled(false);
+                param.setPadding(5, 5, 5, 5);
+                param.setBackgroundColor(Color.parseColor("#e6e6e6"));
+                param.setImeOptions(EditorInfo.IME_ACTION_DONE);
+                param.setSingleLine(true);
+                param.setTextColor(Color.BLACK);
+                readTextEnd.setId(View.generateViewId());
+                readTextEnd.setText(" ),");
+                readTextEnd.setPadding(5, 5, 5, 5);
+                readTextEnd.setBackgroundColor(Color.parseColor("#ff669900"));
+                readTextEnd.setEnabled(false);
+                readTextEnd.setTextColor(Color.WHITE);
+
+                newLayout.addView(readTextFront);
+                newLayout.addView(param);
+                newLayout.addView(readTextEnd);
+                int count = existingLayout.getChildCount();
+                existingLayout.addView(newLayout, count - 1);
+            }
+            else if(uiType.equalsIgnoreCase("Operator")){
+                LinearLayout existingLayout = (LinearLayout) findViewById(id);
+                LinearLayout newLayout = new LinearLayout(getApplicationContext());
+                int layoutId = View.generateViewId();
+                newLayout.setId(layoutId);
+                EditText openBracket = new EditText(getApplicationContext());
+                EditText closeBracket = new EditText(getApplicationContext());
+                EditText openSquareBracket = new EditText(getApplicationContext());
+                EditText closeSquareBracket = new EditText(getApplicationContext());
+                EditText openBracketRight = new EditText(getApplicationContext());
+                EditText closeBracketRight = new EditText(getApplicationContext());
+                EditText left = new EditText(getApplicationContext());
+                int leftId = View.generateViewId();
+                left.setId(leftId);
+                TextView operator = new TextView(getApplicationContext());
+                int opId = View.generateViewId();
+                operator.setId(opId);
+                operator.setLayoutParams(new LinearLayout.LayoutParams(43, 43));
+                EditText right = new EditText(getApplicationContext());
+                int rightId = View.generateViewId();
+                right.setId(rightId);
+                EditText comma = new EditText(getApplicationContext());
+                ImageButton additionButton = new ImageButton(getApplicationContext());
+                additionButton.setLayoutParams(new LinearLayout.LayoutParams(43, 43));
+
+                Constant newLeft = new Constant(leftId);
+                OperatorType newOpType = new OperatorType(opId);
+                Constant newRight = new Constant(rightId);
+                Operator newOperator = new Operator(layoutId);
+                newOperator.addOperatorParam(newLeft);
+                newOperator.addOperatorParam(newOpType);
+                newOperator.addOperatorParam(newRight);
+                MathematicalComputation existingMathComp = mainInterpreter.getMathComp(id);
+                existingMathComp.addParam(newOperator);
+
+                openBracket.setPadding(5,5,5,5);
+                openBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
+                openBracket.setText(R.string.openBracket);
+                openBracket.setTextColor(Color.WHITE);
+                openBracket.setEnabled(false);
+                closeBracket.setPadding(5,5,5,5);
+                closeBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
+                closeBracket.setText(R.string.closeBraket);
+                closeBracket.setTextColor(Color.WHITE);
+                closeBracket.setEnabled(false);
+                openSquareBracket.setPadding(5,5,5,5);
+                openSquareBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
+                openSquareBracket.setText(R.string.openSquareBracket);
+                openSquareBracket.setTextColor(Color.WHITE);
+                openSquareBracket.setEnabled(false);
+                closeSquareBracket.setPadding(5,5,5,5);
+                closeSquareBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
+                closeSquareBracket.setText(R.string.closeSquareBracket);
+                closeSquareBracket.setTextColor(Color.WHITE);
+                closeSquareBracket.setEnabled(false);
+                openBracketRight.setPadding(5,5,5,5);
+                openBracketRight.setBackgroundColor(Color.parseColor("#cc00cc"));
+                openBracketRight.setText(R.string.openBracket);
+                openBracketRight.setTextColor(Color.WHITE);
+                openBracketRight.setEnabled(false);
+                closeBracketRight.setPadding(5,5,5,5);
+                closeBracketRight.setBackgroundColor(Color.parseColor("#cc00cc"));
+                closeBracketRight.setText(R.string.closeBraket);
+                closeBracketRight.setTextColor(Color.WHITE);
+                closeBracketRight.setEnabled(false);
+                left.setPadding(5, 5, 5, 5);
+                left.setHint("val");
+                left.setBackgroundColor(Color.parseColor("#e6e6e6"));
+                left.setImeOptions(EditorInfo.IME_ACTION_DONE);
+                left.setSingleLine(true);
+                left.setTextColor(Color.BLACK);
+                left.setGravity(Gravity.CENTER_HORIZONTAL);
+                operator.setPadding(5,10,5,5);
+                operator.setBackgroundColor(Color.parseColor("#cc00cc"));
+                operator.setHint("OP");
+                operator.setBackgroundColor(Color.parseColor("#e6e6e6"));
+                operator.setTextColor(Color.BLACK);
+                operator.setGravity(Gravity.CENTER_HORIZONTAL);
+                right.setPadding(5, 5, 5, 5);
+                right.setHint("val");
+                right.setBackgroundColor(Color.parseColor("#e6e6e6"));
+                right.setImeOptions(EditorInfo.IME_ACTION_DONE);
+                right.setSingleLine(true);
+                right.setTextColor(Color.BLACK);
+                right.setGravity(Gravity.CENTER_HORIZONTAL);
+                comma.setPadding(5,5,5,5);
+                comma.setBackgroundColor(Color.parseColor("#cc00cc"));
+                comma.setText(", ");
+                comma.setTextColor(Color.WHITE);
+                comma.setEnabled(false);
+                additionButton.setImageResource(R.drawable.addicon);
+
+                left.setOnFocusChangeListener(new FocusListener(getString(R.string.constant_value_console_update), getString(R.string.value_update_instructions), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
+                left.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.constant_value_console_update), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
+                right.setOnFocusChangeListener(new FocusListener(getString(R.string.constant_value_console_update), getString(R.string.value_update_instructions), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
+                right.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.constant_value_console_update), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
+                operator.setOnDragListener(new ElementDragListener(activityGUIUpdater));
+                additionButton.setOnClickListener(new ClickToAddListener(getString(R.string.operator_console_add), activityGUIUpdater, getString(R.string.operator), mainInterpreter));
+
+                newLayout.addView(openBracket);
+                newLayout.addView(left);
+                newLayout.addView(closeBracket);
+                newLayout.addView(openSquareBracket);
+                newLayout.addView(operator);
+                newLayout.addView(closeSquareBracket);
+                newLayout.addView(openBracketRight);
+                newLayout.addView(right);
+                newLayout.addView(closeBracketRight);
+                newLayout.addView(additionButton);
+                newLayout.addView(comma);
+
+                int count = existingLayout.getChildCount();
+                existingLayout.addView(newLayout, count - 1);
+            }
+        }
+
+        public boolean replaceUIValue(int id, String value){
+            TextView view = (TextView) findViewById(id);
+            view.setText(value);
+            if(mainInterpreter.updateMathComp(getString(R.string.mathematical_rule), view)){
+                return true;
+            }
+            return false;
         }
 
         public void updateUIValue (int id, String value){

@@ -1,5 +1,6 @@
 package com.example.godsi.myapplication;
 
+import android.graphics.Path;
 import android.text.Editable;
 
 import java.util.ArrayList;
@@ -29,11 +30,61 @@ public class MathematicalComputation {
         id = i;
     }
 
-    public boolean updateMathComp(Editable s){
-        if(!name.equalsIgnoreCase(s.toString())){
-            name = s.toString();
+    public boolean updateMathComp(String s){
+        if(!name.equalsIgnoreCase(s)){
+            name = s;
             return true;
         }
         return false;
+    }
+
+    public boolean updateMathComp(String s, String argType, int viewId, int parentId){
+        if(argType.equalsIgnoreCase("readArg")){
+            Read read = (Read) getAttribute(viewId);
+            if(read != null && !read.value.equalsIgnoreCase(s)){
+                read.value = s;
+                return true;
+            }
+            return false;
+        }
+        else if(argType.equalsIgnoreCase("writeArg")){
+            Write write = (Write) getAttribute(viewId);
+            if(write != null && !write.value.equalsIgnoreCase(s)){
+                write.value = s;
+                return true;
+            }
+            return false;
+        }
+        else if(argType.equalsIgnoreCase("val")){
+            Operator parentOp = (Operator) getAttribute(parentId);
+            Constant constant = (Constant) parentOp.getOpAttribute(viewId);
+            if(constant != null && !constant.value.equalsIgnoreCase(s)){
+                constant.value = s;
+                return true;
+            }
+            return false;
+        }
+        else if(argType.equalsIgnoreCase("OP")){
+            Operator parentOp = (Operator) getAttribute(parentId);
+            OperatorType operatorType = (OperatorType) parentOp.getOpAttribute(viewId);
+            if(operatorType != null){
+                operatorType.value = s;
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public void addParam(Attribute arg){
+        parametersArray.add(arg);
+    }
+
+    public Attribute getAttribute(int id){
+        int index = parametersArray.indexOf(new Attribute(id));
+        if(index >= 0){
+            return parametersArray.get(index);
+        }
+        return null;
     }
 }

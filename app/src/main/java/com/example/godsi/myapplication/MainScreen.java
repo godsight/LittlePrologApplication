@@ -110,6 +110,10 @@ public class MainScreen extends AppCompatActivity {
             return 0;
         }
 
+        public void generateUIForMathComp(int parentId, String uiType){}
+
+        public boolean replaceUIValue(int parentId, String value){ return false;}
+
         //updates the value of a view based on id
         public void updateUIValue(int id, String value) {
         }

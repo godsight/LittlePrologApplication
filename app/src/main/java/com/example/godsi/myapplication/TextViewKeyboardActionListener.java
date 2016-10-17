@@ -44,6 +44,7 @@ public class TextViewKeyboardActionListener implements TextView.OnEditorActionLi
                     guiUpdater.createConsoleLog(consoleText + " " + view.getText().toString());
                 }
             }
+
             InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             return true;

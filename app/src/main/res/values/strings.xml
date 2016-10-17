@@ -4,21 +4,42 @@
     <string name="welcome_text">Welcome to Little Prolog Interpreter, start dragging elements into coding playground or variable list to start</string>
     <string name="predicate">Predicate</string>
     <string name="variable">Variable</string>
+    <string name="read">Read</string>
+    <string name="write">Write</string>
     <string name="name">Name</string>
     <string name="value">Value</string>
     <string name="parameter">Parameter</string>
     <string name="mathematical_rule">MathematicalRule</string>
+    <string name="plusSymbol"> + </string>
+    <string name="minusSymbol">-</string>
+    <string name="multiplySymbol">*</string>
+    <string name="divideSymbol">/ </string>
+    <string name="doubleEqualSymbol">==</string>
+    <string name="lessSymbol">&lt;</string>
+    <string name="moreSymbol">></string>
+    <string name="equalSymbol">=</string>
+    <string name="lessOrEqualSymbol">&lt;=</string>
+    <string name="moreOrEqualSymbol">>=</string>
+    <string name="rule_param">RuleParam</string>
+    <string name="operator">Operator</string>
     <string name="run">Run</string>
     <string name="stop">Stop</string>
     <string name="next">Next</string>
     <string name="enter">Enter</string>
+    <string name="openBracket">(</string>
+    <string name="closeBraket">)</string>
+    <string name="openSquareBracket">[</string>
+    <string name="closeSquareBracket">]</string>
     <string name="value_update_instructions">Update value through the keyboard</string>
     <string name="predicate_touch_instructions">Drag into coding playground to create new predicate</string>
     <string name="mathComp_touch_instructions">Drag into coding playground to create new mathematical rule</string>
+    <string name="rule_param_touch_instructions">Drag into mathematical rule in coding playground to act as a parameter of the rule</string>
     <string name="variable_touch_instructions">Drag into variable list to create a new variable</string>
     <string name="component_touch_instructions">The components are the basic building blocks of a LittleProlog program</string>
     <string name="playground_touch_instructions">The coding playground is where you build your code by dragging components</string>
     <string name="variablelist_touch_instructions">The variable list contains all the variables created in this program</string>
+    <string name="operator_touch_instructions">Drag operator into mathematical rule in coding playground.</string>
+    <string name="operator_type_touch_instructions">Drag into [ ] space in operator in mathematical rule</string>
     <string name="drag_delete_instructions">Drag elements to dustbin to delete</string>
     <string name="console_touch_instructions">The console shows the results of the actions performed</string>
     <string name="predicate_drag_instructions">Predicate and parameter values can be updated through keyboard</string>
@@ -31,11 +52,15 @@
     <string name="predicate_console_add">New predicate added</string>
     <string name="math_rule_console_add">New mathematical rule added</string>
     <string name="variable_console_add">New variable added</string>
+    <string name="operator_console_add">More elements added into operator</string>
     <string name="variable_name_console_update">Variable\'s name updated to </string>
     <string name="variable_value_console_update">Variable\'s value updated to </string>
     <string name="predicate_value_console_update">Predicate\'s value updated to </string>
     <string name="parameter_value_console_update">Parameter\'s value updated to </string>
     <string name="mathComp_value_console_update">Mathematical Computation\'s name value updated to </string>
+    <string name="read_value_console_update">Read argument value updated to</string>
+    <string name="write_value_console_update">Write argument value updated to</string>
+    <string name="constant_value_console_update">Constant argument in operator updated to</string>
     <string name="add_new_parameter">New parameter added </string>
     <string name="delete_parameter">A parameter is deleted </string>
     <string name="title_activity_main_screen">MainScreen</string>

@@ -120,11 +120,19 @@ public class MainInterpreter {
         if(uiType.equalsIgnoreCase("MathematicalRule")){
             int parentId = ((View) editText.getParent().getParent()).getId();
             MathematicalComputation mathematicalComputation = getMathComp(parentId);
-            CharSequence eType = editText.getHint();
-            Editable s = editText.getEditableText();
+            String eType = editText.getHint().toString();
+            String s = editText.getText().toString();
 
             if ("MathematicalRule".contentEquals(eType)) {
                 if(mathematicalComputation.updateMathComp(s)){
+                    return true;
+                }
+                return false;
+            }
+            else {
+                int viewId = editText.getId();
+                int opId = ((View)editText.getParent()).getId();
+                if(mathematicalComputation.updateMathComp(s, eType, viewId, opId)){
                     return true;
                 }
                 return false;

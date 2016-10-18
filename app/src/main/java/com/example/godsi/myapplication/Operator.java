@@ -29,6 +29,9 @@ public class Operator extends Attribute implements Writable {
         return null;
     }
 
+    /**
+     * Serializes the info of the class into a string
+     */
     public ArrayList<String> serialize () {
         ArrayList<String> serializedArray = new ArrayList<>();
         String line = "";

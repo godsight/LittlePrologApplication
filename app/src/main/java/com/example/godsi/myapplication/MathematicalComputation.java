@@ -97,6 +97,9 @@ public class MathematicalComputation implements Writable {
         }
     }
 
+    /**
+     * Serializes the info of the class into a string
+     */
     public ArrayList<String> serialize () {
         ArrayList<String> serializedArray = new ArrayList<>();
         String line = name + ":-";

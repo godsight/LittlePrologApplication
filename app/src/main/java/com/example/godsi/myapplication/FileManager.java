@@ -121,19 +121,20 @@ public class FileManager {
         switch (lineNumber){
             case 0:
                 break;
-            case 1:
+            case 1: //update author info
                 interpreter.metaInfo.authorName = line.split(":")[1];
                 guiUpdater.updateUIValue(R.id.authorName, line.split(":")[1]);
                 break;
-            case 2:
+            case 2: //update email info
                 interpreter.metaInfo.email = line.split(":")[1];
                 guiUpdater.updateUIValue(R.id.email, line.split(":")[1]);
                 break;
-            case 3:
+            case 3: //update description info
                 interpreter.metaInfo.description = line.split(":")[1];
                 guiUpdater.updateUIValue(R.id.description, line.split(":")[1]);
                 break;
             default:
+                //loading information for rule
                 if (line.contains(":-")){
                     String[] lineInformation = line.split(":-");
                     int id = guiUpdater.generateUI("MathematicalRule");
@@ -191,6 +192,7 @@ public class FileManager {
                         }
                     }
                 }
+                //loading information for predicate
                 else{
                     String[] lineInformation = line.split("\\(");
                     int id = guiUpdater.generateUI("predicate");

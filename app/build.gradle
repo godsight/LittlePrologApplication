@@ -25,4 +25,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:24.2.0'
     compile 'com.android.support:appcompat-v7:19'
+    compile files('libs/EvalEx-1.4.jar')
 }

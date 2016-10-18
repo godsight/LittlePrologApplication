@@ -57,7 +57,7 @@ public class ElementDragListener implements View.OnDragListener {
                     if(v.getId() == R.id.playground || v.getId() == R.id.playgroundContainer){
                         guiUpdater.generateUI(clipData);
                         guiUpdater.createConsoleLog("New mathematical rule added");
-                        guiUpdater.updateInstructions("Mathematical rule\\'s name can be updated through keyboard and parameters can be added by dragging suitable components into mathematical rule");
+                        guiUpdater.updateInstructions("Rule\'s name can be updated through keyboard and parameters can be added by dragging suitable components into rule");
                     }
                     else{
                         guiUpdater.updateInstructions("Mathematical rule can only be dragged into coding playground");

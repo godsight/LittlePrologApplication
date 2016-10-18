@@ -14,21 +14,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e092b153-9293-4381-8834-8589a32a8ef9" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/EvalEx_1_4.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Attribute.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Attribute.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Constant.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Constant.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/FileManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/FileManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/GUIUpdater.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/GUIUpdater.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainScreen.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainScreen.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MathematicalComputation.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MathematicalComputation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OnClickDo.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OnClickDo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Operator.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Operator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OperatorType.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OperatorType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Predicate.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Predicate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Read.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Read.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Write.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Write.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
     </list>
     <ignored path="LittlePrologApplication.iws" />
@@ -65,155 +58,9 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="514">
-              <caret line="751" column="40" selection-start-line="751" selection-start-column="40" selection-end-line="751" selection-end-column="40" />
-              <folding>
-                <element signature="e#6833#6876#0" expanded="true" />
-                <element signature="e#7625#7674#0" expanded="true" />
-                <element signature="e#7840#7869#0" expanded="true" />
-                <element signature="e#7875#7924#0" expanded="true" />
-                <element signature="e#7926#7975#0" expanded="true" />
-                <element signature="e#8086#8116#0" expanded="true" />
-                <element signature="e#8122#8171#0" expanded="true" />
-                <element signature="e#8173#8222#0" expanded="true" />
-                <element signature="e#11496#11672#0" expanded="true" />
-                <element signature="e#11671#11672#0" expanded="true" />
-                <element signature="e#12389#12390#0" expanded="true" />
-                <element signature="e#12440#12441#0" expanded="true" />
-                <element signature="e#12745#12774#0" expanded="true" />
-                <element signature="e#14414#14443#0" expanded="true" />
-                <element signature="e#14795#14824#0" expanded="true" />
-                <element signature="e#15230#15280#0" expanded="true" />
-                <element signature="e#15282#15327#0" expanded="true" />
-                <element signature="e#15457#15501#0" expanded="true" />
-                <element signature="e#15623#15673#0" expanded="true" />
-                <element signature="e#15795#15845#0" expanded="true" />
-                <element signature="e#15847#15892#0" expanded="true" />
-                <element signature="e#16022#16066#0" expanded="true" />
-                <element signature="e#16188#16238#0" expanded="true" />
-                <element signature="e#16360#16397#0" expanded="true" />
-                <element signature="e#16528#16572#0" expanded="true" />
-                <element signature="e#17374#17411#0" expanded="true" />
-                <element signature="e#18589#18626#0" expanded="true" />
-                <element signature="e#19327#19376#0" expanded="true" />
-                <element signature="e#19489#19538#0" expanded="true" />
-                <element signature="e#19540#19585#0" expanded="true" />
-                <element signature="e#19706#19750#0" expanded="true" />
-                <element signature="e#19772#19809#0" expanded="true" />
-                <element signature="e#19887#19931#0" expanded="true" />
-                <element signature="e#19953#19990#0" expanded="true" />
-                <element signature="e#20161#20205#0" expanded="true" />
-                <element signature="e#20227#20264#0" expanded="true" />
-                <element signature="e#20690#20725#0" expanded="true" />
-                <element signature="e#22440#22469#0" expanded="true" />
-                <element signature="e#22821#22850#0" expanded="true" />
-                <element signature="e#23199#23249#0" expanded="true" />
-                <element signature="e#23251#23296#0" expanded="true" />
-                <element signature="e#23436#23486#0" expanded="true" />
-                <element signature="e#23616#23660#0" expanded="true" />
-                <element signature="e#23682#23717#0" expanded="true" />
-                <element signature="e#23794#23844#0" expanded="true" />
-                <element signature="e#23846#23891#0" expanded="true" />
-                <element signature="e#24031#24081#0" expanded="true" />
-                <element signature="e#24203#24240#0" expanded="true" />
-                <element signature="e#25414#25444#0" expanded="true" />
-                <element signature="e#26440#26477#0" expanded="true" />
-                <element signature="e#27003#27052#0" expanded="true" />
-                <element signature="e#27165#27214#0" expanded="true" />
-                <element signature="e#27216#27261#0" expanded="true" />
-                <element signature="e#27382#27426#0" expanded="true" />
-                <element signature="e#27448#27478#0" expanded="true" />
-                <element signature="e#29077#29106#0" expanded="true" />
-                <element signature="e#29652#29702#0" expanded="true" />
-                <element signature="e#29704#29749#0" expanded="true" />
-                <element signature="e#29883#29927#0" expanded="true" />
-                <element signature="e#30054#30104#0" expanded="true" />
-                <element signature="e#30216#30252#0" expanded="true" />
-                <element signature="e#30564#30614#0" expanded="true" />
-                <element signature="e#30616#30661#0" expanded="true" />
-                <element signature="e#30805#30855#0" expanded="true" />
-                <element signature="e#30967#31003#0" expanded="true" />
-                <element signature="e#33454#33474#0" expanded="true" />
-                <element signature="e#33698#33718#0" expanded="true" />
-                <element signature="e#33958#33984#0" expanded="true" />
-                <element signature="e#34232#34259#0" expanded="true" />
-                <element signature="e#35128#35172#0" expanded="true" />
-                <element signature="e#35284#35328#0" expanded="true" />
-                <element signature="e#35445#35489#0" expanded="true" />
-                <element signature="e#35607#35651#0" expanded="true" />
-                <element signature="e#35748#35797#0" expanded="true" />
-                <element signature="e#35799#35844#0" expanded="true" />
-                <element signature="e#35846#35883#0" expanded="true" />
-                <element signature="e#36007#36056#0" expanded="true" />
-                <element signature="e#36058#36095#0" expanded="true" />
-                <element signature="e#36209#36253#0" expanded="true" />
-                <element signature="e#36450#36494#0" expanded="true" />
-                <element signature="e#37849#37873#0" expanded="true" />
-                <element signature="e#38223#38268#0" expanded="true" />
-                <element signature="e#38270#38307#0" expanded="true" />
-                <element signature="e#38417#38462#0" expanded="true" />
-                <element signature="e#38464#38509#0" expanded="true" />
-                <element signature="e#38511#38548#0" expanded="true" />
-                <element signature="e#38694#38719#0" expanded="true" />
-                <element signature="e#39074#39120#0" expanded="true" />
-                <element signature="e#39122#39159#0" expanded="true" />
-                <element signature="e#39269#39315#0" expanded="true" />
-                <element signature="e#39317#39362#0" expanded="true" />
-                <element signature="e#39364#39401#0" expanded="true" />
-                <element signature="e#40333#40377#0" expanded="true" />
-                <element signature="e#40482#40526#0" expanded="true" />
-                <element signature="e#40637#40681#0" expanded="true" />
-                <element signature="e#43371#43391#0" expanded="true" />
-                <element signature="e#43615#43635#0" expanded="true" />
-                <element signature="e#43875#43901#0" expanded="true" />
-                <element signature="e#44149#44176#0" expanded="true" />
-                <element signature="e#44419#44439#0" expanded="true" />
-                <element signature="e#44683#44703#0" expanded="true" />
-                <element signature="e#46247#46291#0" expanded="true" />
-                <element signature="e#46403#46447#0" expanded="true" />
-                <element signature="e#46563#46607#0" expanded="true" />
-                <element signature="e#46724#46768#0" expanded="true" />
-                <element signature="e#46885#46929#0" expanded="true" />
-                <element signature="e#47047#47091#0" expanded="true" />
-                <element signature="e#47187#47236#0" expanded="true" />
-                <element signature="e#47238#47283#0" expanded="true" />
-                <element signature="e#47285#47322#0" expanded="true" />
-                <element signature="e#47445#47494#0" expanded="true" />
-                <element signature="e#47496#47533#0" expanded="true" />
-                <element signature="e#47646#47690#0" expanded="true" />
-                <element signature="e#47787#47836#0" expanded="true" />
-                <element signature="e#47838#47883#0" expanded="true" />
-                <element signature="e#47885#47922#0" expanded="true" />
-                <element signature="e#48046#48095#0" expanded="true" />
-                <element signature="e#48097#48134#0" expanded="true" />
-                <element signature="e#48248#48292#0" expanded="true" />
-                <element signature="e#48489#48533#0" expanded="true" />
-                <element signature="e#48638#48678#0" expanded="true" />
-                <element signature="e#48700#48728#0" expanded="true" />
-                <element signature="e#49685#49722#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainScreen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainScreen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+            <state relative-caret-position="112">
+              <caret line="60" column="100" selection-start-line="60" selection-start-column="100" selection-end-line="60" selection-end-column="100" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OnClickDo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OnClickDo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="127" column="44" selection-start-line="127" selection-start-column="44" selection-end-line="127" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -221,8 +68,8 @@
       <file leaf-file-name="main.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="500" column="53" selection-start-line="500" selection-start-column="53" selection-end-line="500" selection-end-column="53" />
+            <state relative-caret-position="-933">
+              <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -231,44 +78,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainInterpreter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java">
+      <file leaf-file-name="OnClickDo.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OnClickDo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2873">
-              <caret line="394" column="5" selection-start-line="394" selection-start-column="5" selection-end-line="394" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Operator.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Operator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="64" column="62" selection-start-line="64" selection-start-column="62" selection-end-line="64" selection-end-column="62" />
+            <state relative-caret-position="438">
+              <caret line="63" column="37" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="37" />
               <folding>
-                <element signature="e#427#428#0" expanded="true" />
-                <element signature="e#471#472#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GUIUpdater.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/GUIUpdater.java">
+      <file leaf-file-name="ElementDragListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="48" column="36" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
+            <state relative-caret-position="515">
+              <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OperatorType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OperatorType.java">
+      <file leaf-file-name="MainInterpreter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="16" column="61" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
+            <state relative-caret-position="625">
+              <caret line="390" column="31" selection-start-line="390" selection-start-column="31" selection-end-line="390" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Operator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Operator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="882">
+              <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -1658,7 +1504,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="C:\Users\godsi\OneDrive\Documents\GitHub\LittlePrologApplication" value="4427254218003" />
-        <entry key="E:\FIT3140 AP\Assignment5\LittlePrologApplication" value="4427039242655" />
+        <entry key="E:\FIT3140 AP\Assignment5\LittlePrologApplication" value="4427433099823" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2005,16 +1851,17 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/TextViewKeyboardActionListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/LongClickToDragListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/DragToDeleteListener.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OnClickDo.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OperatorType.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/GUIUpdater.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainScreen.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Constant.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Operator.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OnClickDo.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java" />
       </list>
     </option>
   </component>
@@ -2049,6 +1896,14 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView">
+        <subPane />
+      </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane">
+        <subPane />
+      </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2056,6 +1911,10 @@
               <option name="myItemId" value="LittlePrologApplication" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -2078,24 +1937,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LittlePrologApplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="LittlePrologApplication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2114,10 +1955,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2140,10 +1977,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2170,10 +2003,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2237,21 +2066,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LittlePrologApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="LittlePrologApplication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="AndroidView">
-        <subPane />
-      </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/libs/EvalEx-1.4.jar" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlPreviewForm.SHOW" value="false" />
     <property name="device.picker.selection" value="Nexus_7" />
     <property name="android.project.structure.last.selected" value="app" />
@@ -2630,17 +2471,18 @@
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3993174" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3208191" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31911263" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287858" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3105802" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287858" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287858" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23524962" sideWeight="0.48863637" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2650,7 +2492,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2725,186 +2566,22 @@
           <properties />
           <option name="timeStamp" value="48" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java</url>
+          <line>356</line>
+          <properties />
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="49" />
+      <option name="time" value="50" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#6833#6876#0" expanded="true" />
-            <element signature="e#7625#7674#0" expanded="true" />
-            <element signature="e#7840#7869#0" expanded="true" />
-            <element signature="e#7875#7924#0" expanded="true" />
-            <element signature="e#7926#7975#0" expanded="true" />
-            <element signature="e#8086#8116#0" expanded="true" />
-            <element signature="e#8122#8171#0" expanded="true" />
-            <element signature="e#8173#8222#0" expanded="true" />
-            <element signature="e#11496#11672#0" expanded="true" />
-            <element signature="e#11671#11672#0" expanded="true" />
-            <element signature="e#12389#12390#0" expanded="true" />
-            <element signature="e#12440#12441#0" expanded="true" />
-            <element signature="e#12745#12774#0" expanded="true" />
-            <element signature="e#14414#14443#0" expanded="true" />
-            <element signature="e#14795#14824#0" expanded="true" />
-            <element signature="e#15230#15280#0" expanded="true" />
-            <element signature="e#15282#15327#0" expanded="true" />
-            <element signature="e#15457#15501#0" expanded="true" />
-            <element signature="e#15623#15673#0" expanded="true" />
-            <element signature="e#15795#15845#0" expanded="true" />
-            <element signature="e#15847#15892#0" expanded="true" />
-            <element signature="e#16022#16066#0" expanded="true" />
-            <element signature="e#16188#16238#0" expanded="true" />
-            <element signature="e#16360#16397#0" expanded="true" />
-            <element signature="e#16528#16572#0" expanded="true" />
-            <element signature="e#17374#17411#0" expanded="true" />
-            <element signature="e#18589#18626#0" expanded="true" />
-            <element signature="e#19327#19376#0" expanded="true" />
-            <element signature="e#19489#19538#0" expanded="true" />
-            <element signature="e#19540#19585#0" expanded="true" />
-            <element signature="e#19706#19750#0" expanded="true" />
-            <element signature="e#19772#19809#0" expanded="true" />
-            <element signature="e#19887#19931#0" expanded="true" />
-            <element signature="e#19953#19990#0" expanded="true" />
-            <element signature="e#20161#20205#0" expanded="true" />
-            <element signature="e#20227#20264#0" expanded="true" />
-            <element signature="e#20690#20725#0" expanded="true" />
-            <element signature="e#22440#22469#0" expanded="true" />
-            <element signature="e#22821#22850#0" expanded="true" />
-            <element signature="e#23199#23249#0" expanded="true" />
-            <element signature="e#23251#23296#0" expanded="true" />
-            <element signature="e#23436#23486#0" expanded="true" />
-            <element signature="e#23616#23660#0" expanded="true" />
-            <element signature="e#23682#23717#0" expanded="true" />
-            <element signature="e#23794#23844#0" expanded="true" />
-            <element signature="e#23846#23891#0" expanded="true" />
-            <element signature="e#24031#24081#0" expanded="true" />
-            <element signature="e#24203#24240#0" expanded="true" />
-            <element signature="e#25414#25444#0" expanded="true" />
-            <element signature="e#26440#26477#0" expanded="true" />
-            <element signature="e#27003#27052#0" expanded="true" />
-            <element signature="e#27165#27214#0" expanded="true" />
-            <element signature="e#27216#27261#0" expanded="true" />
-            <element signature="e#27382#27426#0" expanded="true" />
-            <element signature="e#27448#27478#0" expanded="true" />
-            <element signature="e#29077#29106#0" expanded="true" />
-            <element signature="e#29652#29702#0" expanded="true" />
-            <element signature="e#29704#29749#0" expanded="true" />
-            <element signature="e#29883#29927#0" expanded="true" />
-            <element signature="e#30054#30104#0" expanded="true" />
-            <element signature="e#30216#30252#0" expanded="true" />
-            <element signature="e#30564#30614#0" expanded="true" />
-            <element signature="e#30616#30661#0" expanded="true" />
-            <element signature="e#30805#30855#0" expanded="true" />
-            <element signature="e#30967#31003#0" expanded="true" />
-            <element signature="e#33454#33474#0" expanded="true" />
-            <element signature="e#33698#33718#0" expanded="true" />
-            <element signature="e#33958#33984#0" expanded="true" />
-            <element signature="e#34232#34259#0" expanded="true" />
-            <element signature="e#35128#35172#0" expanded="true" />
-            <element signature="e#35284#35328#0" expanded="true" />
-            <element signature="e#35445#35489#0" expanded="true" />
-            <element signature="e#35607#35651#0" expanded="true" />
-            <element signature="e#35748#35797#0" expanded="true" />
-            <element signature="e#35799#35844#0" expanded="true" />
-            <element signature="e#35846#35883#0" expanded="true" />
-            <element signature="e#36007#36056#0" expanded="true" />
-            <element signature="e#36058#36095#0" expanded="true" />
-            <element signature="e#36209#36253#0" expanded="true" />
-            <element signature="e#36450#36494#0" expanded="true" />
-            <element signature="e#37849#37873#0" expanded="true" />
-            <element signature="e#38223#38268#0" expanded="true" />
-            <element signature="e#38270#38307#0" expanded="true" />
-            <element signature="e#38417#38462#0" expanded="true" />
-            <element signature="e#38464#38509#0" expanded="true" />
-            <element signature="e#38511#38548#0" expanded="true" />
-            <element signature="e#38694#38719#0" expanded="true" />
-            <element signature="e#39074#39120#0" expanded="true" />
-            <element signature="e#39122#39159#0" expanded="true" />
-            <element signature="e#39269#39315#0" expanded="true" />
-            <element signature="e#39317#39362#0" expanded="true" />
-            <element signature="e#39364#39401#0" expanded="true" />
-            <element signature="e#40333#40377#0" expanded="true" />
-            <element signature="e#40482#40526#0" expanded="true" />
-            <element signature="e#40637#40681#0" expanded="true" />
-            <element signature="e#43371#43391#0" expanded="true" />
-            <element signature="e#43615#43635#0" expanded="true" />
-            <element signature="e#43875#43901#0" expanded="true" />
-            <element signature="e#44149#44176#0" expanded="true" />
-            <element signature="e#44419#44439#0" expanded="true" />
-            <element signature="e#44683#44703#0" expanded="true" />
-            <element signature="e#46247#46291#0" expanded="true" />
-            <element signature="e#46403#46447#0" expanded="true" />
-            <element signature="e#46563#46607#0" expanded="true" />
-            <element signature="e#46724#46768#0" expanded="true" />
-            <element signature="e#46885#46929#0" expanded="true" />
-            <element signature="e#47047#47091#0" expanded="true" />
-            <element signature="e#47187#47236#0" expanded="true" />
-            <element signature="e#47238#47283#0" expanded="true" />
-            <element signature="e#47285#47322#0" expanded="true" />
-            <element signature="e#47445#47494#0" expanded="true" />
-            <element signature="e#47496#47533#0" expanded="true" />
-            <element signature="e#47646#47690#0" expanded="true" />
-            <element signature="e#47787#47836#0" expanded="true" />
-            <element signature="e#47838#47883#0" expanded="true" />
-            <element signature="e#47885#47922#0" expanded="true" />
-            <element signature="e#48046#48095#0" expanded="true" />
-            <element signature="e#48097#48134#0" expanded="true" />
-            <element signature="e#48248#48292#0" expanded="true" />
-            <element signature="e#48489#48533#0" expanded="true" />
-            <element signature="e#48638#48678#0" expanded="true" />
-            <element signature="e#48700#48728#0" expanded="true" />
-            <element signature="e#49685#49722#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/InputTextWatcher.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main_screen.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Writable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="52" selection-start-line="9" selection-start-column="52" selection-end-line="9" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Rule.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/InstructionUpdateListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MetaInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -2963,13 +2640,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="19" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -3037,13 +2707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/TouchToDragListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="36" column="64" selection-start-line="36" selection-start-column="64" selection-end-line="36" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ClickToDelete.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -3088,7 +2751,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3096,14 +2758,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="30" column="51" selection-start-line="30" selection-start-column="51" selection-end-line="30" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="65" column="70" selection-start-line="65" selection-start-column="70" selection-end-line="65" selection-end-column="70" />
           <folding />
         </state>
       </provider>
@@ -3120,7 +2774,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="143" column="0" selection-start-line="143" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3135,24 +2788,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="500" column="53" selection-start-line="500" selection-start-column="53" selection-end-line="500" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-19/android/view/View.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="18422" column="0" selection-start-line="18422" selection-start-column="0" selection-end-line="18422" selection-end-column="0" />
-          <folding>
-            <element signature="e#717286#717287#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3160,9 +2799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="733" column="0" selection-start-line="733" selection-start-column="0" selection-end-line="733" selection-end-column="0" />
-          <folding>
-            <element signature="e#29237#29238#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3170,9 +2806,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding>
-            <element signature="e#2335#2336#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3180,7 +2813,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="935" column="0" selection-start-line="935" selection-start-column="0" selection-end-line="935" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3188,35 +2820,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="3938" column="0" selection-start-line="3938" selection-start-column="0" selection-end-line="3938" selection-end-column="0" />
-          <folding>
-            <element signature="e#140071#140072#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OnClickDo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="127" column="44" selection-start-line="127" selection-start-column="44" selection-end-line="127" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OperatorType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="16" column="61" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2873">
-          <caret line="394" column="5" selection-start-line="394" selection-start-column="5" selection-end-line="394" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3228,138 +2831,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="751" column="40" selection-start-line="751" selection-start-column="40" selection-end-line="751" selection-end-column="40" />
-          <folding>
-            <element signature="e#6833#6876#0" expanded="true" />
-            <element signature="e#7625#7674#0" expanded="true" />
-            <element signature="e#7840#7869#0" expanded="true" />
-            <element signature="e#7875#7924#0" expanded="true" />
-            <element signature="e#7926#7975#0" expanded="true" />
-            <element signature="e#8086#8116#0" expanded="true" />
-            <element signature="e#8122#8171#0" expanded="true" />
-            <element signature="e#8173#8222#0" expanded="true" />
-            <element signature="e#11496#11672#0" expanded="true" />
-            <element signature="e#11671#11672#0" expanded="true" />
-            <element signature="e#12389#12390#0" expanded="true" />
-            <element signature="e#12440#12441#0" expanded="true" />
-            <element signature="e#12745#12774#0" expanded="true" />
-            <element signature="e#14414#14443#0" expanded="true" />
-            <element signature="e#14795#14824#0" expanded="true" />
-            <element signature="e#15230#15280#0" expanded="true" />
-            <element signature="e#15282#15327#0" expanded="true" />
-            <element signature="e#15457#15501#0" expanded="true" />
-            <element signature="e#15623#15673#0" expanded="true" />
-            <element signature="e#15795#15845#0" expanded="true" />
-            <element signature="e#15847#15892#0" expanded="true" />
-            <element signature="e#16022#16066#0" expanded="true" />
-            <element signature="e#16188#16238#0" expanded="true" />
-            <element signature="e#16360#16397#0" expanded="true" />
-            <element signature="e#16528#16572#0" expanded="true" />
-            <element signature="e#17374#17411#0" expanded="true" />
-            <element signature="e#18589#18626#0" expanded="true" />
-            <element signature="e#19327#19376#0" expanded="true" />
-            <element signature="e#19489#19538#0" expanded="true" />
-            <element signature="e#19540#19585#0" expanded="true" />
-            <element signature="e#19706#19750#0" expanded="true" />
-            <element signature="e#19772#19809#0" expanded="true" />
-            <element signature="e#19887#19931#0" expanded="true" />
-            <element signature="e#19953#19990#0" expanded="true" />
-            <element signature="e#20161#20205#0" expanded="true" />
-            <element signature="e#20227#20264#0" expanded="true" />
-            <element signature="e#20690#20725#0" expanded="true" />
-            <element signature="e#22440#22469#0" expanded="true" />
-            <element signature="e#22821#22850#0" expanded="true" />
-            <element signature="e#23199#23249#0" expanded="true" />
-            <element signature="e#23251#23296#0" expanded="true" />
-            <element signature="e#23436#23486#0" expanded="true" />
-            <element signature="e#23616#23660#0" expanded="true" />
-            <element signature="e#23682#23717#0" expanded="true" />
-            <element signature="e#23794#23844#0" expanded="true" />
-            <element signature="e#23846#23891#0" expanded="true" />
-            <element signature="e#24031#24081#0" expanded="true" />
-            <element signature="e#24203#24240#0" expanded="true" />
-            <element signature="e#25414#25444#0" expanded="true" />
-            <element signature="e#26440#26477#0" expanded="true" />
-            <element signature="e#27003#27052#0" expanded="true" />
-            <element signature="e#27165#27214#0" expanded="true" />
-            <element signature="e#27216#27261#0" expanded="true" />
-            <element signature="e#27382#27426#0" expanded="true" />
-            <element signature="e#27448#27478#0" expanded="true" />
-            <element signature="e#29077#29106#0" expanded="true" />
-            <element signature="e#29652#29702#0" expanded="true" />
-            <element signature="e#29704#29749#0" expanded="true" />
-            <element signature="e#29883#29927#0" expanded="true" />
-            <element signature="e#30054#30104#0" expanded="true" />
-            <element signature="e#30216#30252#0" expanded="true" />
-            <element signature="e#30564#30614#0" expanded="true" />
-            <element signature="e#30616#30661#0" expanded="true" />
-            <element signature="e#30805#30855#0" expanded="true" />
-            <element signature="e#30967#31003#0" expanded="true" />
-            <element signature="e#33454#33474#0" expanded="true" />
-            <element signature="e#33698#33718#0" expanded="true" />
-            <element signature="e#33958#33984#0" expanded="true" />
-            <element signature="e#34232#34259#0" expanded="true" />
-            <element signature="e#35128#35172#0" expanded="true" />
-            <element signature="e#35284#35328#0" expanded="true" />
-            <element signature="e#35445#35489#0" expanded="true" />
-            <element signature="e#35607#35651#0" expanded="true" />
-            <element signature="e#35748#35797#0" expanded="true" />
-            <element signature="e#35799#35844#0" expanded="true" />
-            <element signature="e#35846#35883#0" expanded="true" />
-            <element signature="e#36007#36056#0" expanded="true" />
-            <element signature="e#36058#36095#0" expanded="true" />
-            <element signature="e#36209#36253#0" expanded="true" />
-            <element signature="e#36450#36494#0" expanded="true" />
-            <element signature="e#37849#37873#0" expanded="true" />
-            <element signature="e#38223#38268#0" expanded="true" />
-            <element signature="e#38270#38307#0" expanded="true" />
-            <element signature="e#38417#38462#0" expanded="true" />
-            <element signature="e#38464#38509#0" expanded="true" />
-            <element signature="e#38511#38548#0" expanded="true" />
-            <element signature="e#38694#38719#0" expanded="true" />
-            <element signature="e#39074#39120#0" expanded="true" />
-            <element signature="e#39122#39159#0" expanded="true" />
-            <element signature="e#39269#39315#0" expanded="true" />
-            <element signature="e#39317#39362#0" expanded="true" />
-            <element signature="e#39364#39401#0" expanded="true" />
-            <element signature="e#40333#40377#0" expanded="true" />
-            <element signature="e#40482#40526#0" expanded="true" />
-            <element signature="e#40637#40681#0" expanded="true" />
-            <element signature="e#43371#43391#0" expanded="true" />
-            <element signature="e#43615#43635#0" expanded="true" />
-            <element signature="e#43875#43901#0" expanded="true" />
-            <element signature="e#44149#44176#0" expanded="true" />
-            <element signature="e#44419#44439#0" expanded="true" />
-            <element signature="e#44683#44703#0" expanded="true" />
-            <element signature="e#46247#46291#0" expanded="true" />
-            <element signature="e#46403#46447#0" expanded="true" />
-            <element signature="e#46563#46607#0" expanded="true" />
-            <element signature="e#46724#46768#0" expanded="true" />
-            <element signature="e#46885#46929#0" expanded="true" />
-            <element signature="e#47047#47091#0" expanded="true" />
-            <element signature="e#47187#47236#0" expanded="true" />
-            <element signature="e#47238#47283#0" expanded="true" />
-            <element signature="e#47285#47322#0" expanded="true" />
-            <element signature="e#47445#47494#0" expanded="true" />
-            <element signature="e#47496#47533#0" expanded="true" />
-            <element signature="e#47646#47690#0" expanded="true" />
-            <element signature="e#47787#47836#0" expanded="true" />
-            <element signature="e#47838#47883#0" expanded="true" />
-            <element signature="e#47885#47922#0" expanded="true" />
-            <element signature="e#48046#48095#0" expanded="true" />
-            <element signature="e#48097#48134#0" expanded="true" />
-            <element signature="e#48248#48292#0" expanded="true" />
-            <element signature="e#48489#48533#0" expanded="true" />
-            <element signature="e#48638#48678#0" expanded="true" />
-            <element signature="e#48700#48728#0" expanded="true" />
-            <element signature="e#49685#49722#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainScreen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -3368,13 +2839,135 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OperatorType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="16" column="61" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradlew">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LittlePrologApplication.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Operator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="64" column="62" selection-start-line="64" selection-start-column="62" selection-end-line="64" selection-end-column="62" />
+        <state relative-caret-position="882">
+          <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MetaInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="25" column="41" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainInterpreter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="390" column="31" selection-start-line="390" selection-start-column="31" selection-end-line="390" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-933">
+          <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/TouchToDragListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="36" column="64" selection-start-line="36" selection-start-column="64" selection-end-line="36" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="60" column="100" selection-start-line="60" selection-start-column="100" selection-end-line="60" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/OnClickDo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="63" column="37" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="37" />
           <folding>
-            <element signature="e#427#428#0" expanded="true" />
-            <element signature="e#471#472#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

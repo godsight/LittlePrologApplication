@@ -3,6 +3,7 @@ package com.example.godsi.myapplication;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: Chan Kai Ying
@@ -41,22 +42,35 @@ public class Operator extends Attribute implements Writable {
         return null;
     }
 
-    public String convertOperatorToString(String side, int comparisonIndex) {
-        String result = "";
-        if (side.equalsIgnoreCase("Left")) {
-            for (int i = 0; i < comparisonIndex; i++) {
+    public String convertOperatorToString(ArrayList<Map<String, String>> queryRuleVariables) {
+       String attributes = "";
+            for (int i = 0; i < parametersArray.size(); i++) {
                 if (parametersArray.get(i) instanceof Constant) {
                     Constant c = (Constant) parametersArray.get(i);
                     String regex = "[0-9]+";
                     if (c.value.matches(regex)) {
-                        result += c.value;
-                    } else {
-
+                        attributes += c.value;
+                    }
+                    else {
+                        Map<String, String > m = getQueryRuleVariable(c.value, queryRuleVariables);
+                        attributes += m.get(c.value);
                     }
                 }
+                else{
+                    OperatorType operatorType = (OperatorType) parametersArray.get(i);
+                    attributes += operatorType.value;
+                }
+            }
+        return attributes;
+    }
+
+    private Map<String, String> getQueryRuleVariable(String key, ArrayList<Map<String , String>> queryRuleVariables){
+        for(Map<String, String> m : queryRuleVariables){
+            if(m.containsKey(key)){
+                return m;
             }
         }
-        return result;
+        return null;
     }
     /**
      * Serializes the info of the class into a string

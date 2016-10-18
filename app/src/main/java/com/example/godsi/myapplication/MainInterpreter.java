@@ -3,7 +3,7 @@ package com.example.godsi.myapplication;
 import android.text.Editable;
 import android.view.View;
 import android.widget.TextView;
-
+import com.udojava.evalex.Expression;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -355,7 +355,7 @@ public class MainInterpreter {
 
         if(programState == 4) {
             MathematicalComputation curRule = getMathComp(queryRule.name);
-            while (searchIndex < curRule.parametersArray.size()) {
+            while (searchIndex < curRule.parametersArray.size() && queryRuleCondition) {
                 if (curRule.parametersArray.get(searchIndex) instanceof Read) {
                     Read r = (Read) curRule.parametersArray.get(searchIndex);
                     Map<String, String> m = new HashMap<>();
@@ -368,19 +368,20 @@ public class MainInterpreter {
                     break;
                 } else if (curRule.parametersArray.get(searchIndex) instanceof Write) {
                     Write w = (Write) curRule.parametersArray.get(searchIndex);
-                    String [] temp = w.value.split("\\s+");
-                    if(!(temp.length > 1) && isVariable(w.value)){
+                    String[] temp = w.value.split("\\s+");
+                    if (!(temp.length > 1) && isVariable(w.value)) {
                         Map<String, String> m = getQueryRuleVariable(w.value);
                         guiUpdater.createConsoleLog(w.value + " = " + m.get(w.value));
-                    }
-                    else {
+                    } else {
                         guiUpdater.createConsoleLog(w.value);
                     }
                 } else {
                     Operator op = (Operator) curRule.parametersArray.get(searchIndex);
-                    int index = op.findComparison();
-
-
+                    String expression = op.convertOperatorToString(queryRuleVariables);
+                    Expression e = new Expression(expression);
+                    if (e.eval().equals(0)) {
+                        queryRuleCondition = false;
+                    }
                 }
                 searchIndex++;
             }
@@ -390,6 +391,13 @@ public class MainInterpreter {
                 programState = 1;
                 queryRuleVariables = null;
                 queryRuleVariables = new ArrayList<>();
+
+                if(queryRuleCondition){
+                    guiUpdater.createConsoleLog("Yes");
+                }
+                else{
+                    guiUpdater.createConsoleLog("No");
+                }
             }
         }
     }

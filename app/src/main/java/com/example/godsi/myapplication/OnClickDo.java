@@ -113,7 +113,7 @@ public class OnClickDo implements View.OnClickListener {
             MathematicalComputation query = mainInterpreter.queryRule;
             guiUpdater.createConsoleLog(consoleLogQueryRule(query.name));
             removeQueryRuleView();
-            if(mainInterpreter.programState == 1){
+            if(mainInterpreter.programState == 1 || mainInterpreter.programState == 4){
                 mainInterpreter.interpretMathRule();
             }
             else{
@@ -125,11 +125,12 @@ public class OnClickDo implements View.OnClickListener {
             LinearLayout readInput = (LinearLayout) guiUpdater.getView(R.id.readInput);
             TextView input = (TextView) readInput.getChildAt(1);
             mainInterpreter.updateQueryRuleVariable(input.getHint().toString(), input.getText().toString());
-            guiUpdater.hideView(R.id.input);
-            guiUpdater.hideView(R.id.readInput);
             TextView log = (TextView) guiUpdater.getLastConsoleLog();
             String logValue = log.getText().toString();
             log.setText(logValue + " " + input.getText() + ".");
+            input.setText("");
+            guiUpdater.hideView(R.id.input);
+            guiUpdater.hideView(R.id.readInput);
             mainInterpreter.interpretMathRule();
         }
     }

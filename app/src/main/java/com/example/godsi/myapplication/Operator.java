@@ -8,7 +8,7 @@ import java.util.List;
  * @author: Chan Kai Ying
  */
 
-public class Operator extends Attribute {
+public class Operator extends Attribute implements Writable {
 
     ArrayList<Attribute> parametersArray;
 
@@ -41,22 +41,34 @@ public class Operator extends Attribute {
         return null;
     }
 
-    public String convertOperatorToString(String side, int comparisonIndex){
+    public String convertOperatorToString(String side, int comparisonIndex) {
         String result = "";
-        if(side.equalsIgnoreCase("Left")){
-            for(int i = 0; i < comparisonIndex; i++){
-                if(parametersArray.get(i) instanceof Constant){
+        if (side.equalsIgnoreCase("Left")) {
+            for (int i = 0; i < comparisonIndex; i++) {
+                if (parametersArray.get(i) instanceof Constant) {
                     Constant c = (Constant) parametersArray.get(i);
                     String regex = "[0-9]+";
-                    if(c.value.matches(regex)){
+                    if (c.value.matches(regex)) {
                         result += c.value;
-                    }
-                    else{
+                    } else {
 
                     }
                 }
             }
         }
         return result;
+    }
+    /**
+     * Serializes the info of the class into a string
+     */
+    public ArrayList<String> serialize () {
+        ArrayList<String> serializedArray = new ArrayList<>();
+        String line = "";
+        for (Attribute parameter:parametersArray
+             ) {
+            line += parameter.value + " ";
+        }
+        serializedArray.add(line.substring(0,line.length()-1));
+        return serializedArray;
     }
 }

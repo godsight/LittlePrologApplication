@@ -117,7 +117,9 @@ public class MainActivity extends Activity {
         for (Predicate predicate: mainInterpreter.predicates
              ) {
             classesToWrite.add(predicate);
-
+        }
+        for (MathematicalComputation computation: mainInterpreter.mathComputations){
+            classesToWrite.add(computation);
         }
         fileManager.createFile(fileName.getText().toString(), classesToWrite);
     }
@@ -275,6 +277,7 @@ public class MainActivity extends Activity {
                 dropSpace.setLayoutParams(new LinearLayout.LayoutParams(50, 43));
 
                 MathematicalComputation mathComp = new MathematicalComputation(newId);
+                mathComp.mathCompEditid = ruleId;
                 mainInterpreter.addMathComp(mathComp);
 
                 rule.setPadding(5, 5, 5, 5);
@@ -305,6 +308,8 @@ public class MainActivity extends Activity {
                 newLayout.addView(dropSpace);
                 newLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                 container.addView(newLayout);
+
+                return newId;
             }
 
             else if(uiType.equalsIgnoreCase(getString(R.string.query_predicate))){
@@ -538,7 +543,7 @@ public class MainActivity extends Activity {
             return 0;
         }
 
-        public void generateUIForMathComp(int id, String uiType){
+        public int generateUIForMathComp(int id, String uiType){
             if(uiType.equalsIgnoreCase("Read") || uiType.equalsIgnoreCase("Write")) {
                 LinearLayout existingLayout = (LinearLayout) findViewById(id);
                 LinearLayout newLayout = new LinearLayout(getApplicationContext());
@@ -591,6 +596,8 @@ public class MainActivity extends Activity {
                 newLayout.addView(readTextEnd);
                 int count = existingLayout.getChildCount();
                 existingLayout.addView(newLayout, count - 1);
+
+                return paramId;
             }
             else if(uiType.equalsIgnoreCase("Operator")){
                 LinearLayout existingLayout = (LinearLayout) findViewById(id);
@@ -708,7 +715,10 @@ public class MainActivity extends Activity {
 
                 int count = existingLayout.getChildCount();
                 existingLayout.addView(newLayout, count - 1);
+
+                return layoutId;
             }
+            return 0;
         }
 
         public boolean replaceUIValue(int id, String value){
@@ -730,13 +740,18 @@ public class MainActivity extends Activity {
             return (TextView) console.getChildAt(console.getChildCount() - 1);
         }
 
-        public void updateReadInput(String header, String var){
+        public void updateReadInput(String header, String var) {
             LinearLayout readInput = (LinearLayout) findViewById(R.id.readInput);
             TextView readHeader = (TextView) readInput.getChildAt(0);
             readHeader.setText(header);
             TextView input = (TextView) readInput.getChildAt(1);
             input.setHint(var);
             readInput.setVisibility(View.VISIBLE);
+        }
+
+        public int getParentId (int id){
+            View parentView = (View) findViewById(id).getParent();
+            return parentView.getId();
         }
     }
 }

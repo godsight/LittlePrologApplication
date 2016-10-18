@@ -140,7 +140,7 @@ public class Predicate implements Writable{
         String line = name + "(";
         for (Attribute parameter: parametersArray
              ) {
-            line += ((Constant) parameter).value;
+            line += parameter.value;
             line += ",";
         }
         line = line.substring(0,line.length()-1);

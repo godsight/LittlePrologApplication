@@ -6,8 +6,6 @@ package com.example.godsi.myapplication;
 
 public class Write extends Attribute {
 
-    String value;
-
     public Write (int identifier){
         super(identifier);
         value = "";

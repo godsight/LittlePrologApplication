@@ -113,7 +113,7 @@ public class MainScreen extends AppCompatActivity {
             return 0;
         }
 
-        public void generateUIForMathComp(int parentId, String uiType){}
+        public int generateUIForMathComp(int parentId, String uiType){return 0;}
 
         public boolean replaceUIValue(int parentId, String value){ return false;}
 
@@ -124,6 +124,9 @@ public class MainScreen extends AppCompatActivity {
 
         public void updateReadInput(String header, String var){}
 
+        public int getParentId(int id) {
+            return 0;
+        }
     }
 
 

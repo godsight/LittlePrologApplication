@@ -9,12 +9,10 @@ package com.example.godsi.myapplication;
 
 public class Constant extends Attribute{
 
-    String value; //value of the constant
-
     //Constructor for the constant class
     public Constant(int identifier){
         super(identifier);
-        value = "";
+        value = ""; //value of the constant
     }
 
 }

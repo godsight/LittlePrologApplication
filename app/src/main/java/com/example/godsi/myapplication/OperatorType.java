@@ -6,12 +6,10 @@ package com.example.godsi.myapplication;
 
 public class OperatorType extends Attribute{
 
-    String value; //value of the constant
-
     //Constructor for the constant class
     public OperatorType(int identifier){
         super(identifier);
-        value = "";
+        value = ""; //value of the operatorType
     }
 
     public String comparisonOrExpression(){

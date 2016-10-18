@@ -10,6 +10,7 @@ package com.example.godsi.myapplication;
 public class Attribute {
 
     private int id;
+    public String value;
 
     public Attribute(int identifier){
         id = identifier;

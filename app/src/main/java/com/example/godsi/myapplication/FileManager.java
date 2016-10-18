@@ -1,6 +1,7 @@
 package com.example.godsi.myapplication;
 
 import android.content.Context;
+import android.graphics.Path;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -119,8 +120,6 @@ public class FileManager {
     public void parseLine(String line, int lineNumber){
         switch (lineNumber){
             case 0:
-                interpreter.metaInfo.authorName = line.split(":")[1];
-                guiUpdater.updateUIValue(R.id.authorName, line.split(":")[1]);
                 break;
             case 1:
                 interpreter.metaInfo.authorName = line.split(":")[1];
@@ -135,30 +134,89 @@ public class FileManager {
                 guiUpdater.updateUIValue(R.id.description, line.split(":")[1]);
                 break;
             default:
-                String[] lineInformation = line.split("\\(");
-                int id = guiUpdater.generateUI("predicate");
-                Predicate predicate = interpreter.getPredicate(id);
-                predicate.name = lineInformation[0];
-                guiUpdater.updateUIValue(predicate.nameId,predicate.name);
-                String[] parameters = lineInformation[1].substring(0,lineInformation[1].length()-2).split(",");
-                int i = 0;
-                int existingParameters = predicate.parametersArray.size();
-                for (String parameter: parameters
-                     ) {
-                    if (i >= existingParameters){
-                        int paramId = guiUpdater.generateUI(id, "Predicate");
-                        Constant constant = (Constant) predicate.parametersArray.get(i);
-                        constant.value = parameter;
-                        guiUpdater.updateUIValue(paramId,parameter);
+                if (line.contains(":-")){
+                    String[] lineInformation = line.split(":-");
+                    int id = guiUpdater.generateUI("MathematicalRule");
+                    MathematicalComputation mathComp = interpreter.getMathComp(id);
+                    mathComp.name = lineInformation[0];
+                    guiUpdater.updateUIValue(mathComp.mathCompEditid,mathComp.name);
+                    String[] parameters = lineInformation[1].substring(0,lineInformation[1].length()-1).split(",");
+                    int parameterNumber = 0;
+                    for(String parameter : parameters){
+                        int parentViewId = guiUpdater.getParentId(mathComp.mathCompEditid);
+                        if (parameter.startsWith("r")){
+                            String paramValue = parameter.split("\\(")[1];
+                            paramValue = paramValue.substring(0,paramValue.length()-1);
+                            int paramId = guiUpdater.generateUIForMathComp(parentViewId,"Read");
+                            Attribute param = mathComp.parametersArray.get(parameterNumber);
+                            param.value = paramValue;
+                            guiUpdater.updateUIValue(paramId,paramValue);
+                            parameterNumber ++;
+                        }
+                        else if (parameter.startsWith("w")){
+                            String paramValue = parameter.split("\\(")[1];
+                            paramValue = paramValue.substring(0,paramValue.length()-1);
+                            int paramId = guiUpdater.generateUIForMathComp(parentViewId,"Write");
+                            Attribute param = mathComp.parametersArray.get(parameterNumber);
+                            param.value = paramValue;
+                            guiUpdater.updateUIValue(paramId,paramValue);
+                            parameterNumber ++;
+                        }
+                        else {
+                            String[] operationParams = parameter.split(" ");
+                            int paramId = guiUpdater.generateUIForMathComp(parentViewId,"Operator");
+                            Operator operator = (Operator) mathComp.parametersArray.get(parameterNumber);
+                            int numberOfOperators = operator.parametersArray.size();
+                            int i = numberOfOperators;
+                            while (i < operationParams.length){
+                                guiUpdater.generateUI(operator.getId(),"Operator");
+                                i += 2;
+                            }
+                            int operatorNumber = 0;
+                            for (String operatorParam : operationParams){
+                                if (operatorParam.equals("+") || operatorParam.equals("-") || operatorParam.equals("*") || operatorParam.equals("/") || operatorParam.equals("==") || operatorParam.equals("=")
+                                        || operatorParam.equals("<") || operatorParam.equals(">") || operatorParam.equals("<=") || operatorParam.equals(">=")){
+                                    OperatorType operatorType = (OperatorType) operator.parametersArray.get(operatorNumber);
+                                    operatorType.value = operatorParam;
+                                    guiUpdater.replaceUIValue(operatorType.getId(),operatorType.value);
+                                }
+                                else{
+                                    Constant constant = (Constant) operator.parametersArray.get(operatorNumber);
+                                    constant.value = operatorParam;
+                                    guiUpdater.updateUIValue(constant.getId(),constant.value);
+                                }
+                                operatorNumber ++;
+                            }
+                            parameterNumber ++;
+                        }
                     }
-                    else{
-                        Constant constant = (Constant) predicate.parametersArray.get(i);
-                        constant.value = parameter;
-                        guiUpdater.updateUIValue(constant.getId(),parameter);
-                    }
-                    i++;
                 }
-                predicate.setValidity();
+                else{
+                    String[] lineInformation = line.split("\\(");
+                    int id = guiUpdater.generateUI("predicate");
+                    Predicate predicate = interpreter.getPredicate(id);
+                    predicate.name = lineInformation[0];
+                    guiUpdater.updateUIValue(predicate.nameId,predicate.name);
+                    String[] parameters = lineInformation[1].substring(0,lineInformation[1].length()-2).split(",");
+                    int i = 0;
+                    int existingParameters = predicate.parametersArray.size();
+                    for (String parameter: parameters
+                            ) {
+                        if (i >= existingParameters){
+                            int paramId = guiUpdater.generateUI(id, "Predicate");
+                            Constant constant = (Constant) predicate.parametersArray.get(i);
+                            constant.value = parameter;
+                            guiUpdater.updateUIValue(paramId,parameter);
+                        }
+                        else{
+                            Constant constant = (Constant) predicate.parametersArray.get(i);
+                            constant.value = parameter;
+                            guiUpdater.updateUIValue(constant.getId(),parameter);
+                        }
+                        i++;
+                    }
+                    predicate.setValidity();
+                }
         }
 
     }

@@ -8,7 +8,7 @@ import java.util.List;
  * @author: Chan Kai Ying
  */
 
-public class Operator extends Attribute {
+public class Operator extends Attribute implements Writable {
 
     ArrayList<Attribute> parametersArray;
 
@@ -27,5 +27,16 @@ public class Operator extends Attribute {
             return parametersArray.get(index);
         }
         return null;
+    }
+
+    public ArrayList<String> serialize () {
+        ArrayList<String> serializedArray = new ArrayList<>();
+        String line = "";
+        for (Attribute parameter:parametersArray
+             ) {
+            line += parameter.value + " ";
+        }
+        serializedArray.add(line.substring(0,line.length()-1));
+        return serializedArray;
     }
 }

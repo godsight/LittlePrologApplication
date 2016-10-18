@@ -9,9 +9,10 @@ import java.util.ArrayList;
  * @author: Chan Kai Ying
  */
 
-public class MathematicalComputation {
+public class MathematicalComputation implements Writable {
 
     private int id;
+    public int mathCompEditid;
     String name;
     ArrayList<Attribute> parametersArray;
     private String comment;
@@ -94,5 +95,27 @@ public class MathematicalComputation {
         if(index >= 0) {
             parametersArray.remove(index);
         }
+    }
+
+    public ArrayList<String> serialize () {
+        ArrayList<String> serializedArray = new ArrayList<>();
+        String line = name + ":-";
+        for (Attribute parameter: parametersArray
+                ) {
+            if (parameter instanceof Read){
+                line += "read(" + parameter.value + "),";
+            }
+            else if (parameter instanceof Write){
+                line += "write(" + parameter.value + "),";
+            }
+            else if (parameter instanceof Operator){
+                ArrayList<String> stringArrayList = ((Operator) parameter).serialize();
+                line += stringArrayList.get(0) + ",";
+            }
+        }
+        line = line.substring(0,line.length()-1);
+        line += ".";
+        serializedArray.add(line);
+        return  serializedArray;
     }
 }

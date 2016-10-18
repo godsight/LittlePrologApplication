@@ -34,11 +34,14 @@ public interface GUIUpdater {
     public int generateUI(int parentId, String uiType);
 
     //creation of new component UI to existing Mathematical rule UI in layout
-    public void generateUIForMathComp(int id, String uiType);
+    public int generateUIForMathComp(int id, String uiType);
 
     //replace TextView value with dropped component's value
     public boolean replaceUIValue(int id, String value);
 
     //updates the value of a view based on id
     public void updateUIValue(int id, String value);
+
+    //gets the id of the parent view of the view of id
+    public int getParentId (int id);
 }

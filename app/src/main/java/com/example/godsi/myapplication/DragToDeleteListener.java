@@ -51,6 +51,15 @@ public class DragToDeleteListener implements View.OnDragListener {
                 else if(uiType.equalsIgnoreCase("MathematicalRule")){
                     mainInterpreter.deleteMathComp(viewId);
                 }
+                else if(uiType.equalsIgnoreCase("Query Rule")){
+                    mainInterpreter.queryRule = null;
+                    guiUpdater.hideView(R.id.interpret);
+                }
+                else if(uiType.equalsIgnoreCase("Query Predicate")){
+                    mainInterpreter.queryPredicate = null;
+                    guiUpdater.hideView(R.id.enter);
+                    guiUpdater.hideView(R.id.next);
+                }
                 else{
                     int parentId = Integer.parseInt((String) event.getClipData().getItemAt(1).getText());
                     MathematicalComputation mathematicalComputation = mainInterpreter.getMathComp(parentId);

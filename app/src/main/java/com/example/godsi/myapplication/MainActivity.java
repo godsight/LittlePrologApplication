@@ -76,7 +76,8 @@ public class MainActivity extends Activity {
         findViewById(R.id.equal).setOnTouchListener(new TouchToDragListener(getString(R.string.operator_touch_instructions), activityGUIUpdater, getString(R.string.equalSymbol)));
         findViewById(R.id.lessOrEqual).setOnTouchListener(new TouchToDragListener(getString(R.string.operator_touch_instructions), activityGUIUpdater, getString(R.string.lessOrEqualSymbol)));
         findViewById(R.id.moreOrEqual).setOnTouchListener(new TouchToDragListener(getString(R.string.operator_touch_instructions), activityGUIUpdater, getString(R.string.moreOrEqualSymbol)));
-        findViewById(R.id.queryPredicate).setOnTouchListener(new TouchToDragListener(getString(R.string.query_drag_instructions),activityGUIUpdater, getString(R.string.query)));
+        findViewById(R.id.queryPredicate).setOnTouchListener(new TouchToDragListener(getString(R.string.query_predicate_drag_instructions),activityGUIUpdater, getString(R.string.query_predicate)));
+        findViewById(R.id.queryRule).setOnTouchListener(new TouchToDragListener(getString(R.string.query_rule_drag_instructions),activityGUIUpdater, getString(R.string.query_rule)));
         findViewById(R.id.componentText).setOnTouchListener(new InstructionUpdateListener(getString(R.string.component_touch_instructions),activityGUIUpdater));
         findViewById(R.id.playgroundText).setOnTouchListener(new InstructionUpdateListener(getString(R.string.playground_touch_instructions),activityGUIUpdater));
         findViewById(R.id.variablesText).setOnTouchListener(new InstructionUpdateListener(getString(R.string.variablelist_touch_instructions),activityGUIUpdater));
@@ -89,6 +90,8 @@ public class MainActivity extends Activity {
         findViewById(R.id.stop).setOnClickListener(new OnClickDo(getString(R.string.stop_interpreter), activityGUIUpdater, mainInterpreter, getString(R.string.stop), "", getResources().getInteger(R.integer.editState), getResources().getInteger(R.integer.editState)));
         findViewById(R.id.next).setOnClickListener(new OnClickDo("", activityGUIUpdater, mainInterpreter, getString(R.string.next), "", getResources().getInteger(R.integer.runningState), getResources().getInteger(R.integer.runningState)));
         findViewById(R.id.enter).setOnClickListener(new OnClickDo("", activityGUIUpdater, mainInterpreter, getString(R.string.enter), "", getResources().getInteger(R.integer.runningState), getResources().getInteger(R.integer.runningState)));
+        findViewById(R.id.interpret).setOnClickListener(new OnClickDo("", activityGUIUpdater, mainInterpreter, getString(R.string.interpret), "", getResources().getInteger(R.integer.runningState), getResources().getInteger(R.integer.runningState)));
+        findViewById(R.id.input).setOnClickListener(new OnClickDo("", activityGUIUpdater, mainInterpreter, getString(R.string.read_input), "", getResources().getInteger(R.integer.runningState), getResources().getInteger(R.integer.runningState)));
 
         ImageView image = (ImageView) findViewById(R.id.dustbin);
         image.setImageResource(R.drawable.dustbin);
@@ -182,6 +185,10 @@ public class MainActivity extends Activity {
         public void showView(int viewId){
             View v = findViewById(viewId);
             v.setVisibility(View.VISIBLE);
+        }
+
+        public View getView(int viewId){
+            return findViewById(viewId);
         }
 
         /**
@@ -300,14 +307,13 @@ public class MainActivity extends Activity {
                 container.addView(newLayout);
             }
 
-            else if(uiType.equalsIgnoreCase(getString(R.string.query))){
+            else if(uiType.equalsIgnoreCase(getString(R.string.query_predicate))){
                 //Creation of UI element in command line
                 RelativeLayout consoleCommandLine = (RelativeLayout) findViewById(R.id.consoleCommandLine);
                 LinearLayout newLayout = new LinearLayout(getApplicationContext());
                 int newId = View.generateViewId();
                 newLayout.setId(newId);
                 TextView queryHead = new TextView(getApplicationContext());
-                queryHead.setText("?-");
                 RelativeLayout newLayout2 = new RelativeLayout(getApplicationContext());
                 newLayout2.setId(View.generateViewId());
                 RelativeLayout newLayout3 = new RelativeLayout(getApplicationContext());
@@ -321,9 +327,13 @@ public class MainActivity extends Activity {
 
                 Constant newConstant = new Constant(paramId);
                 Predicate queryPred = new Predicate(newId, newConstant);
-                mainInterpreter.query = queryPred;
+                mainInterpreter.queryPredicate = queryPred;
 
                 //Styling of UI elements
+                queryHead.setText("?-");
+                queryHead.setTextSize(20);
+                queryHead.setPadding(5, 10, 5, 5);
+                queryHead.setTextColor(Color.BLACK);
                 predicateText.setPadding(5, 5, 5, 5);
                 predicateText.setMinimumWidth(250);
                 predicateText.setHint(getString(R.string.predicate));
@@ -340,6 +350,7 @@ public class MainActivity extends Activity {
 
                 predicateText.setOnFocusChangeListener(new FocusListener(getString(R.string.predicate_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
                 predicateText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
+                predicateText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, getString(R.string.query_predicate)));
                 parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.predicate_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
                 parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.parameter_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                 additionButton.setOnClickListener(new ClickToAddListener(getString(R.string.add_new_parameter), activityGUIUpdater, uiType, mainInterpreter));
@@ -353,8 +364,51 @@ public class MainActivity extends Activity {
                 newLayout.addView(newLayout3);
                 newLayout.addView(additionButton);
                 newLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                consoleCommandLine.addView(newLayout);
+                RelativeLayout.LayoutParams rp2 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                rp2.addRule(RelativeLayout.RIGHT_OF, consoleCommandLine.getChildAt(0).getId());
+                rp2.addRule(RelativeLayout.CENTER_VERTICAL);
+                consoleCommandLine.addView(newLayout, rp2);
 
+            }
+            else if(uiType.equalsIgnoreCase(getString(R.string.query_rule))){
+                //Creation of UI element, mathematical rule in coding playground
+                RelativeLayout container = (RelativeLayout) findViewById(R.id.consoleCommandLine);
+                LinearLayout newLayout = new LinearLayout(getApplicationContext());
+                int newId = View.generateViewId();
+                newLayout.setId(newId);
+                newLayout.setPadding(20, 5, 20, 5);
+                TextView queryHead = new TextView(getApplicationContext());
+                EditText rule = new EditText(getApplicationContext());
+                TextView fullStop = new TextView(getApplicationContext());
+
+                MathematicalComputation mathComp = new MathematicalComputation(newId);
+                mainInterpreter.queryRule = mathComp;
+
+                queryHead.setPadding(5, 10, 5, 5);
+                queryHead.setText("?- ");
+                queryHead.setTextColor(Color.BLACK);
+                rule.setPadding(5, 5, 5, 5);
+                rule.setHint(getString(R.string.mathematical_rule));
+                rule.setTextColor(Color.BLACK);
+                rule.setBackgroundColor(Color.parseColor("#e6e6e6"));
+                rule.setImeOptions(EditorInfo.IME_ACTION_DONE);
+                rule.setSingleLine(true);
+                fullStop.setPadding(5, 10, 5, 5);
+                fullStop.setText(". ");
+                fullStop.setBackgroundColor(Color.parseColor("#0099cc"));
+                fullStop.setTextColor(Color.WHITE);
+
+                rule.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.mathComp_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
+                rule.setOnFocusChangeListener(new FocusListener(getString(R.string.mathComp_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
+                rule.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, getString(R.string.query_rule)));
+
+                newLayout.addView(queryHead);
+                newLayout.addView(rule);
+                newLayout.addView(fullStop);
+                newLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                rp.addRule(RelativeLayout.RIGHT_OF, R.id.consoleArrow);
+                container.addView(newLayout, rp);
             }
             return 0;
         }
@@ -391,7 +445,7 @@ public class MainActivity extends Activity {
                     parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                     close.setOnClickListener(new ClickToDelete(getString(R.string.delete_parameter), activityGUIUpdater, mainInterpreter, uiType));
                 } else if (uiType.equalsIgnoreCase("Query")) {
-                    Predicate query = mainInterpreter.query;
+                    Predicate query = mainInterpreter.queryPredicate;
                     query.addAttribute(newConstant);
                     parameterText.setOnFocusChangeListener(new FocusListener(getString(R.string.parameter_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
                     parameterText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
@@ -412,12 +466,11 @@ public class MainActivity extends Activity {
             }
             else if(uiType.equalsIgnoreCase("Operator")){
                 LinearLayout existingLayout = (LinearLayout) findViewById(id);
-                int mathId = ((View)existingLayout.getParent()).getId();
 
-                EditText openBracket = new EditText(getApplicationContext());
-                EditText closeBracket = new EditText(getApplicationContext());
-                EditText openSquareBracket = new EditText(getApplicationContext());
-                EditText closeSquareBracket = new EditText(getApplicationContext());
+                TextView openBracket = new TextView(getApplicationContext());
+                TextView closeBracket = new TextView(getApplicationContext());
+                TextView openSquareBracket = new TextView(getApplicationContext());
+                TextView closeSquareBracket = new TextView(getApplicationContext());
                 TextView operator = new TextView(getApplicationContext());
                 operator.setLayoutParams(new LinearLayout.LayoutParams(43, 43));
                 int opId = View.generateViewId();
@@ -426,6 +479,7 @@ public class MainActivity extends Activity {
                 int valueId = View.generateViewId();
                 value.setId(valueId);
 
+                int mathId = ((View) existingLayout.getParent()).getId();
                 MathematicalComputation mathematicalComputation = mainInterpreter.getMathComp(mathId);
                 Operator existingOp = (Operator) mathematicalComputation.getAttribute(id);
                 OperatorType newOperatorType = new OperatorType(opId);
@@ -433,26 +487,22 @@ public class MainActivity extends Activity {
                 existingOp.addOperatorParam(newOperatorType);
                 existingOp.addOperatorParam(newConstant);
 
-                openBracket.setPadding(5,5,5,5);
+                openBracket.setPadding(5,10,5,5);
                 openBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
                 openBracket.setText(R.string.openBracket);
                 openBracket.setTextColor(Color.WHITE);
-                openBracket.setEnabled(false);
-                closeBracket.setPadding(5,5,5,5);
+                closeBracket.setPadding(5,10,5,5);
                 closeBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
                 closeBracket.setText(R.string.closeBraket);
                 closeBracket.setTextColor(Color.WHITE);
-                closeBracket.setEnabled(false);
-                openSquareBracket.setPadding(5,5,5,5);
+                openSquareBracket.setPadding(5,10,5,5);
                 openSquareBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
                 openSquareBracket.setText(R.string.openSquareBracket);
                 openSquareBracket.setTextColor(Color.WHITE);
-                openSquareBracket.setEnabled(false);
-                closeSquareBracket.setPadding(5,5,5,5);
+                closeSquareBracket.setPadding(5,10,5,5);
                 closeSquareBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
                 closeSquareBracket.setText(R.string.closeSquareBracket);
                 closeSquareBracket.setTextColor(Color.WHITE);
-                closeSquareBracket.setEnabled(false);
                 operator.setPadding(5,10,5,5);
                 operator.setBackgroundColor(Color.parseColor("#cc00cc"));
                 operator.setHint("OP");
@@ -500,10 +550,9 @@ public class MainActivity extends Activity {
                 param.setId(paramId);
                 EditText readTextEnd = new EditText(getApplicationContext());
 
-                readTextFront.setId(View.generateViewId());
                 if (uiType.equalsIgnoreCase("Read")) {
                     readTextFront.setText(getString(R.string.read) + " ( ");
-                    Read newRead = new Read(layoutId);
+                    Read newRead = new Read(paramId);
                     MathematicalComputation existingMathComp = mainInterpreter.getMathComp(id);
                     existingMathComp.addParam(newRead);
                     param.setHint("readArg");
@@ -548,12 +597,12 @@ public class MainActivity extends Activity {
                 LinearLayout newLayout = new LinearLayout(getApplicationContext());
                 int layoutId = View.generateViewId();
                 newLayout.setId(layoutId);
-                EditText openBracket = new EditText(getApplicationContext());
-                EditText closeBracket = new EditText(getApplicationContext());
-                EditText openSquareBracket = new EditText(getApplicationContext());
-                EditText closeSquareBracket = new EditText(getApplicationContext());
-                EditText openBracketRight = new EditText(getApplicationContext());
-                EditText closeBracketRight = new EditText(getApplicationContext());
+                TextView openBracket = new TextView(getApplicationContext());
+                TextView closeBracket = new TextView(getApplicationContext());
+                TextView openSquareBracket = new TextView(getApplicationContext());
+                TextView closeSquareBracket = new TextView(getApplicationContext());
+                TextView openBracketRight = new TextView(getApplicationContext());
+                TextView closeBracketRight = new TextView(getApplicationContext());
                 EditText left = new EditText(getApplicationContext());
                 int leftId = View.generateViewId();
                 left.setId(leftId);
@@ -578,36 +627,30 @@ public class MainActivity extends Activity {
                 MathematicalComputation existingMathComp = mainInterpreter.getMathComp(id);
                 existingMathComp.addParam(newOperator);
 
-                openBracket.setPadding(5,5,5,5);
+                openBracket.setPadding(5,10,5,5);
                 openBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
                 openBracket.setText(R.string.openBracket);
                 openBracket.setTextColor(Color.WHITE);
-                openBracket.setEnabled(false);
-                closeBracket.setPadding(5,5,5,5);
+                closeBracket.setPadding(5,10,5,5);
                 closeBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
                 closeBracket.setText(R.string.closeBraket);
                 closeBracket.setTextColor(Color.WHITE);
-                closeBracket.setEnabled(false);
-                openSquareBracket.setPadding(5,5,5,5);
+                openSquareBracket.setPadding(5,10,5,5);
                 openSquareBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
                 openSquareBracket.setText(R.string.openSquareBracket);
                 openSquareBracket.setTextColor(Color.WHITE);
-                openSquareBracket.setEnabled(false);
-                closeSquareBracket.setPadding(5,5,5,5);
+                closeSquareBracket.setPadding(5,10,5,5);
                 closeSquareBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
                 closeSquareBracket.setText(R.string.closeSquareBracket);
                 closeSquareBracket.setTextColor(Color.WHITE);
-                closeSquareBracket.setEnabled(false);
-                openBracketRight.setPadding(5,5,5,5);
+                openBracketRight.setPadding(5,10,5,5);
                 openBracketRight.setBackgroundColor(Color.parseColor("#cc00cc"));
                 openBracketRight.setText(R.string.openBracket);
                 openBracketRight.setTextColor(Color.WHITE);
-                openBracketRight.setEnabled(false);
-                closeBracketRight.setPadding(5,5,5,5);
+                closeBracketRight.setPadding(5,10,5,5);
                 closeBracketRight.setBackgroundColor(Color.parseColor("#cc00cc"));
                 closeBracketRight.setText(R.string.closeBraket);
                 closeBracketRight.setTextColor(Color.WHITE);
-                closeBracketRight.setEnabled(false);
                 left.setPadding(5, 5, 5, 5);
                 left.setHint("val");
                 left.setBackgroundColor(Color.parseColor("#e6e6e6"));
@@ -680,6 +723,20 @@ public class MainActivity extends Activity {
         public void updateUIValue (int id, String value){
             EditText editText = (EditText) findViewById(id);
             editText.setText(value);
+        }
+
+        public View getLastConsoleLog(){
+            LinearLayout console = (LinearLayout) findViewById(R.id.console);
+            return (TextView) console.getChildAt(console.getChildCount() - 1);
+        }
+
+        public void updateReadInput(String header, String var){
+            LinearLayout readInput = (LinearLayout) findViewById(R.id.readInput);
+            TextView readHeader = (TextView) readInput.getChildAt(0);
+            readHeader.setText(header);
+            TextView input = (TextView) readInput.getChildAt(1);
+            input.setHint(var);
+            readInput.setVisibility(View.VISIBLE);
         }
     }
 }

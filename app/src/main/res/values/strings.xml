@@ -10,6 +10,7 @@
     <string name="value">Value</string>
     <string name="parameter">Parameter</string>
     <string name="mathematical_rule">MathematicalRule</string>
+    <string name="read_input">Read Input</string>
     <string name="plusSymbol"> + </string>
     <string name="minusSymbol">-</string>
     <string name="multiplySymbol">*</string>
@@ -26,6 +27,7 @@
     <string name="stop">Stop</string>
     <string name="next">Next</string>
     <string name="enter">Enter</string>
+    <string name="interpret">Interpret</string>
     <string name="openBracket">(</string>
     <string name="closeBraket">)</string>
     <string name="openSquareBracket">[</string>
@@ -67,8 +69,10 @@
     <string name="run_interpreter">Interpreter is running...</string>
     <string name="stop_interpreter">Interpreter stop running...</string>
     <string name="fail_to_run_interpreter">Interpreter fail to run.</string>
-    <string name="query">Query</string>
-    <string name="query_drag_instructions">Drag query into console command line to create a query.</string>
+    <string name="query_predicate">Query Predicate</string>
+    <string name="query_rule">Query Rule</string>
+    <string name="query_predicate_drag_instructions">Drag query predicate into console command line to create a query for predicate components</string>
+    <string name="query_rule_drag_instructions">Drag query rule into console command line to create a query for mathematical rule components</string>
     <string name="query_create_instructions">Fill in the parameters and press send to run the command</string>
     <string name="console_command_droperror">Only queries can be dropped here</string>
     <string name="query_commandline_added">New query added</string>

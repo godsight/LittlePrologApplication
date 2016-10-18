@@ -14,4 +14,12 @@ public class OperatorType extends Attribute{
         value = "";
     }
 
+    public String comparisonOrExpression(){
+        if(value.equalsIgnoreCase("==") || value.equalsIgnoreCase(">") || value.equalsIgnoreCase("<") || value.equalsIgnoreCase(">=") ||
+                value.equalsIgnoreCase("<=") || value.equalsIgnoreCase("=")) {
+            return "Comparison";
+        }
+        return "Expression";
+    }
+
 }

@@ -84,6 +84,9 @@ public class MainScreen extends AppCompatActivity {
         //show view based on their Id
         public void showView(int viewId){}
 
+        //get view based on their Id
+        public View getView(int viewId) {return null; };
+
         //generation of console log entry based on input
         public void createConsoleLog(String logText){}
 
@@ -115,8 +118,12 @@ public class MainScreen extends AppCompatActivity {
         public boolean replaceUIValue(int parentId, String value){ return false;}
 
         //updates the value of a view based on id
-        public void updateUIValue(int id, String value) {
-        }
+        public void updateUIValue(int id, String value) {}
+
+        public View getLastConsoleLog(){ return null;}
+
+        public void updateReadInput(String header, String var){}
+
     }
 
 

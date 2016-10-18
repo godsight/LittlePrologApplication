@@ -16,6 +16,11 @@ public class MathematicalComputation {
     ArrayList<Attribute> parametersArray;
     private String comment;
 
+    public MathematicalComputation(){
+        name = "";
+        parametersArray = new ArrayList<>();
+    }
+
     public MathematicalComputation(int identifier){
         id = identifier;
         name = "";

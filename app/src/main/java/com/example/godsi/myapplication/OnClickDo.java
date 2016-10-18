@@ -1,6 +1,12 @@
 package com.example.godsi.myapplication;
 
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * This class is responsible for the response of the start, run, stop actions of the LittleProlog Interpreter
@@ -49,17 +55,18 @@ public class OnClickDo implements View.OnClickListener {
         //stop interpreter
         else if(type.equalsIgnoreCase("Stop")){
             mainInterpreter.stopInterpreter(programState);
+            guiUpdater.createConsoleLog(consoleText);
         }
 
-        //interpret query entered
+        //interpret queryPredicate entered
         //if 'send' button is clicked
         else if(type.equalsIgnoreCase("Enter")){
-            Predicate query = mainInterpreter.query;
+            Predicate query = mainInterpreter.queryPredicate;
             //program is currently in edit state
             if(mainInterpreter.programState == 1){
                 //check whether input needs querySearch or variableSearch
                 int search = query.queryOrVariableSearch();
-
+                guiUpdater.createConsoleLog(consoleLogQueryPredicate(query));
                 //querySearch
                 if(search == 1){
                     //set program current state to querySearch state
@@ -70,7 +77,7 @@ public class OnClickDo implements View.OnClickListener {
                     else{
                         guiUpdater.createConsoleLog("No.");
                     }
-                    //after finish interpreting query, switch program state back to running state
+                    //after finish interpreting queryPredicate, switch program state back to running state
                     mainInterpreter.programState = 1;
                 }
 
@@ -95,11 +102,91 @@ public class OnClickDo implements View.OnClickListener {
         }
 
         else if(type.equalsIgnoreCase("Next")){
-            Predicate query = mainInterpreter.query;
+            Predicate query = mainInterpreter.queryPredicate;
             String result = mainInterpreter.variableSearch(query, 1);
             if(result != null){
                 guiUpdater.createConsoleLog(result);
             }
         }
+
+        else if(type.equalsIgnoreCase("Interpret")){
+            MathematicalComputation query = mainInterpreter.queryRule;
+            guiUpdater.createConsoleLog(consoleLogQueryRule(query.name));
+            removeQueryRuleView();
+            if(mainInterpreter.programState == 1){
+                mainInterpreter.interpretMathRule();
+            }
+            else{
+                guiUpdater.createConsoleLog("Interpreter has not been started.");
+            }
+        }
+
+        else if(type.equalsIgnoreCase("Read Input")){
+            LinearLayout readInput = (LinearLayout) guiUpdater.getView(R.id.readInput);
+            TextView input = (TextView) readInput.getChildAt(1);
+            mainInterpreter.updateQueryRuleVariable(input.getHint().toString(), input.getText().toString());
+            guiUpdater.hideView(R.id.input);
+            guiUpdater.hideView(R.id.readInput);
+            TextView log = (TextView) guiUpdater.getLastConsoleLog();
+            String logValue = log.getText().toString();
+            log.setText(logValue + " " + input.getText() + ".");
+            mainInterpreter.interpretMathRule();
+        }
+    }
+
+    private void removeQueryRuleView(){
+        int queryRuleId = mainInterpreter.queryRule.getId();
+        guiUpdater.removeView(queryRuleId);
+    }
+
+    private String consoleLogQueryPredicate(Predicate query){
+        String log = query.name + "(";
+        for(int i = 0; i < query.parametersArray.size(); i++){
+            Constant c = (Constant) query.parametersArray.get(i);
+            log += c.value + ", ";
+        }
+        log = log.substring(0, log.length() - 2);
+        log += ").";
+
+        return log;
+    }
+
+    private String consoleLogQueryRule(String name){
+        MathematicalComputation query = mainInterpreter.getMathComp(name);
+        String log = query.name + " :- ";
+        for(int i = 0; i < query.parametersArray.size(); i++){
+            if(query.parametersArray.get(i) instanceof Read){
+                log += "Read ( ";
+                Read p = (Read) query.parametersArray.get(i);
+                log += p.value;
+                log += " ), ";
+            }
+            else if(query.parametersArray.get(i) instanceof Write){
+                log += "Write ( ";
+                Write p = (Write) query.parametersArray.get(i);
+                log += p.value;
+                log += " ), ";
+            }
+            else{
+                Operator p = (Operator) query.parametersArray.get(i);
+                ArrayList<Attribute> opParams = p.parametersArray;
+                Constant c;
+                OperatorType opType;
+                for(int j = 0; j < opParams.size(); j++){
+                    if(opParams.get(j) instanceof Constant) {
+                        c = (Constant) opParams.get(j);
+                        log += c.value + " ";
+                    }
+                    else{
+                        opType = (OperatorType) opParams.get(j);
+                        log += opType.value + " ";
+                    }
+                }
+                log += ", ";
+            }
+        }
+        log = log.substring(0, log.length() - 2);
+        log += ".";
+        return log;
     }
 }

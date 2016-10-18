@@ -63,11 +63,23 @@ public class ElementDragListener implements View.OnDragListener {
                         guiUpdater.updateInstructions("Mathematical rule can only be dragged into coding playground");
                     }
                 }
-                else if(clipData.equalsIgnoreCase("Query")){
+                else if(clipData.equalsIgnoreCase("Query Predicate")){
                     if(v.getId() == R.id.consoleCommandLine){
                         guiUpdater.generateUI(clipData);
-                        guiUpdater.createConsoleLog("New query added");
-                        guiUpdater.updateInstructions("Fill in the parameters and press send to run the command");
+                        guiUpdater.showView(R.id.enter);
+                        guiUpdater.createConsoleLog("New Query Predicate for predicate added");
+                        guiUpdater.updateInstructions("Fill in the predicate name and parameters to complete Query Predicate. Click on send to start interpreting");
+                    }
+                    else{
+                        guiUpdater.updateInstructions("Query can only be dragged into console command line");
+                    }
+                }
+                else if(clipData.equalsIgnoreCase("Query Rule")){
+                    if(v.getId() == R.id.consoleCommandLine){
+                        guiUpdater.generateUI(clipData);
+                        guiUpdater.showView(R.id.interpret);
+                        guiUpdater.createConsoleLog("New Query Rule for mathematical computations added");
+                        guiUpdater.updateInstructions("Fill in the rule name and parameters to complete Query Rule. Click on interpret to start interpreting");
                     }
                     else{
                         guiUpdater.updateInstructions("Query can only be dragged into console command line");

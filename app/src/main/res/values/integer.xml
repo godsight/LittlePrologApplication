@@ -4,4 +4,5 @@
     <integer name="runningState">1</integer>
     <integer name="querySearchState">2</integer>
     <integer name="varSearchState">3</integer>
+    <integer name="interpretRule">4</integer>
 </resources>

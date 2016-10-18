@@ -24,6 +24,9 @@ public interface GUIUpdater {
     //show view based on their Id
     public void showView(int viewId);
 
+    //get view based on their Id
+    public View getView(int viewId);
+
     //generation of console log entry based on input
     public void createConsoleLog(String logText);
 
@@ -41,4 +44,9 @@ public interface GUIUpdater {
 
     //updates the value of a view based on id
     public void updateUIValue(int id, String value);
+
+    //get last log created in console
+    public View getLastConsoleLog();
+
+    public void updateReadInput(String header, String var);
 }

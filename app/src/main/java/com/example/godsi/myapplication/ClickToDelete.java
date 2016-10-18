@@ -1,12 +1,11 @@
 package com.example.godsi.myapplication;
 
 import android.view.View;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 /**
- * Deletes a predicate/query parameter when click is detected
+ * Deletes a predicate/queryPredicate parameter when click is detected
  * @author: Chan Kai Ying
  * @CreatedDate 5/10/2016
  */
@@ -38,7 +37,7 @@ public class ClickToDelete implements View.OnClickListener {
             predicate.deleteAttribute(param.getId());
         }
         else if(uiType.equalsIgnoreCase("Query")){
-            Predicate predicate = mainInterpreter.query;
+            Predicate predicate = mainInterpreter.queryPredicate;
             predicate.deleteAttribute(param.getId());
         }
 

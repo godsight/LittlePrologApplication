@@ -28,4 +28,35 @@ public class Operator extends Attribute {
         }
         return null;
     }
+
+    public Integer findComparison(){
+        for(int i = 0; i < parametersArray.size(); i++){
+            if(parametersArray.get(i) instanceof OperatorType){
+                OperatorType operatorType = (OperatorType) parametersArray.get(i);
+                if(operatorType.comparisonOrExpression().equalsIgnoreCase("Comparison")){
+                    return i;
+                }
+            }
+        }
+        return null;
+    }
+
+    public String convertOperatorToString(String side, int comparisonIndex){
+        String result = "";
+        if(side.equalsIgnoreCase("Left")){
+            for(int i = 0; i < comparisonIndex; i++){
+                if(parametersArray.get(i) instanceof Constant){
+                    Constant c = (Constant) parametersArray.get(i);
+                    String regex = "[0-9]+";
+                    if(c.value.matches(regex)){
+                        result += c.value;
+                    }
+                    else{
+
+                    }
+                }
+            }
+        }
+        return result;
+    }
 }

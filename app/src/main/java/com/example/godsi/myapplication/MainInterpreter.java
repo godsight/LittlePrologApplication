@@ -2,14 +2,11 @@ package com.example.godsi.myapplication;
 
 import android.text.Editable;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Chan Kai Ying
@@ -23,9 +20,12 @@ public class MainInterpreter {
     public ArrayList<MathematicalComputation> mathComputations;
     int programState;
     private int searchIndex;
-    Predicate query;
+    Predicate queryPredicate;
+    MathematicalComputation queryRule;
+    boolean queryRuleCondition;
     private GUIUpdater guiUpdater;
     public MetaInfo metaInfo = new MetaInfo();
+    ArrayList<Map<String, String>> queryRuleVariables;
 
     public MainInterpreter(GUIUpdater gui){
         predicates = new ArrayList<>();
@@ -33,6 +33,8 @@ public class MainInterpreter {
         programState = 0;
         searchIndex = 0;
         guiUpdater = gui;
+        queryRuleCondition = true;
+        queryRuleVariables = new ArrayList<>();
     }
 
     public boolean runInterpreter(int stateId){
@@ -45,6 +47,9 @@ public class MainInterpreter {
 
     public void stopInterpreter(int stateId){
         programState = stateId;
+        queryPredicate = null;
+        guiUpdater.hideView(R.id.enter);
+        guiUpdater.hideView(R.id.next);
     }
 
     public Predicate getPredicate (int id){
@@ -116,21 +121,30 @@ public class MainInterpreter {
         return null;
     }
 
+    public MathematicalComputation getMathComp(String name){
+        for(MathematicalComputation mathComp: mathComputations){
+            if(mathComp.name.equalsIgnoreCase(name)){
+                return mathComp;
+            }
+        }
+        return null;
+    }
+
     public boolean updateMathComp(String uiType, TextView editText){
-        if(uiType.equalsIgnoreCase("MathematicalRule")) {
+        if(uiType.equalsIgnoreCase("MathematicalRule") || uiType.equalsIgnoreCase("Query Rule")) {
             String eType = editText.getHint().toString();
             String s = editText.getText().toString();
 
             if ("MathematicalRule".contentEquals(eType)) {
-                int parentId = ((View) editText.getParent()).getId();
-                MathematicalComputation mathematicalComputation = getMathComp(parentId);
+                MathematicalComputation mathematicalComputation = getCurrentMathComp(uiType, editText);
                 if(mathematicalComputation != null) {
                     if (mathematicalComputation.updateMathComp(s)) {
                         return true;
                     }
                 }
                 return false;
-            } else {
+            }
+            else {
                 int parentId = ((View) editText.getParent().getParent()).getId();
                 MathematicalComputation mathematicalComputation = getMathComp(parentId);
                 if(mathematicalComputation != null) {
@@ -144,6 +158,17 @@ public class MainInterpreter {
             }
         }
         return false;
+    }
+
+    private MathematicalComputation getCurrentMathComp(String uiType, TextView editText){
+        View outerParent = (View) editText.getParent().getParent();
+        if (outerParent.getId() == R.id.playground || outerParent.getId() == R.id.playgroundContainer) {
+            int parentId = ((View) editText.getParent()).getId();
+            return getMathComp(parentId);
+        } else if (outerParent.getId() == R.id.consoleCommandLine) {
+            return queryRule;
+        }
+        return null;
     }
 
     public void deleteMathComp(int id){
@@ -178,12 +203,12 @@ public class MainInterpreter {
     }
 
     public boolean updateQuery(String uiType, TextView editText){
-        if (uiType.equalsIgnoreCase("Query")) {
+        if (uiType.equalsIgnoreCase("Query Predicate")) {
             CharSequence eType = editText.getHint();
             Editable s = editText.getEditableText();
 
             if ("Predicate".contentEquals(eType)) {
-                if(query.updatePredicate(s)){
+                if(queryPredicate.updatePredicate(s)){
                     return true;
                 }
                 return false;
@@ -191,13 +216,36 @@ public class MainInterpreter {
 
             else if("Parameter".contentEquals(eType)){
                 int viewId = editText.getId();
-                if(query.updatePredicate(s, viewId)){
+                if(queryPredicate.updatePredicate(s, viewId)){
                     return true;
                 }
                 return false;
             }
         }
         return false;
+    }
+
+    public boolean updateQueryRuleVariable(String key, String value){
+        int index = 0;
+
+        while(index < queryRuleVariables.size()){
+            Map<String, String> m = queryRuleVariables.get(index);
+            if(m.containsKey(key)){
+                m.put(key, value);
+                 return true;
+            }
+            index ++;
+        }
+        return false;
+    }
+
+    private Map<String, String> getQueryRuleVariable(String key){
+        for(Map<String, String> m : queryRuleVariables){
+            if(m.containsKey(key)){
+                return m;
+            }
+        }
+        return null;
     }
 
     /**
@@ -297,4 +345,53 @@ public class MainInterpreter {
         }
         return false;
     }
+
+    public void interpretMathRule(){
+        guiUpdater.hideView(R.id.interpret);
+        if(programState == 1){
+            programState = 4;
+            searchIndex = 0;
+        }
+
+        if(programState == 4) {
+            MathematicalComputation curRule = getMathComp(queryRule.name);
+            while (searchIndex < curRule.parametersArray.size()) {
+                if (curRule.parametersArray.get(searchIndex) instanceof Read) {
+                    Read r = (Read) curRule.parametersArray.get(searchIndex);
+                    Map<String, String> m = new HashMap<>();
+                    m.put(r.value, "");
+                    queryRuleVariables.add(m);
+                    String header = ((TextView) guiUpdater.getLastConsoleLog()).getText().toString();
+                    guiUpdater.updateReadInput(header, r.value);
+                    guiUpdater.showView(R.id.input);
+                    searchIndex++;
+                    break;
+                } else if (curRule.parametersArray.get(searchIndex) instanceof Write) {
+                    Write w = (Write) curRule.parametersArray.get(searchIndex);
+                    String [] temp = w.value.split("\\s+");
+                    if(!(temp.length > 1) && isVariable(w.value)){
+                        Map<String, String> m = getQueryRuleVariable(w.value);
+                        guiUpdater.createConsoleLog(w.value + " = " + m.get(w.value));
+                    }
+                    else {
+                        guiUpdater.createConsoleLog(w.value);
+                    }
+                } else {
+                    Operator op = (Operator) curRule.parametersArray.get(searchIndex);
+                    int index = op.findComparison();
+
+
+                }
+                searchIndex++;
+            }
+
+            if(searchIndex > curRule.parametersArray.size()){
+                searchIndex = 0;
+                programState = 1;
+                queryRuleVariables = null;
+                queryRuleVariables = new ArrayList<>();
+            }
+        }
+    }
+
 }

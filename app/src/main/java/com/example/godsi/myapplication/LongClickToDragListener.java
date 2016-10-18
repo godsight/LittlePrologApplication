@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 /**
  * @author Chan Kai Ying
@@ -33,7 +34,7 @@ public class LongClickToDragListener implements View.OnLongClickListener {
             //setting the data to be dragged
             LinearLayout layout = (LinearLayout) view.getParent().getParent();
             ClipData data = ClipData.newPlainText("", String.valueOf(layout.getId()));
-            data.addItem(new ClipData.Item("Predicate"));
+            data.addItem(new ClipData.Item(uiType));
             int count = layout.getChildCount() - 1;
             for (int i = 0; i < count; i++) {
                 RelativeLayout relativeLayout = (RelativeLayout) layout.getChildAt(i);
@@ -41,6 +42,29 @@ public class LongClickToDragListener implements View.OnLongClickListener {
                 String value = valueText.getText().toString();
                 data.addItem(new ClipData.Item(value));
             }
+            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(
+                    layout);
+
+            //begin drag event
+            layout.startDrag(data, shadowBuilder, layout, 0);
+        }
+        else if(uiType.equalsIgnoreCase("Query Predicate")) {
+            //setting the data to be dragged
+            LinearLayout layout = (LinearLayout) view.getParent().getParent();
+            ClipData data = ClipData.newPlainText("", String.valueOf(layout.getId()));
+            data.addItem(new ClipData.Item(uiType));
+            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(
+                    layout);
+
+            //begin drag event
+            layout.startDrag(data, shadowBuilder, layout, 0);
+        }
+        else if(uiType.equalsIgnoreCase("Query Rule")){
+            //setting the data to be dragged
+            LinearLayout layout = (LinearLayout) view.getParent();
+            ClipData data = ClipData.newPlainText("", String.valueOf(layout.getId()));
+            data.addItem(new ClipData.Item(uiType));
+
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(
                     layout);
 
@@ -56,7 +80,7 @@ public class LongClickToDragListener implements View.OnLongClickListener {
             data.addItem(new ClipData.Item(uiType));
             int count = layout.getChildCount();
             for (int i = 0; i < count; i++) {
-                EditText valueText = (EditText) layout.getChildAt(0);
+                TextView valueText = (TextView) layout.getChildAt(0);
                 String value = valueText.getText().toString();
                 data.addItem(new ClipData.Item(value));
             }

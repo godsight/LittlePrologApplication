@@ -34,12 +34,12 @@ public class TextViewKeyboardActionListener implements TextView.OnEditorActionLi
                     guiUpdater.createConsoleLog(consoleText + " " + view.getText().toString());
                 }
             }
-            else if(uiType.equalsIgnoreCase("Query")){
+            else if(uiType.equalsIgnoreCase("Query Predicate")){
                 if(mainInterpreter.updateQuery(uiType, view)){
                     guiUpdater.createConsoleLog(consoleText + " " + view.getText().toString());
                 }
             }
-            else if(uiType.equalsIgnoreCase("MathematicalRule")){
+            else if(uiType.equalsIgnoreCase("MathematicalRule") || uiType.equalsIgnoreCase("Query Rule")){
                 if(mainInterpreter.updateMathComp(uiType, view)){
                     guiUpdater.createConsoleLog(consoleText + " " + view.getText().toString());
                 }

@@ -44,7 +44,7 @@
     <string name="console_touch_instructions">The console shows the results of the actions performed</string>
     <string name="predicate_drag_instructions">Predicate and parameter values can be updated through keyboard</string>
     <string name="predicate_and_rule_drag_error">Only selected component can be added into the coding playground</string>
-    <string name="math_rule_drag_instructions">Mathematical computation\'s name can be updated through keyboard and parameters can be added by dragging suitable components into mathematical rule</string>
+    <string name="math_rule_drag_instructions">Drag suitable components into mathematical rule and name the rule with the keyboard</string>
     <string name="variable_drag_instructions">Name the variable and provide its value. Long press the variable to drag it.</string>
     <string name="variable_drag_error">Only variables can be added into the variable list</string>
     <string name="variable_use_instructions">Drag into parameter or parameter to update their values</string>

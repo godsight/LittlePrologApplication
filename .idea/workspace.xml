@@ -14,9 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e092b153-9293-4381-8834-8589a32a8ef9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/FileManager.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/FileManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MathematicalComputation.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MathematicalComputation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Operator.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Operator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <ignored path="LittlePrologApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -189,24 +187,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainScreen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MainScreen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="112" column="79" selection-start-line="112" selection-start-column="79" selection-end-line="112" selection-end-column="79" />
-              <folding>
-                <element signature="e#4132#4133#0" expanded="true" />
-                <element signature="e#4164#4165#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MathematicalComputation.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MathematicalComputation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MathematicalComputation.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="128">
               <caret line="101" column="7" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="235">
+              <caret line="46" column="130" selection-start-line="46" selection-start-column="130" selection-end-line="46" selection-end-column="130" />
               <folding />
             </state>
           </provider>
@@ -1934,7 +1929,6 @@
         <option value="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ClickToAddListener.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/ElementDragListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/LongClickToDragPredicateListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/LongClickToDragListener.java" />
@@ -1952,6 +1946,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/FileManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/Operator.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/MathematicalComputation.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       </list>
     </option>
   </component>
@@ -3021,14 +3016,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="11" column="53" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/godsi/myapplication/GUIUpdater.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="688">
@@ -3157,6 +3144,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="101" column="7" selection-start-line="101" selection-start-column="7" selection-end-line="101" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="46" column="130" selection-start-line="46" selection-start-column="130" selection-end-line="46" selection-end-column="130" />
           <folding />
         </state>
       </provider>

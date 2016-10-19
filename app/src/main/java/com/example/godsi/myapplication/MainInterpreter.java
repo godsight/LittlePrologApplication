@@ -21,7 +21,7 @@ public class MainInterpreter {
     public ArrayList<Predicate> predicates;
     public ArrayList<MathematicalComputation> mathComputations;
     int programState;
-    private int searchIndex;
+    int searchIndex;
     Predicate queryPredicate;
     MathematicalComputation queryRule;
     boolean queryRuleCondition;
@@ -30,8 +30,8 @@ public class MainInterpreter {
     ArrayList<Map<String, String>> queryRuleVariables;
 
     /**
-     * @desciption Constructor for mainInterpreter
-     * @param gui
+     * @desciption Constructor for mainInterpreter class for initialization
+     * @param gui : Front end UI manager
      */
     public MainInterpreter(GUIUpdater gui){
         predicates = new ArrayList<>();
@@ -43,6 +43,11 @@ public class MainInterpreter {
         queryRuleVariables = new ArrayList<>();
     }
 
+    /**
+     * @description Start interpreter
+     * @param stateId: an integer
+     * @return true when interpreter successfully started.
+     */
     public boolean runInterpreter(int stateId){
         if(checkComponentsValidity()){
             programState = stateId;
@@ -51,6 +56,10 @@ public class MainInterpreter {
         return false;
     }
 
+    /**
+     * @description STop interpreter
+     * @param stateId: an integer
+     */
     public void stopInterpreter(int stateId){
         programState = stateId;
         queryPredicate = null;
@@ -58,6 +67,11 @@ public class MainInterpreter {
         guiUpdater.hideView(R.id.next);
     }
 
+    /**
+     * @description Get predicate by Id
+     * @param id, integer
+     * @return
+     */
     public Predicate getPredicate (int id){
         for (Predicate predicate:predicates
              ) {
@@ -67,10 +81,21 @@ public class MainInterpreter {
         }
         return null;
     }
+
+    /**
+     * @description Add predicate into predicates arraylist
+     * @param pred, Predicate object
+     */
     public void addPredicate(Predicate pred){
         predicates.add(pred);
     }
 
+    /**
+     * Update selected predicate in predicates arraylist
+     * @param uiType: element to be operated
+     * @param editText: textview that has changes made
+     * @return
+     */
     public boolean updatePredicate(String uiType, TextView editText){
         if (uiType.equalsIgnoreCase("Predicate")) {
             int parentId = ((View) editText.getParent().getParent()).getId();
@@ -96,6 +121,11 @@ public class MainInterpreter {
         return false;
     }
 
+    /**
+     * @description Get predicate's index in predicates arraylist with given predicate Id
+     * @param id: an Integer
+     * @return Integer indicating the index of predicate in predicates arraylist
+     */
     private Integer getPredicateIndex(int id){
         for(int i = 0; i < predicates.size(); i++){
             Predicate temp = predicates.get(i);
@@ -106,6 +136,10 @@ public class MainInterpreter {
         return null;
     }
 
+    /**
+     * @description Delete predicate from predicates arraylist with given predicate Id
+     * @param id: an Integer
+     */
     public void deletePredicate(int id){
         Integer index = getPredicateIndex(id);
         if(index != null){
@@ -114,10 +148,19 @@ public class MainInterpreter {
         }
     }
 
+    /**
+     * @description Add new mathematicalComputaion object into mathComputations arraylist
+     * @param mathematicalComputation, mathematicalComputation object
+     */
     public void addMathComp(MathematicalComputation mathematicalComputation){
         mathComputations.add(mathematicalComputation);
     }
 
+    /**
+     * @description Get mathematicalComputation object from mathComputations arraylist with given id
+     * @param id, an integer
+     * @return MathematicalComputation object with given id
+     */
     public MathematicalComputation getMathComp(int id){
         for(MathematicalComputation mathComp: mathComputations ){
             if(mathComp.getId() == id){
@@ -127,6 +170,11 @@ public class MainInterpreter {
         return null;
     }
 
+    /**
+     * @description Get MathematicalComputation object from mathComputation arraylist with given name
+     * @param name
+     * @return
+     */
     public MathematicalComputation getMathComp(String name){
         for(MathematicalComputation mathComp: mathComputations){
             if(mathComp.name.equalsIgnoreCase(name)){
@@ -370,29 +418,29 @@ public class MainInterpreter {
                     String header = ((TextView) guiUpdater.getLastConsoleLog()).getText().toString();
                     guiUpdater.updateReadInput(header, r.value);
                     guiUpdater.showView(R.id.input);
-                    searchIndex++;
                     break;
                 } else if (curRule.parametersArray.get(searchIndex) instanceof Write) {
                     Write w = (Write) curRule.parametersArray.get(searchIndex);
-                    String[] temp = w.value.split("\\s+");
+                    String[] temp = w.value.split("");
                     if (!(temp.length > 1) && isVariable(w.value)) {
                         Map<String, String> m = getQueryRuleVariable(w.value);
                         guiUpdater.createConsoleLog(w.value + " = " + m.get(w.value));
                     } else {
                         guiUpdater.createConsoleLog(w.value);
                     }
+                    searchIndex++;
                 } else {
                     Operator op = (Operator) curRule.parametersArray.get(searchIndex);
                     String expression = op.convertOperatorToString(queryRuleVariables);
                     Expression e = new Expression(expression);
-                    if (e.eval().equals(0)) {
+                    if (e.eval().toString().equalsIgnoreCase("0")) {
                         queryRuleCondition = false;
                     }
+                    searchIndex++;
                 }
-                searchIndex++;
             }
 
-            if(searchIndex > curRule.parametersArray.size()){
+            if(searchIndex >= curRule.parametersArray.size()){
                 searchIndex = 0;
                 programState = 1;
                 queryRuleVariables = null;

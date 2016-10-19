@@ -129,6 +129,7 @@ public class OnClickDo implements View.OnClickListener {
             String logValue = log.getText().toString();
             log.setText(logValue + " " + input.getText() + ".");
             input.setText("");
+            mainInterpreter.searchIndex ++;
             guiUpdater.hideView(R.id.input);
             guiUpdater.hideView(R.id.readInput);
             mainInterpreter.interpretMathRule();

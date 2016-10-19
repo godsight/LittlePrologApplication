@@ -22,6 +22,12 @@ v0.1:
 - Ability to run the LittleProlog program
 - Error checking on invalid predicate arguments
 
+v0.2:
+-Ability to create mathematical rule for mathematical computation.
+-Ability to save and load files.
+-
+
+
 =Getting started=
 
 	~Creating a New Blank Program~
@@ -59,7 +65,11 @@ v0.1:
 	  by clicking on the ";" button on the console command line or the user could stop going through the list by clicking on the send button again. 
           When no value could satisfy the variable anymore, the console will output false.
 
+	~ Save and Load Files~
+	
+	- To save a program, first enter the metainformation on the right side of the application. Click on the save button on the bottom of the metainformation section to save.
+	- To load a program, load into the start screen and select the program to load on the left side of the screen.
+
 =Known Bugs & limitations=
 
-- Trashbin to delete predicates/variables will not be hidden if user drags a predicate/variable 
-  to delete but doesn't complete the action.
+- Predicates and rules are not saved in order.

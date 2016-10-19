@@ -12,13 +12,13 @@ import java.util.List;
 
 /**
  * This class is a listener which listens for drag drop events and handles it
- * @author Hong Chin Choong
+ * @author Hong Chin Choong & Chan Kai Ying
  * @version 0.1v
  */
 public class ElementDragListener implements View.OnDragListener {
 
     private GUIUpdater guiUpdater; //the GUI handler of the activity
-    private List<String> ops = Arrays.asList("+", "-", "*", "/", ">", "<", "==", "=", "<=", ">=");
+    private List<String> ops = Arrays.asList("+", "-", "*", "/", ">", "<", "==", "=", "<=", ">="); //available operator types for used in this program
 
     public ElementDragListener (GUIUpdater updater){;
         guiUpdater = updater;
@@ -42,7 +42,11 @@ public class ElementDragListener implements View.OnDragListener {
                 break;
             case DragEvent.ACTION_DROP:
                 int clipDataItemCount = event.getClipData().getItemCount();
+
+                //get data that contains the element's type
                 String clipData = (String) event.getClipData().getItemAt(clipDataItemCount-1).getText();
+
+                //for predicate element dropped in coding playground
                 if (clipData.equalsIgnoreCase("Predicate")) {
                     if(v.getId() == R.id.playground || v.getId() == R.id.playgroundContainer) {
                         guiUpdater.generateUI(clipData);
@@ -53,6 +57,8 @@ public class ElementDragListener implements View.OnDragListener {
                         guiUpdater.updateInstructions("Predicates can only be dragged into coding playground");
                     }
                 }
+
+                //for mathematical rule elements dropped in coding playground
                 else if (clipData.equalsIgnoreCase("MathematicalRule")) {
                     if(v.getId() == R.id.playground || v.getId() == R.id.playgroundContainer){
                         guiUpdater.generateUI(clipData);
@@ -63,6 +69,8 @@ public class ElementDragListener implements View.OnDragListener {
                         guiUpdater.updateInstructions("Mathematical rule can only be dragged into coding playground");
                     }
                 }
+
+                //for query predicate element dropped in console command line
                 else if(clipData.equalsIgnoreCase("Query Predicate")){
                     if(v.getId() == R.id.consoleCommandLine){
                         guiUpdater.generateUI(clipData);
@@ -74,6 +82,8 @@ public class ElementDragListener implements View.OnDragListener {
                         guiUpdater.updateInstructions("Query can only be dragged into console command line");
                     }
                 }
+
+                //for query mathematical rule element dropped in console comand line
                 else if(clipData.equalsIgnoreCase("Query Rule")){
                     if(v.getId() == R.id.consoleCommandLine){
                         guiUpdater.generateUI(clipData);
@@ -85,6 +95,8 @@ public class ElementDragListener implements View.OnDragListener {
                         guiUpdater.updateInstructions("Query can only be dragged into console command line");
                     }
                 }
+
+                //for read element dropped in mathematical rule elements in coding playground
                 else if(clipData.equalsIgnoreCase("Read")){
                     if(v instanceof TextView) {
                         int parentId = ((View) v.getParent()).getId();
@@ -93,6 +105,8 @@ public class ElementDragListener implements View.OnDragListener {
                         guiUpdater.updateInstructions("Fill in the argument to complete read component.");
                     }
                 }
+
+                //for write element dropped in mathematical rule elements in coding playground
                 else if(clipData.equalsIgnoreCase("Write")){
                     if(v instanceof TextView) {
                         int parentId = ((View) v.getParent()).getId();
@@ -101,6 +115,8 @@ public class ElementDragListener implements View.OnDragListener {
                         guiUpdater.updateInstructions("Fill in the argument to complete write component");
                     }
                 }
+
+                //for operator element dropped in mathematical rule elements in coding playground
                 else if(clipData.equalsIgnoreCase("Operator")){
                     if(v instanceof TextView){
                         int parentId = ((View)v.getParent()).getId();
@@ -110,6 +126,8 @@ public class ElementDragListener implements View.OnDragListener {
                     }
 
                 }
+
+                //for operator type element dropped in operator element in mathematical rule elements in coding playground
                 else if(opsExist(clipData)){
                     if(v instanceof TextView){
                         if(((TextView) v).getHint() == "OP"){
@@ -127,6 +145,11 @@ public class ElementDragListener implements View.OnDragListener {
         return true;
     }
 
+    /**
+     * Check if operator type exists in ops array
+     * @param op, operator type
+     * @return boolean: true if exists
+     */
     private boolean opsExist(String op){
         if(ops.contains(op)){
             return true;

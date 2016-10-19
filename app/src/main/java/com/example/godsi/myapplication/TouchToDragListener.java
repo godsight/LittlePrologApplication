@@ -15,6 +15,12 @@ public class TouchToDragListener implements View.OnTouchListener {
     private GUIUpdater guiUpdater; //the GUI handler of the activity
     private String dataType; //type of data the view is creating
 
+    /**
+     * Constructor for TouchToDragListener class
+     * @param message
+     * @param updater
+     * @param type
+     */
     public TouchToDragListener(String message, GUIUpdater updater, String type){
         instructions = message;
         guiUpdater = updater;

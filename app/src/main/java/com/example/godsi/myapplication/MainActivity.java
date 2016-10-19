@@ -24,7 +24,7 @@ package com.example.godsi.myapplication;
 
 /**
  * This class handles the initialization of the main activity of the application
- * @author Hong Chin Choong
+ * @author Hong Chin Choong & Chan Kai Ying
  * @version 0.1v
  */
 
@@ -126,7 +126,7 @@ public class MainActivity extends Activity {
 
     /**
      * This class handles the creation and update of UI element in the main activity
-     * @author Hong Chin Choong
+     * @author Hong Chin Choong & Chan Kai Ying
      * @version 0.1v
      */
     public class MainGUIUpdater implements GUIUpdater {
@@ -168,37 +168,59 @@ public class MainActivity extends Activity {
             });
         }
 
+        /**
+         * Remove view from UI with given Id
+         * @param viewId, int
+         */
         public void removeView (int viewId){
             View toBeRemoved = findViewById(viewId);
             ViewGroup parentView = (ViewGroup) toBeRemoved.getParent();
             parentView.removeView(toBeRemoved);
         }
 
+        /**
+         * Disable or Enable a view in UI given the viewId
+         * @param viewId integer
+         * @param enable boolean: true = enable; false = disable
+         */
         public void disableEnableView(int viewId, boolean enable){
             View v = findViewById(viewId);
             v.setEnabled(enable);
         }
 
+        /**
+         * Hide a view in UI given the viewId
+         * @param viewId integer
+         */
         public void hideView(int viewId){
             View v = findViewById(viewId);
             v.setVisibility(View.INVISIBLE);
         }
 
+        /**
+         * Show a view in UI given the viewId
+         * @param viewId integer
+         */
         public void showView(int viewId){
             View v = findViewById(viewId);
             v.setVisibility(View.VISIBLE);
         }
 
+        /**
+         * Get view in UI given the viewId
+         * @param viewId integer
+         * @return
+         */
         public View getView(int viewId){
             return findViewById(viewId);
         }
 
         /**
-         * Generate specific UI elements for the activity based on the parameter
+         * Generate predicate and mathematical rule elements in coding playground and console command line
          * @param uiType type of UI element to be created
          */
         public int generateUI (String uiType){
-            //Creation of UI element for playground
+            //Creation of predicate for playground
             if (uiType.equalsIgnoreCase(getString(R.string.predicate))){
                 //Creation of UI elements
                 LinearLayout container = (LinearLayout) findViewById(R.id.playground);
@@ -219,6 +241,7 @@ public class MainActivity extends Activity {
                 ImageButton additionButton = new ImageButton(getApplicationContext());
                 additionButton.setLayoutParams(new LinearLayout.LayoutParams(43, 43));
 
+                //Creation and saving of predicate element in backend
                 Constant newConstant = new Constant(paramId);
                 Predicate newPredicate = new Predicate(newId, newConstant);
                 newPredicate.nameId = predicateNameId;
@@ -249,10 +272,10 @@ public class MainActivity extends Activity {
                 additionButton.setOnClickListener(new ClickToAddListener(getString(R.string.add_new_parameter), activityGUIUpdater, uiType, mainInterpreter));
                 additionButton.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions),activityGUIUpdater, uiType));
 
+                //Adding the UI elements into the container
                 RelativeLayout.LayoutParams rp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 newLayout2.addView(predicateText, rp);
                 newLayout3.addView(parameterText, rp);
-                //Adding the UI elements into the container
                 newLayout.addView(newLayout2);
                 newLayout.addView(newLayout3);
                 newLayout.addView(additionButton);
@@ -261,8 +284,8 @@ public class MainActivity extends Activity {
                 return newId;
             }
 
+            //Creation of mathematical rule in coding playground
             else if(uiType.equalsIgnoreCase(getString(R.string.mathematical_rule))){
-                //Creation of UI element, mathematical rule in coding playground
                 LinearLayout container = (LinearLayout) findViewById(R.id.playground);
                 LinearLayout newLayout = new LinearLayout(getApplicationContext());
                 int newId = View.generateViewId();
@@ -276,10 +299,12 @@ public class MainActivity extends Activity {
                 TextView dropSpace = new TextView(getApplicationContext());
                 dropSpace.setLayoutParams(new LinearLayout.LayoutParams(50, 43));
 
+                //Creation and saving of mathematical element in backend
                 MathematicalComputation mathComp = new MathematicalComputation(newId);
                 mathComp.mathCompEditid = ruleId;
                 mainInterpreter.addMathComp(mathComp);
 
+                //Styling of UI elements
                 rule.setPadding(5, 5, 5, 5);
                 rule.setMinimumWidth(250);
                 rule.setHint(getString(R.string.mathematical_rule));
@@ -295,6 +320,7 @@ public class MainActivity extends Activity {
                 dropSpace.setBackgroundColor(Color.parseColor("#a9a9a9"));
                 dropSpace.setPadding(5,10, 5,5 );
 
+                //Assigning listeners to the UI elements
                 rule.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.mathComp_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                 rule.setOnFocusChangeListener(new FocusListener(getString(R.string.mathComp_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
                 rule.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, getString(R.string.mathematical_rule)));
@@ -312,6 +338,7 @@ public class MainActivity extends Activity {
                 return newId;
             }
 
+            //Creation of predicate in console command line
             else if(uiType.equalsIgnoreCase(getString(R.string.query_predicate))){
                 //Creation of UI element in command line
                 RelativeLayout consoleCommandLine = (RelativeLayout) findViewById(R.id.consoleCommandLine);
@@ -330,6 +357,7 @@ public class MainActivity extends Activity {
                 ImageButton additionButton = new ImageButton(getApplicationContext());
                 additionButton.setLayoutParams(new LinearLayout.LayoutParams(43, 43));
 
+                //Creation and saving of query predicate in backend
                 Constant newConstant = new Constant(paramId);
                 Predicate queryPred = new Predicate(newId, newConstant);
                 mainInterpreter.queryPredicate = queryPred;
@@ -353,6 +381,7 @@ public class MainActivity extends Activity {
                 parameterText.setSingleLine(true);
                 additionButton.setImageResource(R.drawable.addicon);
 
+                //Assigning listeners to the UI elements
                 predicateText.setOnFocusChangeListener(new FocusListener(getString(R.string.predicate_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
                 predicateText.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.predicate_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                 predicateText.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, getString(R.string.query_predicate)));
@@ -375,8 +404,8 @@ public class MainActivity extends Activity {
                 consoleCommandLine.addView(newLayout, rp2);
 
             }
+            //Creation of mathematical rule query in console command line
             else if(uiType.equalsIgnoreCase(getString(R.string.query_rule))){
-                //Creation of UI element, mathematical rule in coding playground
                 RelativeLayout container = (RelativeLayout) findViewById(R.id.consoleCommandLine);
                 LinearLayout newLayout = new LinearLayout(getApplicationContext());
                 int newId = View.generateViewId();
@@ -386,9 +415,11 @@ public class MainActivity extends Activity {
                 EditText rule = new EditText(getApplicationContext());
                 TextView fullStop = new TextView(getApplicationContext());
 
+                //Creation and saving of query mathematical rule in backend
                 MathematicalComputation mathComp = new MathematicalComputation(newId);
                 mainInterpreter.queryRule = mathComp;
 
+                //Styling of UI elements
                 queryHead.setPadding(5, 10, 5, 5);
                 queryHead.setText("?- ");
                 queryHead.setTextColor(Color.BLACK);
@@ -403,6 +434,7 @@ public class MainActivity extends Activity {
                 fullStop.setBackgroundColor(Color.parseColor("#0099cc"));
                 fullStop.setTextColor(Color.WHITE);
 
+                //Assigning listeners to the UI elements
                 rule.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.mathComp_value_console_update), uiType, activityGUIUpdater, mainInterpreter));
                 rule.setOnFocusChangeListener(new FocusListener(getString(R.string.mathComp_value_console_update), getString(R.string.value_update_instructions), uiType, activityGUIUpdater, mainInterpreter));
                 rule.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, getString(R.string.query_rule)));
@@ -418,13 +450,20 @@ public class MainActivity extends Activity {
             return 0;
         }
 
+        /**
+         * Expand parameters in predicate and mathematical rule which includes addition of predicate parameter, expanding operator parameter in mathematical rule
+         * @param id, interger
+         * @param uiType, string
+         * @return id, integer
+         */
         public int generateUI(int id, String uiType){
             if(uiType.equalsIgnoreCase("Predicate") || uiType.equalsIgnoreCase("Query")) {
                 LinearLayout existingLayout = (LinearLayout) findViewById(id);
                 RelativeLayout newLayout = new RelativeLayout(getApplicationContext());
                 int layoutId = View.generateViewId();
-                newLayout.setId(layoutId)
-                ;
+                newLayout.setId(layoutId);
+
+                //Creation and saving element in backend
                 EditText parameterText = new EditText(getApplicationContext());
                 int paramId = View.generateViewId();
                 parameterText.setId(paramId);
@@ -433,6 +472,7 @@ public class MainActivity extends Activity {
                 close.setId(imageId);
                 close.setImageResource(R.drawable.xicon);
 
+                //Styling of UI elements
                 parameterText.setPadding(5, 5, 5, 5);
                 parameterText.setMinimumWidth(250);
                 parameterText.setHint(getString(R.string.parameter));
@@ -484,6 +524,7 @@ public class MainActivity extends Activity {
                 int valueId = View.generateViewId();
                 value.setId(valueId);
 
+                //Creation and saving element in backend
                 int mathId = ((View) existingLayout.getParent()).getId();
                 MathematicalComputation mathematicalComputation = mainInterpreter.getMathComp(mathId);
                 Operator existingOp = (Operator) mathematicalComputation.getAttribute(id);
@@ -492,6 +533,7 @@ public class MainActivity extends Activity {
                 existingOp.addOperatorParam(newOperatorType);
                 existingOp.addOperatorParam(newConstant);
 
+                //Styling of UI elements
                 openBracket.setPadding(5,10,5,5);
                 openBracket.setBackgroundColor(Color.parseColor("#cc00cc"));
                 openBracket.setText(R.string.openBracket);
@@ -522,6 +564,7 @@ public class MainActivity extends Activity {
                 value.setTextColor(Color.BLACK);
                 value.setGravity(Gravity.CENTER_HORIZONTAL);
 
+                //Assigning listeners to the UI elements
                 openBracket.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
                 closeBracket.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
                 openSquareBracket.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
@@ -555,6 +598,7 @@ public class MainActivity extends Activity {
                 param.setId(paramId);
                 EditText readTextEnd = new EditText(getApplicationContext());
 
+                //Creation and saving element in backend
                 if (uiType.equalsIgnoreCase("Read")) {
                     readTextFront.setText(getString(R.string.read) + " ( ");
                     Read newRead = new Read(paramId);
@@ -572,6 +616,8 @@ public class MainActivity extends Activity {
                     param.setOnEditorActionListener(new TextViewKeyboardActionListener(getString(R.string.write_value_console_update), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
                     param.setOnFocusChangeListener(new FocusListener(getString(R.string.write_value_console_update), getString(R.string.value_update_instructions), getString(R.string.mathematical_rule), activityGUIUpdater, mainInterpreter));
                 }
+
+                //Styling of UI elements
                 readTextFront.setPadding(5, 5, 5, 5);
                 readTextFront.setBackgroundColor(Color.parseColor("#ff669900"));
                 readTextEnd.setEnabled(false);
@@ -587,6 +633,7 @@ public class MainActivity extends Activity {
                 readTextEnd.setEnabled(false);
                 readTextEnd.setTextColor(Color.WHITE);
 
+                //Assigning listeners to the UI elements
                 readTextFront.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
                 param.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
                 readTextEnd.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
@@ -624,6 +671,7 @@ public class MainActivity extends Activity {
                 ImageButton additionButton = new ImageButton(getApplicationContext());
                 additionButton.setLayoutParams(new LinearLayout.LayoutParams(43, 43));
 
+                //Creation and saving element in backend
                 Constant newLeft = new Constant(leftId);
                 OperatorType newOpType = new OperatorType(opId);
                 Constant newRight = new Constant(rightId);
@@ -685,6 +733,7 @@ public class MainActivity extends Activity {
                 comma.setEnabled(false);
                 additionButton.setImageResource(R.drawable.addicon);
 
+                //Assigning listeners to the UI elements
                 openBracket.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
                 closeBracket.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
                 openBracketRight.setOnLongClickListener(new LongClickToDragListener(getString(R.string.drag_delete_instructions), activityGUIUpdater, uiType));
@@ -721,6 +770,12 @@ public class MainActivity extends Activity {
             return 0;
         }
 
+        /**
+         * Replace mathematical rule TextView's value with given Id and update the backend
+         * @param id, Interger
+         * @param value, String
+         * @return boolean: True if backend update successfully
+         */
         public boolean replaceUIValue(int id, String value){
             TextView view = (TextView) findViewById(id);
             view.setText(value);
@@ -730,16 +785,30 @@ public class MainActivity extends Activity {
             return false;
         }
 
+        /**
+         * Get TextView by given Id and update its value with given value
+         * @param id, interger
+         * @param value, string
+         */
         public void updateUIValue (int id, String value){
             EditText editText = (EditText) findViewById(id);
             editText.setText(value);
         }
 
+        /**
+         * Get the latest console log view in console container
+         * @return View
+         */
         public View getLastConsoleLog(){
             LinearLayout console = (LinearLayout) findViewById(R.id.console);
             return (TextView) console.getChildAt(console.getChildCount() - 1);
         }
 
+        /**
+         * Method is called when mathematical rule interpretation started, to show and update TextView with "readInput" id
+         * @param header, string
+         * @param var, string
+         */
         public void updateReadInput(String header, String var) {
             LinearLayout readInput = (LinearLayout) findViewById(R.id.readInput);
             TextView readHeader = (TextView) readInput.getChildAt(0);
@@ -749,6 +818,11 @@ public class MainActivity extends Activity {
             readInput.setVisibility(View.VISIBLE);
         }
 
+        /**
+         * Get the parent Id of View with given Id
+         * @param id, integer
+         * @return Parent view's Id
+         */
         public int getParentId (int id){
             View parentView = (View) findViewById(id).getParent();
             return parentView.getId();

@@ -1,6 +1,7 @@
 package com.example.godsi.myapplication;
 
 /**
+ * Stores metadata of OperatorType
  * @author: Chan Kai Ying
  */
 
@@ -10,14 +11,6 @@ public class OperatorType extends Attribute{
     public OperatorType(int identifier){
         super(identifier);
         value = ""; //value of the operatorType
-    }
-
-    public String comparisonOrExpression(){
-        if(value.equalsIgnoreCase("==") || value.equalsIgnoreCase(">") || value.equalsIgnoreCase("<") || value.equalsIgnoreCase(">=") ||
-                value.equalsIgnoreCase("<=") || value.equalsIgnoreCase("=")) {
-            return "Comparison";
-        }
-        return "Expression";
     }
 
 }

@@ -16,16 +16,24 @@ public class Attribute {
         id = identifier;
     }
 
+    /**
+     * Get attribute object's id
+     * @return Id, integer
+     */
     public int getId(){
         return id;
     }
 
+    /**
+     * Set attribute object's id
+     * @param identifier, integer
+     */
     public void setId(int identifier){
         id = identifier;
     }
 
     @Override
-    //Overriding equals() to compare two Attribute objects
+    //Overriding equals() to compare two Attribute objects with Id
     public boolean equals(Object a){
         //if the object is compared with itself then return true
         if(a == this){
@@ -47,7 +55,7 @@ public class Attribute {
     }
 
     @Override
-    //Overriding Hashcode() to compare two Attribute objects
+    //Overriding Hashcode() to compare two Attribute objects with Id
     public int hashCode(){
         int hash = 17;
         hash = 31 * hash + id;

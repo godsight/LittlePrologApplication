@@ -48,6 +48,16 @@ public class LongClickToDragListener implements View.OnLongClickListener {
             //begin drag event
             layout.startDrag(data, shadowBuilder, layout, 0);
         }
+        else if(uiType.equals("MathematicalRule")){
+            LinearLayout layout = (LinearLayout) view.getParent();
+            ClipData data = ClipData.newPlainText("", String.valueOf(layout.getId()));
+            data.addItem(new ClipData.Item(uiType));
+            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(
+                    layout);
+
+            //begin drag event
+            layout.startDrag(data, shadowBuilder, layout, 0);
+        }
         else if(uiType.equalsIgnoreCase("Query Predicate")) {
             //setting the data to be dragged
             LinearLayout layout = (LinearLayout) view.getParent().getParent();

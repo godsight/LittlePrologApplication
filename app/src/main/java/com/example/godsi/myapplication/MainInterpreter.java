@@ -12,6 +12,8 @@ import java.util.Map;
  * @author Chan Kai Ying
  * @version 0.lv
  * @createdDate 10/3/2016
+ * @description This class is the main class used for backend operations including saving predicates and mathematical computations,
+ *                  interpreting query and etc.
  */
 
 public class MainInterpreter {
@@ -27,6 +29,10 @@ public class MainInterpreter {
     public MetaInfo metaInfo = new MetaInfo();
     ArrayList<Map<String, String>> queryRuleVariables;
 
+    /**
+     * @desciption Constructor for mainInterpreter
+     * @param gui
+     */
     public MainInterpreter(GUIUpdater gui){
         predicates = new ArrayList<>();
         mathComputations = new ArrayList<>();

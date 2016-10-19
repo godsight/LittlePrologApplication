@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * This class stores the metadata for the program
+ * @author Hong Chin Choong
  */
 
 public class MetaInfo implements Writable{

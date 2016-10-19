@@ -23,6 +23,16 @@ public class OnClickDo implements View.OnClickListener {
     private int programState; //state of the interpreter
     private int failState; //failure state
 
+    /**
+     * Constructor for OnClickDo class
+     * @param console
+     * @param gui
+     * @param interpreter
+     * @param uiType
+     * @param failText
+     * @param programStateId
+     * @param failStateId
+     */
     public OnClickDo(String console, GUIUpdater gui, MainInterpreter interpreter, String uiType, String failText, int programStateId, int failStateId){
         consoleText = console;
         guiUpdater = gui;
@@ -39,7 +49,7 @@ public class OnClickDo implements View.OnClickListener {
      */
     @Override
     public void onClick(View v) {
-        //run interpreter
+        //when "play" button is clicked, run interpreter
         if(type.equalsIgnoreCase("Run")){
             //check if all elements in coding playground are valid
             if(mainInterpreter.runInterpreter(programState)){
@@ -52,7 +62,7 @@ public class OnClickDo implements View.OnClickListener {
                 guiUpdater.createConsoleLog(failConsoleText);
             }
         }
-        //stop interpreter
+        //when "Stop" button is clicked, stop interpreter
         else if(type.equalsIgnoreCase("Stop")){
             mainInterpreter.stopInterpreter(programState);
             guiUpdater.createConsoleLog(consoleText);
@@ -101,6 +111,8 @@ public class OnClickDo implements View.OnClickListener {
             }
         }
 
+        //when ";" button is clicked
+        //continue variable search
         else if(type.equalsIgnoreCase("Next")){
             Predicate query = mainInterpreter.queryPredicate;
             String result = mainInterpreter.variableSearch(query, 1);
@@ -109,29 +121,50 @@ public class OnClickDo implements View.OnClickListener {
             }
         }
 
+        //When "Interpret" button in console command line is clicked, start interpreting mathematical rule query
         else if(type.equalsIgnoreCase("Interpret")){
             MathematicalComputation query = mainInterpreter.queryRule;
+
+            //create console log to print the full mathematical rule
             guiUpdater.createConsoleLog(consoleLogQueryRule(query.name));
+
+            //remove mathematical rule query from console command line
             removeQueryRuleView();
+
+            //start interpretation only if program is in running state or interpret query rule state
             if(mainInterpreter.programState == 1 || mainInterpreter.programState == 4){
+                //interpret query
                 mainInterpreter.interpretMathRule();
             }
+            //fail to start interpretation due to program not in the correct state
             else{
                 guiUpdater.createConsoleLog("Interpreter has not been started.");
             }
         }
 
+        //When "submit" button in console command line is clicked,
+        // Accept user input for Read functionality. Update console log to print user input value and clear input TextView in console command line
         else if(type.equalsIgnoreCase("Read Input")){
+
+            //get input TextView in console command line
             LinearLayout readInput = (LinearLayout) guiUpdater.getView(R.id.readInput);
             TextView input = (TextView) readInput.getChildAt(1);
+
+            //Update HashMap object's value saved in backend
             mainInterpreter.updateQueryRuleVariable(input.getHint().toString(), input.getText().toString());
+
+            //Update console log to print user input value
             TextView log = (TextView) guiUpdater.getLastConsoleLog();
             String logValue = log.getText().toString();
             log.setText(logValue + " " + input.getText() + ".");
+
+            //clear input TextView in console command line
             input.setText("");
-            mainInterpreter.searchIndex ++;
             guiUpdater.hideView(R.id.input);
             guiUpdater.hideView(R.id.readInput);
+
+            //continue interpreting query mathematical rule
+            mainInterpreter.searchIndex ++;
             mainInterpreter.interpretMathRule();
         }
     }
@@ -141,6 +174,12 @@ public class OnClickDo implements View.OnClickListener {
         guiUpdater.removeView(queryRuleId);
     }
 
+    /**
+     * Create a string that consists of the full predicate matching the query predicate in the format of,
+     * for example Predicate(X, Y).
+     * @param query, Predicate object
+     * @return String
+     */
     private String consoleLogQueryPredicate(Predicate query){
         String log = query.name + "(";
         for(int i = 0; i < query.parametersArray.size(); i++){
@@ -153,32 +192,47 @@ public class OnClickDo implements View.OnClickListener {
         return log;
     }
 
+    /**
+     * Create a string that consists of the full mathematical rule matching the query mathematical rule in the format of,
+     * for example Rule :- Write("input height: "), Read( X ), X == 3 + 4.
+     * @param name, mathematical rule name
+     * @return String
+     */
     private String consoleLogQueryRule(String name){
         MathematicalComputation query = mainInterpreter.getMathComp(name);
         String log = query.name + " :- ";
         for(int i = 0; i < query.parametersArray.size(); i++){
+
+            //if parameter is a Read object
             if(query.parametersArray.get(i) instanceof Read){
                 log += "Read ( ";
                 Read p = (Read) query.parametersArray.get(i);
                 log += p.value;
                 log += " ), ";
             }
+
+            //if parameter is a Write object
             else if(query.parametersArray.get(i) instanceof Write){
                 log += "Write ( ";
                 Write p = (Write) query.parametersArray.get(i);
                 log += p.value;
                 log += " ), ";
             }
+
+            //if parameter is an Operator object
             else{
                 Operator p = (Operator) query.parametersArray.get(i);
                 ArrayList<Attribute> opParams = p.parametersArray;
                 Constant c;
                 OperatorType opType;
                 for(int j = 0; j < opParams.size(); j++){
+                    //if parameter is a Constant object
                     if(opParams.get(j) instanceof Constant) {
                         c = (Constant) opParams.get(j);
                         log += c.value + " ";
                     }
+
+                    //if parameter is a Operator Type object
                     else{
                         opType = (OperatorType) opParams.get(j);
                         log += opType.value + " ";
@@ -187,6 +241,8 @@ public class OnClickDo implements View.OnClickListener {
                 log += ", ";
             }
         }
+
+        //remove unnecessary ", " at the end of log string and add "." at the end
         log = log.substring(0, log.length() - 2);
         log += ".";
         return log;
